@@ -1,0 +1,372 @@
+###############################################################################
+#
+# IAR ELF Linker V7.40.3.8902/W32 for ARM                 28/Sep/2018  16:56:45
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Exe\c.out
+#    Map file     =  
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\List\c.map
+#    Command line =  
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\bsp_init.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\bsp_led.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\clog.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\cqueue.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\crc.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\cshell.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\cshell_port.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\cshell_user.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\cstring.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\flash_log.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\hal_task.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\led_process.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\main.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_cfg.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_clock.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_core.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_cpu.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_msg.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_task.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_timeout.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\osal_timer.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\rtt_log.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\SEGGER_RTT.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\SEGGER_RTT_printf.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\serial_log.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\startup_stm32f030.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_adc.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_gpio.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_systick.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_usart.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_can.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_cec.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_comp.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_crc.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_crs.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_dac.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_dbgmcu.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_dma.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_exti.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_flash.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_gpio.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_i2c.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_it.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_iwdg.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_misc.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_pwr.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_rcc.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_rtc.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_spi.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_syscfg.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_tim.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_usart.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_wwdg.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\system_info.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\system_init.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\system_stm32f0xx.o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\user_task.o
+#        -o
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Exe\c.out
+#        --map
+#        C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\List\c.map
+#        --config "D:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        7.2\arm\config\linker\ST\stm32f030x8.icf" --semihosting --entry
+#        __iar_program_start --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x08000000 { ro section .intvec };
+"P1":  place in [from 0x08000000 to 0x0800ffff] { ro };
+"P2":  place in [from 0x20000000 to 0x20001fff] { rw, block CSTACK, block HEAP };
+
+  Section            Kind        Address   Size  Object
+  -------            ----        -------   ----  ------
+"A1":                                      0xb4
+  .intvec            ro code  0x08000000   0xb4  startup_stm32f030.o [1]
+                            - 0x080000b4   0xb4
+
+"P1":                                     0xd90
+  .text              ro code  0x080000b4  0x26c  stm32f0xx_rcc.o [1]
+  .text              ro code  0x08000320   0xe0  I32DivModFast.o [5]
+  .text              ro code  0x08000400    0x2  IntDivZer.o [5]
+  .text              ro code  0x08000402    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000404  0x1b8  osal_timer.o [1]
+  .text              ro code  0x080005bc   0xf8  osal_core.o [1]
+  .text              ro code  0x080006b4    0x2  osal_msg.o [1]
+  .text              ro code  0x080006b6   0x1a  osal_task.o [1]
+  .text              ro code  0x080006d0   0x80  osal_clock.o [1]
+  .text              ro code  0x08000750   0x50  hal_task.o [1]
+  .text              ro code  0x080007a0   0x70  user_task.o [1]
+  .text              ro code  0x08000810  0x104  bsp_led.o [1]
+  .text              ro code  0x08000914   0xd0  stm32f0xx_gpio.o [1]
+  .text              ro code  0x080009e4  0x160  system_stm32f0xx.o [1]
+  .text              ro code  0x08000b44   0xfc  stm32f0xx_bsp_systick.o [1]
+  .text              ro code  0x08000c40   0x3c  startup_stm32f030.o [1]
+  .text              ro code  0x08000c7c   0x3c  zero_init3.o [5]
+  .text              ro code  0x08000cb8   0x30  copy_init3.o [5]
+  .text              ro code  0x08000ce8   0x28  data_init.o [5]
+  .text              ro code  0x08000d10   0x26  stm32f0xx_it.o [1]
+  .iar.init_table    const    0x08000d38   0x24  - Linker created -
+  .text              ro code  0x08000d5c    0x2  startup_stm32f030.o [1]
+  .rodata            const    0x08000d60   0x1c  bsp_led.o [1]
+  .text              ro code  0x08000d7c   0x1c  main.o [1]
+  .text              ro code  0x08000d98   0x10  bsp_init.o [1]
+  .text              ro code  0x08000da8    0xc  system_init.o [1]
+  .text              ro code  0x08000db4    0x2  system_info.o [1]
+  .text              ro code  0x08000db6    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000db8   0x1a  cmain.o [5]
+  .text              ro code  0x08000dd2    0x4  low_level_init.o [3]
+  .text              ro code  0x08000dd6    0x8  exit.o [3]
+  .text              ro code  0x08000dde    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000de0    0xa  cexit.o [5]
+  .text              ro code  0x08000dea    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000dec   0x14  exit.o [6]
+  .text              ro code  0x08000e00    0xc  cstartup_M.o [5]
+  .rodata            const    0x08000e0c    0x8  osal_task.o [1]
+  .text              ro code  0x08000e14    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e16    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e18    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e1a    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e1c    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e1e    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e20    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e22    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e24    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e26    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e28    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e2a    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e2c    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e2e    0x2  startup_stm32f030.o [1]
+  .text              ro code  0x08000e30    0x2  startup_stm32f030.o [1]
+  .rodata            const    0x08000e32    0x0  zero_init3.o [5]
+  .rodata            const    0x08000e32    0x0  copy_init3.o [5]
+  Initializer bytes  const    0x08000e34   0x10  <for P2 s0>
+                            - 0x08000e44  0xd90
+
+"P2":                                     0x930
+  P2 s0                       0x20000000   0x10  <Init block>
+    .data            inited   0x20000000   0x10  stm32f0xx_rcc.o [1]
+  .bss               zero     0x20000010   0xf0  osal_timer.o [1]
+  .bss               zero     0x20000100   0x10  bsp_led.o [1]
+  .bss               zero     0x20000110    0x8  osal_task.o [1]
+  .bss               zero     0x20000118    0x4  osal_clock.o [1]
+  .bss               zero     0x2000011c    0x4  osal_clock.o [1]
+  .bss               zero     0x20000120    0x4  osal_core.o [1]
+  .bss               zero     0x20000124    0x4  osal_timer.o [1]
+  .bss               zero     0x20000128    0x4  stm32f0xx_bsp_systick.o [1]
+  .bss               zero     0x2000012c    0x2  osal_clock.o [1]
+  .bss               zero     0x2000012e    0x1  hal_task.o [1]
+  .bss               zero     0x2000012f    0x1  user_task.o [1]
+  CSTACK                      0x20000130  0x800  <Block>
+    CSTACK           uninit   0x20000130  0x800  <Block tail>
+                            - 0x20000930  0x930
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x120:
+          0x20000010  0x120
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0x10:
+          0x08000e34   0x10
+    1 destination range, total size 0x10:
+          0x20000000   0x10
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                   ro code  ro data  rw data
+    ------                   -------  -------  -------
+C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj: [1]
+    bsp_init.o                    16
+    bsp_led.o                    260       28       16
+    hal_task.o                    80                 1
+    main.o                        28
+    osal_clock.o                 128                10
+    osal_core.o                  248                 4
+    osal_msg.o                     2
+    osal_task.o                   26        8        8
+    osal_timer.o                 440               244
+    startup_stm32f030.o          280
+    stm32f0xx_bsp_systick.o      252                 4
+    stm32f0xx_gpio.o             208
+    stm32f0xx_it.o                38
+    stm32f0xx_rcc.o              620       16       16
+    system_info.o                  2
+    system_init.o                 12
+    system_stm32f0xx.o           352
+    user_task.o                  112                 1
+    --------------------------------------------------
+    Total:                     3 104       52      304
+
+command line: [2]
+    --------------------------------------------------
+    Total:
+
+dl6M_tln.a: [3]
+    exit.o                         8
+    low_level_init.o               4
+    --------------------------------------------------
+    Total:                        12
+
+m6M_tl.a: [4]
+    --------------------------------------------------
+    Total:
+
+rt6M_tl.a: [5]
+    I32DivModFast.o              224
+    IntDivZer.o                    2
+    cexit.o                       10
+    cmain.o                       26
+    copy_init3.o                  48
+    cstartup_M.o                  12
+    data_init.o                   40
+    zero_init3.o                  60
+    --------------------------------------------------
+    Total:                       422
+
+shb_l.a: [6]
+    exit.o                        20
+    --------------------------------------------------
+    Total:                        20
+
+    Gaps                                    4
+    Linker created                         38    2 048
+------------------------------------------------------
+    Grand Total:               3 558       94    2 352
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.iar.init_table$$Base   0x08000d38          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x08000d5c          --   Gb  - Linker created -
+?main                   0x08000db9         Code  Gb  cmain.o [5]
+ADC1_IRQHandler         0x08000d35    0x2  Code  Gb  stm32f0xx_it.o [1]
+APBAHBPrescTable        0x20000000   0x10  Data  Lc  stm32f0xx_rcc.o [1]
+BSP_Init                0x08000da1    0x8  Code  Gb  bsp_init.o [1]
+BSP_LED_Close           0x080008a9   0x3c  Code  Gb  bsp_led.o [1]
+BSP_LED_Init            0x08000811   0x5c  Code  Gb  bsp_led.o [1]
+BSP_LED_Open            0x0800086d   0x3c  Code  Gb  bsp_led.o [1]
+BSP_LED_Toggle          0x080008e5   0x26  Code  Gb  bsp_led.o [1]
+BSP_SYSTICK_IncTick     0x08000c1d    0xc  Code  Gb  stm32f0xx_bsp_systick.o [1]
+BSP_SYSTICK_Open        0x08000c01   0x1c  Code  Gb  stm32f0xx_bsp_systick.o [1]
+Board_Init              0x08000d99    0x8  Code  Gb  bsp_init.o [1]
+CSTACK$$Base            0x20000130          --   Gb  - Linker created -
+CSTACK$$Limit           0x20000930          --   Gb  - Linker created -
+DMA1_Channel1_IRQHandler
+                        0x08000d33    0x2  Code  Gb  stm32f0xx_it.o [1]
+GPIO_Init               0x08000915   0xbe  Code  Gb  stm32f0xx_gpio.o [1]
+GPIO_WriteBit           0x080009d3   0x12  Code  Gb  stm32f0xx_gpio.o [1]
+HalTask_Init            0x08000751   0x14  Code  Gb  hal_task.o [1]
+HalTask_Process         0x08000765   0x38  Code  Gb  hal_task.o [1]
+HardFault_Handler       0x08000d13    0x4  Code  Gb  stm32f0xx_it.o [1]
+LED_IO                  0x08000d60   0x1c  Data  Gb  bsp_led.o [1]
+NMI_Handler             0x08000d11    0x2  Code  Gb  stm32f0xx_it.o [1]
+NVIC_SetPriority        0x08000b45   0x8a  Code  Lc  stm32f0xx_bsp_systick.o [1]
+OS_Clock_GetSystemClock
+                        0x0800072f   0x14  Code  Gb  osal_clock.o [1]
+OS_Clock_Update         0x080006d1   0x5e  Code  Gb  osal_clock.o [1]
+OS_Events_Set           0x08000677   0x30  Code  Gb  osal_core.o [1]
+OS_Init                 0x080005bd   0x10  Code  Gb  osal_core.o [1]
+OS_Msg_Init             0x080006b5    0x2  Code  Gb  osal_msg.o [1]
+OS_Start                0x080005cd    0x8  Code  Gb  osal_core.o [1]
+OS_Task_Init            0x080006b7   0x1a  Code  Gb  osal_task.o [1]
+OS_Timer_Init           0x08000405   0x20  Code  Gb  osal_timer.o [1]
+OS_Timer_Start          0x0800052d   0x24  Code  Gb  osal_timer.o [1]
+OS_Timer_Update         0x08000551   0x64  Code  Gb  osal_timer.o [1]
+PendSV_Handler          0x08000d19    0x2  Code  Gb  stm32f0xx_it.o [1]
+RCC_AHBPeriphClockCmd   0x080002dd   0x20  Code  Gb  stm32f0xx_rcc.o [1]
+RCC_GetClocksFreq       0x080000b5  0x222  Code  Gb  stm32f0xx_rcc.o [1]
+Region$$Table$$Base     0x08000d38          --   Gb  - Linker created -
+Region$$Table$$Limit    0x08000d5c          --   Gb  - Linker created -
+SVC_Handler             0x08000d17    0x2  Code  Gb  stm32f0xx_it.o [1]
+SetSysClock             0x08000a53   0xbe  Code  Lc  system_stm32f0xx.o [1]
+SysTick_Config          0x08000bcf   0x32  Code  Lc  stm32f0xx_bsp_systick.o [1]
+SysTick_Handler         0x08000d1b   0x14  Code  Gb  stm32f0xx_it.o [1]
+SystemInfo_Init         0x08000db5    0x2  Code  Gb  system_info.o [1]
+SystemInit              0x080009e5   0x6e  Code  Gb  system_stm32f0xx.o [1]
+System_Load             0x08000da9    0xc  Code  Gb  system_init.o [1]
+TIM3_IRQHandler         0x08000d31    0x2  Code  Gb  stm32f0xx_it.o [1]
+USART1_IRQHandler       0x08000d2f    0x2  Code  Gb  stm32f0xx_it.o [1]
+UserTask_Init           0x080007a1   0x16  Code  Gb  user_task.o [1]
+UserTask_Process        0x080007b7   0x56  Code  Gb  user_task.o [1]
+__ICFEDIT_region_RAM_end__ {Abs}
+                        0x20001fff          --   Gb  command line/config [2]
+__ICFEDIT_region_RAM_start__ {Abs}
+                        0x20000000          --   Gb  command line/config [2]
+__aeabi_idiv            0x0800034d         Code  Gb  I32DivModFast.o [5]
+__aeabi_idiv0           0x08000401         Code  Gb  IntDivZer.o [5]
+__aeabi_idivmod         0x0800034d         Code  Gb  I32DivModFast.o [5]
+__aeabi_uidiv           0x08000353         Code  Gb  I32DivModFast.o [5]
+__aeabi_uidivmod        0x08000353         Code  Gb  I32DivModFast.o [5]
+__cmain                 0x08000db9         Code  Gb  cmain.o [5]
+__exit                  0x08000ded   0x14  Code  Gb  exit.o [6]
+__iar_copy_init3        0x08000cb9   0x30  Code  Gb  copy_init3.o [5]
+__iar_data_init3        0x08000ce9   0x28  Code  Gb  data_init.o [5]
+__iar_program_start     0x08000e01         Code  Gb  cstartup_M.o [5]
+__iar_zero_init3        0x08000c7d   0x3c  Code  Gb  zero_init3.o [5]
+__low_level_init        0x08000dd3    0x4  Code  Gb  low_level_init.o [3]
+__vector_table          0x08000000         Data  Gb  startup_stm32f030.o [1]
+_call_main              0x08000dc5         Code  Gb  cmain.o [5]
+_exit                   0x08000de1         Code  Gb  cexit.o [5]
+_main                   0x08000dcf         Code  Gb  cmain.o [5]
+exit                    0x08000dd7    0x8  Code  Gb  exit.o [3]
+g_HalTask_Id            0x2000012e    0x1  Data  Gb  hal_task.o [1]
+g_TasksEvents           0x20000110    0x8  Data  Gb  osal_task.o [1]
+g_TasksFnArr            0x08000e0c    0x8  Data  Gb  osal_task.o [1]
+g_UserTask_Id           0x2000012f    0x1  Data  Gb  user_task.o [1]
+main                    0x08000d7d   0x1c  Code  Gb  main.o [1]
+osalRun                 0x080005ef   0x88  Code  Lc  osal_core.o [1]
+osalTimeUpdate          0x080005d5   0x1a  Code  Lc  osal_core.o [1]
+osalTimerAdd            0x080004b5   0x78  Code  Gb  osal_timer.o [1]
+osalTimerAlloc          0x08000425   0x5e  Code  Gb  osal_timer.o [1]
+osalTimerFind           0x08000483   0x32  Code  Gb  osal_timer.o [1]
+s_BSPLedControlTable    0x20000100   0x10  Data  Lc  bsp_led.o [1]
+s_Systick_Ticks         0x20000128    0x4  Data  Gb  stm32f0xx_bsp_systick.o [1]
+s_osalClock_ElapsedMs   0x2000011c    0x4  Data  Lc  osal_clock.o [1]
+s_osalClock_MilliSeconds
+                        0x2000012c    0x2  Data  Lc  osal_clock.o [1]
+s_osalClock_Seconds     0x20000118    0x4  Data  Lc  osal_clock.o [1]
+s_osalTimerHead         0x20000124    0x4  Data  Lc  osal_timer.o [1]
+s_osalTimerMemHeap      0x20000010   0xf0  Data  Lc  osal_timer.o [1]
+
+
+[1] = C:\Users\Administrator\Desktop\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj
+[2] = command line
+[3] = dl6M_tln.a
+[4] = m6M_tl.a
+[5] = rt6M_tl.a
+[6] = shb_l.a
+
+  3 558 bytes of readonly  code memory
+     94 bytes of readonly  data memory
+  2 352 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

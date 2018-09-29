@@ -1,0 +1,378 @@
+[ActiveConfig]
+projects\stm32f10x_std\SE\dtu.vpj=Debug
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\se\stm32f10x_std.vpj=Debug
+[Global]
+CurrentProject=..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\se\stm32f10x_std.vpj
+LastItemTemplate=User Templates|CTemplate
+[ProjectDates]
+projects\stm32f10x_std\SE\GasSensor.vpj=20180928013812830
+projects\stm32f10x_std\SE\dtu.vpj=20180928094219802
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\se\stm32f10x_std.vpj=20180928012603402
+[TreeExpansion2]
+-@ projects\stm32f10x_std\SE\dtu.vpj
+  - ..\Source
+    - application
+      - hal_task
+      - User_Task
+    - FML
+      + led
+      - System
+  - ..\..\..\Components
+    - BSP
+      - Stm32F0x_BSP
+        - inc
+        - src
+    + MDL
+      + clog
+      + cshell
+      + header
+      + ModbusRTU
+      + osal
+        + ports
+        + src
+      + rttviewer
+  + ..\..\..\..\Components
+    + CMSIS
+      + Device
+        + ST
+          + STM32F0xx
+            + Include
+            + Source
+              + Templates
+      + Include
+      + RTOS
+    + STM32F0xx_StdPeriph_Driver
+      + inc
+      + src
+    - Utilities
+-@ ..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\se\stm32f10x_std.vpj
+  - ..\source
+    - application
+      - gprs_task
+      + hal_task
+      - lcd_task
+      + maintain_task
+      + modbusmaster_task
+      + user_task
+    - fml
+      + clock
+      - gprs
+      + hj212
+      + key
+      + lcd
+      + maintain
+      + modbusmaster
+      + system
+      + zsproto
+  - ..\..\..\Components
+    - BSP
+      - stm32f10x_bsp
+        + conf
+        - inc
+        - src
+    - MDL
+      + clog
+      + cshell
+      + header
+      + osal
+        + ports
+        + src
+      + rttviewer
+  + ..\..\..\..\Components
+    + CMSIS
+      + CM3
+        + CoreSupport
+        + DeviceSupport
+          + ST
+            + STM32F10x
+              + startup
+                + iar
+    - STM32F10x_StdPeriph_Driver
+      + inc
+      + src
+    + Utilities
+scroll:63
+[State]
+SCREEN: 1366 768 81 109 1172 625 0 0 M 0 0 0 0 1018 510 0
+CWD: ..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\se
+BUFFER: BN="Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_usart.c"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=120586272 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.1683 CL=16 LE=0 CX=17 CY=2 WI=5 BI=46 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_dma.c"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=117441120 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.2741 CL=21 LE=0 CX=22 CY=19 WI=5 BI=88 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=117441120 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.52690 CL=1 LE=0 CX=2 CY=7 WI=5 BI=145 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Components\BSP\Stm32F0x_BSP\inc\stm32f0xx_bsp_usart.h"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=118489696 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.1316 CL=1 LE=0 CX=2 CY=12 WI=5 BI=54 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\main.c"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=117441120 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.1460 CL=12 LE=0 CX=13 CY=13 WI=5 BI=81 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\lcd\lcd_disp.c"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=119603808 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.4741 CL=14 LE=0 CX=15 CY=14 WI=5 BI=84 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\system\system_info.c"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=117441120 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.1207 CL=9 LE=0 CX=10 CY=13 WI=5 BI=139 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="projects\stm32f10x_std\Source\FML\System\system_info.c"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=117441120 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.1202 CL=4 LE=0 CX=5 CY=15 WI=5 BI=85 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="projects\stm32f10x_std\Source\FML\System\system_info.h"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=120586848 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.955 CL=36 LE=0 CX=37 CY=14 WI=5 BI=86 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\system\system_info.h"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=118489696 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.2448 CL=1 LE=0 CX=2 CY=1 WI=5 BI=156 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\env_var.h"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=117440608 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.725 CL=1 LE=0 CX=2 CY=13 WI=5 BI=87 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_usart.c"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=118489696 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.2634 CL=21 LE=0 CX=22 CY=4 WI=5 BI=43 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\inc\stm32f10x_bsp_usart.h"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=117441120 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.3117 CL=11 LE=0 CX=12 CY=13 WI=5 BI=147 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1040 487 0 0 N  WF=0 WT=5 ",,," DID=0
+BUFFER: BN="Components\BSP\Stm32F0x_BSP\inc\stm32f0xx_bsp_usart.h"""""
+VIEW: LN=.1316 CL=1 LE=0 CX=1 CY=12 WI=538 BI=54 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1040 487 0 0 N  WF=0 WT=6 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\main.c"""""
+VIEW: LN=.1460 CL=12 LE=0 CX=12 CY=13 WI=512 BI=81 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1040 487 0 0 N  WF=0 WT=7 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\lcd\lcd_disp.c"""""
+VIEW: LN=.4741 CL=14 LE=0 CX=15 CY=14 WI=560 BI=84 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1040 487 0 0 N  WF=0 WT=8 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\system\system_info.c"""""
+VIEW: LN=.1207 CL=9 LE=0 CX=9 CY=13 WI=222 BI=139 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=12 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\env_var.h"""""
+VIEW: LN=.725 CL=1 LE=0 CX=1 CY=13 WI=324 BI=87 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=11 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\system\system_info.h"""""
+VIEW: LN=.2719 CL=34 LE=0 CX=35 CY=16 WI=444 BI=156 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=9 ",,," DID=0
+BUFFER: BN="projects\stm32f10x_std\Source\FML\System\system_info.c"""""
+VIEW: LN=.1202 CL=4 LE=0 CX=5 CY=15 WI=253 BI=85 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=10 ",,," DID=0
+BUFFER: BN="projects\stm32f10x_std\Source\FML\System\system_info.h"""""
+VIEW: LN=.955 CL=36 LE=0 CX=36 CY=14 WI=208 BI=86 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=13 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h"""""
+VIEW: LN=.52690 CL=1 LE=0 CX=1 CY=7 WI=478 BI=145 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=3 ",,," DID=0
+BUFFER: BN="Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_usart.c"""""
+VIEW: LN=.1683 CL=16 LE=0 CX=17 CY=2 WI=479 BI=46 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=14 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_dma.c"""""
+VIEW: LN=.2741 CL=21 LE=0 CX=21 CY=19 WI=563 BI=88 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=4 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\inc\stm32f10x_bsp_usart.h"""""
+VIEW: LN=.3117 CL=11 LE=0 CX=12 CY=13 WI=360 BI=147 HT=0 HN=0 HF=0 HC=4
+WINDOW: 1 22 1016 487 0 0 N  WF=0 WT=2 ",,," DID=0
+BUFFER: BN="..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_usart.c"""""
+VIEW: LN=.4934 CL=1 LE=0 CX=2 CY=10 WI=576 BI=43 HT=0 HN=0 HF=0 HC=4
+MDISTATE: 1
+AAAAAwAAAAIAAAAB2gAAAAIAMAAAAAAAAAAzAAAFVQAAAq0AAAAAAAAAAAAABVUAAALXAAAAAuoAAA6cAAAAAvsAAAANAAAADQAAAAcAAAAIAAAABgAAAAMAAAAFAAAACwAAAAoAAAAMAAAAAAAAAAkAAAABAAAAAgAAAAT7AAAADQAAAA0AAAAGAAAABQAAAAAAAAALAAAADAAAAAoAAAAJAAAAAQAAAAIAAAAEAAAACAAAAAcAAAAD/AAAASMAAAABFgAxADIAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABzAHQAbQAzADIAZgAxADAAeABcAHAAcgBvAGoAZQBjAHQAcwBcAHMAdABtADMAMgBmADEAMAB4AF8AcwB0AGQAXABzAG8AdQByAGMAZQBcAGEAcABwAGwAaQBjAGEAdABpAG8AbgBcAGUAbgB2AF8AdgBhAHIALgBoAAD/////AAD8AAABGwAAAAEOADcAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABzAHQAbQAzADIAZgAxADAAeABcAHAAcgBvAGoAZQBjAHQAcwBcAHMAdABtADMAMgBmADEAMAB4AF8AcwB0AGQAXABzAG8AdQByAGMAZQBcAGYAbQBsAFwAbABjAGQAXABsAGMAZABfAGQAaQBzAHAALgBjAAD/////AAD8AAABGwAAAAEOADYAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABzAHQAbQAzADIAZgAxADAAeABcAHAAcgBvAGoAZQBjAHQAcwBcAHMAdABtADMAMgBmADEAMAB4AF8AcwB0AGQAXABzAG8AdQByAGMAZQBcAGEAcABwAGwAaQBjAGEAdABpAG8AbgBcAG0AYQBpAG4ALgBjAAD/////AAD8AAAA5wAAAADaADMAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXABHAFAAUgBTAF8ARABUAFUAXABzAHQAbQAzADIAZgAwADMAMAB4ADgAXABDAG8AbQBwAG8AbgBlAG4AdABzAFwAQgBTAFAAXABTAHQAbQAzADIARgAwAHgAXwBCAFMAUABcAHMAcgBjAFwAcwB0AG0AMwAyAGYAMAB4AHgAXwBiAHMAcABfAHUAcwBhAHIAdAAuAGMAAP////8AAPwAAADnAAAAANoANQA6ADoAOgBDADoAXABVAHMAZQByAHMAXABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFwARABlAHMAawB0AG8AcABcAEcAUABSAFMAXwBEAFQAVQBcAHMAdABtADMAMgBmADAAMwAwAHgAOABcAEMAbwBtAHAAbwBuAGUAbgB0AHMAXABCAFMAUABcAFMAdABtADMAMgBGADAAeABfAEIAUwBQAFwAaQBuAGMAXABzAHQAbQAzADIAZgAwAHgAeABfAGIAcwBwAF8AdQBzAGEAcgB0AC4AaAAA/////wAA/AAAAR8AAAABEgAxADMAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABDAG8AbQBwAG8AbgBlAG4AdABzAFwAQwBNAFMASQBTAFwAQwBNADMAXABEAGUAdgBpAGMAZQBTAHUAcABwAG8AcgB0AFwAUwBUAFwAUwBUAE0AMwAyAEYAMQAwAHgAXABzAHQAbQAzADIAZgAxADAAeAAuAGgAAP////8AAPwAAAElAAAAARgAMQA0ADoAOgA6AEMAOgBcAFUAcwBlAHIAcwBcAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAXABEAGUAcwBrAHQAbwBwAFwA5gCyALkA5wCDAJ8A5QCcAKgA5wC6AL8A5wCbAJEA5gCOAKcAXABaAFMAQwBBAC0AMQBBADAAMQAtAFMANQBcAG0AYQBpAG4AYgBvAGEAcgBkAFwAcwB0AG0AMwAyAGYAMQAwAHgAXABDAG8AbQBwAG8AbgBlAG4AdABzAFwAQgBTAFAAXABzAHQAbQAzADIAZgAxADAAeABfAGIAcwBwAFwAcwByAGMAXABzAHQAbQAzADIAZgAxADAAeABfAGIAcwBwAF8AZABtAGEALgBjAAD/////AAD8AAABJwAAAAEaADIAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABzAHQAbQAzADIAZgAxADAAeABcAEMAbwBtAHAAbwBuAGUAbgB0AHMAXABCAFMAUABcAHMAdABtADMAMgBmADEAMAB4AF8AYgBzAHAAXABzAHIAYwBcAHMAdABtADMAMgBmADEAMAB4AF8AYgBzAHAAXwB1AHMAYQByAHQALgBjAQD/////AAH8AAABJwAAAAEaADQAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABzAHQAbQAzADIAZgAxADAAeABcAEMAbwBtAHAAbwBuAGUAbgB0AHMAXABCAFMAUABcAHMAdABtADMAMgBmADEAMAB4AF8AYgBzAHAAXABpAG4AYwBcAHMAdABtADMAMgBmADEAMAB4AF8AYgBzAHAAXwB1AHMAYQByAHQALgBoAAD/////AAD8AAABJwAAAAEaADgAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABzAHQAbQAzADIAZgAxADAAeABcAHAAcgBvAGoAZQBjAHQAcwBcAHMAdABtADMAMgBmADEAMAB4AF8AcwB0AGQAXABzAG8AdQByAGMAZQBcAGYAbQBsAFwAcwB5AHMAdABlAG0AXABzAHkAcwB0AGUAbQBfAGkAbgBmAG8ALgBjAAD/////AAD8AAAA6QAAAADcADkAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXABHAFAAUgBTAF8ARABUAFUAXABzAHQAbQAzADIAZgAwADMAMAB4ADgAXABwAHIAbwBqAGUAYwB0AHMAXABzAHQAbQAzADIAZgAxADAAeABfAHMAdABkAFwAUwBvAHUAcgBjAGUAXABGAE0ATABcAFMAeQBzAHQAZQBtAFwAcwB5AHMAdABlAG0AXwBpAG4AZgBvAC4AYwAA/////wAA/AAAAOsAAAAA3gAxADAAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXABHAFAAUgBTAF8ARABUAFUAXABzAHQAbQAzADIAZgAwADMAMAB4ADgAXABwAHIAbwBqAGUAYwB0AHMAXABzAHQAbQAzADIAZgAxADAAeABfAHMAdABkAFwAUwBvAHUAcgBjAGUAXABGAE0ATABcAFMAeQBzAHQAZQBtAFwAcwB5AHMAdABlAG0AXwBpAG4AZgBvAC4AaAAA/////wAA/AAAASkAAAABHAAxADEAOgA6ADoAQwA6AFwAVQBzAGUAcgBzAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBcAEQAZQBzAGsAdABvAHAAXADmALIAuQDnAIMAnwDlAJwAqADnALoAvwDnAJsAkQDmAI4ApwBcAFoAUwBDAEEALQAxAEEAMAAxAC0AUwA1AFwAbQBhAGkAbgBiAG8AYQByAGQAXABzAHQAbQAzADIAZgAxADAAeABcAHAAcgBvAGoAZQBjAHQAcwBcAHMAdABtADMAMgBmADEAMAB4AF8AcwB0AGQAXABzAG8AdQByAGMAZQBcAGYAbQBsAFwAcwB5AHMAdABlAG0AXABzAHkAcwB0AGUAbQBfAGkAbgBmAG8ALgBoAAD/////AAAAAAAA
+FILEHIST: 9
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\main.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\lcd\lcd_disp.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\env_var.h
+projects\stm32f10x_std\Source\FML\System\system_info.c
+projects\stm32f10x_std\Source\FML\System\system_info.h
+Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_usart.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_dma.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\inc\stm32f10x_bsp_usart.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_usart.c
+ALLFILEHIST: 64
+projects\stm32f10x_std\Source\application\User_Task\user_task.h
+projects\stm32f10x_std\Source\application\User_Task\user_task.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.c
+projects\stm32f10x_std\Source\FML\System\system_info.h
+projects\stm32f10x_std\Source\FML\System\system_info.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_sdio.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_pwr.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_dac.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_cec.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\STM32F10x_StdPeriph_Driver\src\stm32f10x_can.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\inc\stm32f10x_bsp_usart.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_usart.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_systick.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\inc\stm32f10x_bsp_gpio.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_gpio.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_dma.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\inc\stm32f10x_bsp_conf.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\stm32f10x_bsp\src\stm32f10x_bsp_adc.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h
+Components\BSP\Stm32F0x_BSP\inc\stm32f0xx_bsp_usart.h
+Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_usart.c
+Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_systick.h
+Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_systick.c
+Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_gpio.h
+Components\BSP\Stm32F0x_BSP\inc\stm32f0xx_bsp_gpio.h
+Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_gpio.c
+Components\BSP\Stm32F0x_BSP\inc\stm32f0xx_bsp_conf.h
+..\Components\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\components\BSP\stm32f10x_bsp\inc\stm32_bsp_conf.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\MDL\osal\src\osal_timer.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\MDL\osal\src\osal_timeout.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\MDL\osal\src\osal_core.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\MDL\osal\src\osal.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\main.c
+projects\stm32f10x_std\Source\Application\main.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\lcd\lcd_disp.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\hal_task\hal_task.h
+projects\stm32f10x_std\Source\application\hal_task\hal_task.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\hal_task\hal_task.c
+projects\stm32f10x_std\Source\application\hal_task\hal_task.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\gprs\gprs_process.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\env_var.h
+projects\stm32f10x_std\Source\application\env_var.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\bsp_led.h
+Components\BSP\bsp_led.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\bsp_led.c
+Components\BSP\bsp_init.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\bsp_init.c
+Components\BSP\bsp_init.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\components\BSP\bsp_ili9341.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\components\BSP\bsp_gprs.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\components\BSP\bsp_gprs.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\components\BSP\bsp_current.h
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\components\BSP\bsp_current.c
+..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\components\BSP\bsp_ai.c
+DEBUG: 0 0 0 0 5 0 gdb
+printf
+strcpy
+strcmp
+std::*
+boost::*
+DEBUG2: 0
+TBCLASS: 0 0
+STANDARD_LAYOUT: 58 1 41 11 5 M 0
+_tbopen_form F=40
+_tbdebug_threads_form F=64
+_tbdebug_classes_form F=64
+_tbbaseclasses_form F=40
+_tbderivedclasses_form F=40
+_tbclass_form F=8
+_tbtagwin_form F=8
+_tbtagrefs_form F=8
+_tboutputwin_form F=8
+_tbdebug_exceptions_form F=384
+_tbregex_form F=40
+_tbslickc_stack_form F=8
+_tbdeltasave_form F=0
+_tbfind_form F=36
+_tbbookmarks_form F=8
+_tbsearch_form F=8
+_tbsymbol_props_form F=8
+_tbfind_symbol_form F=32
+_tbsymbolcalls_form F=40
+_tbunittest_form F=0
+_tbclipboard_form F=44
+_tbdebug_regs_form F=64
+_tbdebug_stack_form F=64
+_tbshell_form F=8
+_tbdebug_memory_form F=64
+_tbdebug_members_form F=64
+_tbbufftabs_form F=11
+_tbmessages_browser_form F=8
+_tbfilelist_form F=44
+_tbFTPOpen_form F=0
+_tbnotification_form F=36
+_tbdebug_watches_form F=64
+_tbFTPClient_form F=0
+_tbannotations_browser_form F=0
+_tbsymbol_args_form F=8
+_tbdebug_breakpoints_form F=384
+_tbdebug_autovars_form F=64
+_tbdebug_locals_form F=64
+_tbprojects_form F=8
+_tbproctree_form F=8
+_tbcbrowser_form F=8
+_tbtagrefs_form T=0
+_tbcbrowser_form T=0
+_tbproctree_form T=0
+_tboutputwin_form T=0
+_tbsearch_form T=0
+_tbopen_form T=0
+_tbmessages_browser_form T=0
+_tbprojects_form T=0
+_tbtagwin_form T=0
+_tbclass_form T=0
+_tbshell_form T=0
+AAAAAwAAAAEAAAAB2gAAAAIAMAAAAAAAAAAzAAAFVQAAAq0AAAAAAAAAAAAABVUAAALXAAAAAesAAARwAAAAAPsAAAACAAAAAgAAAAEAAAAA+wAAAAIAAAACAAAAAAAAAAH9AAABoQAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAAVgAAAAAAAL7AAAABQAAAAUAAAAAAAAAAQAAAAIAAAAEAAAAA/sAAAAFAAAABQAAAAAAAAABAAAAAgAAAAMAAAAE/AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGoAZQBjAHQAcwBfAGYAbwByAG0BAP////8AAP///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGMAdAByAGUAZQBfAGYAbwByAG0AAP////8AAP///////////AAAADcAAAAAIgAwADoAOgA6AF8AdABiAGMAbABhAHMAcwBfAGYAbwByAG0AAP////8AAP///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAGMAYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAADUAAAAAIAAwADoAOgA6AF8AdABiAG8AcABlAG4AXwBmAG8AcgBtAAD/////AAD///////////0AAAJ7AAAAABoAOgA6ADoALwB2AEQAbwBjAGsAQQByAGUAYQEAAAAD+gABAAAAAfsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAQAAAAD8AAAAKQAAAAAcADoAOgA6AE0ARABJAEEAUgBFAEEAVABJAEwARQEAAAAB/QAB/QAAAfsAAAAAGgA6ADoAOgAvAHYARABvAGMAawBBAHIAZQBhAQAAAAB5AAAAAAAC+wAAAAYAAAAGAAAAAQAAAAIAAAADAAAABAAAAAUAAAAA+wAAAAYAAAAGAAAAAAAAAAEAAAACAAAAAwAAAAQAAAAF/AAAADkAAAAAJAAwADoAOgA6AF8AdABiAHMAZQBhAHIAYwBoAF8AZgBvAHIAbQAA/////wAA///////////8AAAAOQAAAAAkADAAOgA6ADoAXwB0AGIAdABhAGcAdwBpAG4AXwBmAG8AcgBtAQD/////AAD///////////wAAAA7AAAAACYAMAA6ADoAOgBfAHQAYgB0AGEAZwByAGUAZgBzAF8AZgBvAHIAbQAA/////wAA///////////8AAAANwAAAAAiADAAOgA6ADoAXwB0AGIAcwBoAGUAbABsAF8AZgBvAHIAbQAA/////wAA///////////8AAAATQAAAAA4ADAAOgA6ADoAXwB0AGIAbQBlAHMAcwBhAGcAZQBzAF8AYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAAD8AAAAAKgAwADoAOgA6AF8AdABiAG8AdQB0AHAAdQB0AHcAaQBuAF8AZgBvAHIAbQAA/////wAA//////////8AAAAA2wAAAAAAAAAC2wAAAAAAAAAB2wAAAAAAAAAD2wAAAAAAAAAA
+QTOOLBAR 3 0
+AAAA/wAAAAD9AAAAAAAABVYAAAJ7AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAQAFMAdABhAG4AZABhAHIAZAEAAAAA/////wAAAAAAAAAAAAAAHgBDAHUAcgByAGUAbgB0ACAAQwBvAG4AdABlAHgAdAEAAAJg/////wAAAAAAAAAAAAAAIgBTAGUAbABlAGMAdABpAHYAZQAgAEQAaQBzAHAAbABhAHkBAAAEkP////8AAAAAAAAAAA==
+_tbstandard_form 1
+_tbseldisp_form 1
+_tbcontext_form 1
+APP_LAYOUT: 58 1 41 11 5 M 0
+_tbopen_form F=40
+_tbdebug_threads_form F=64
+_tbdebug_classes_form F=64
+_tbbaseclasses_form F=40
+_tbderivedclasses_form F=40
+_tbclass_form F=8
+_tbtagwin_form F=8
+_tbtagrefs_form F=8
+_tboutputwin_form F=8
+_tbdebug_exceptions_form F=384
+_tbregex_form F=40
+_tbslickc_stack_form F=8
+_tbdeltasave_form F=0
+_tbfind_form F=36
+_tbbookmarks_form F=8
+_tbsearch_form F=8
+_tbsymbol_props_form F=8
+_tbfind_symbol_form F=32
+_tbsymbolcalls_form F=40
+_tbunittest_form F=0
+_tbclipboard_form F=44
+_tbdebug_regs_form F=64
+_tbdebug_stack_form F=64
+_tbshell_form F=8
+_tbdebug_memory_form F=64
+_tbdebug_members_form F=64
+_tbbufftabs_form F=11
+_tbmessages_browser_form F=8
+_tbfilelist_form F=44
+_tbFTPOpen_form F=0
+_tbnotification_form F=36
+_tbdebug_watches_form F=64
+_tbFTPClient_form F=0
+_tbannotations_browser_form F=0
+_tbsymbol_args_form F=8
+_tbdebug_breakpoints_form F=384
+_tbdebug_autovars_form F=64
+_tbdebug_locals_form F=64
+_tbprojects_form F=8
+_tbproctree_form F=8
+_tbcbrowser_form F=8
+_tbtagrefs_form T=0
+_tbcbrowser_form T=0
+_tbproctree_form T=0
+_tboutputwin_form T=0
+_tbsearch_form T=0
+_tbopen_form T=0
+_tbmessages_browser_form T=0
+_tbprojects_form T=0
+_tbtagwin_form T=0
+_tbclass_form T=0
+_tbshell_form T=0
+AAAAAwAAAAEAAAAB2gAAAAIAMAAAAAAAAAAzAAAFVQAAAq0AAAAAAAAAAAAABVUAAALXAAAAAesAAARwAAAAAPsAAAACAAAAAgAAAAEAAAAA+wAAAAIAAAACAAAAAAAAAAH9AAABoQAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAAVgAAAAAAAL7AAAABQAAAAUAAAAAAAAAAQAAAAIAAAAEAAAAA/sAAAAFAAAABQAAAAAAAAABAAAAAgAAAAMAAAAE/AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGoAZQBjAHQAcwBfAGYAbwByAG0BAP////8AAP///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGMAdAByAGUAZQBfAGYAbwByAG0AAP////8AAP///////////AAAADcAAAAAIgAwADoAOgA6AF8AdABiAGMAbABhAHMAcwBfAGYAbwByAG0AAP////8AAP///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAGMAYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAADUAAAAAIAAwADoAOgA6AF8AdABiAG8AcABlAG4AXwBmAG8AcgBtAAD/////AAD///////////0AAAJ7AAAAABoAOgA6ADoALwB2AEQAbwBjAGsAQQByAGUAYQEAAAAD+gABAAAAAfsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAQAAAAD8AAAAKQAAAAAcADoAOgA6AE0ARABJAEEAUgBFAEEAVABJAEwARQEAAAAB/QAB/QAAAfsAAAAAGgA6ADoAOgAvAHYARABvAGMAawBBAHIAZQBhAQAAAAB5AAAAAAAC+wAAAAYAAAAGAAAAAQAAAAIAAAADAAAABAAAAAUAAAAA+wAAAAYAAAAGAAAAAAAAAAEAAAACAAAAAwAAAAQAAAAF/AAAADkAAAAAJAAwADoAOgA6AF8AdABiAHMAZQBhAHIAYwBoAF8AZgBvAHIAbQAA/////wAA///////////8AAAAOQAAAAAkADAAOgA6ADoAXwB0AGIAdABhAGcAdwBpAG4AXwBmAG8AcgBtAQD/////AAD///////////wAAAA7AAAAACYAMAA6ADoAOgBfAHQAYgB0AGEAZwByAGUAZgBzAF8AZgBvAHIAbQAA/////wAA///////////8AAAANwAAAAAiADAAOgA6ADoAXwB0AGIAcwBoAGUAbABsAF8AZgBvAHIAbQAA/////wAA///////////8AAAATQAAAAA4ADAAOgA6ADoAXwB0AGIAbQBlAHMAcwBhAGcAZQBzAF8AYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAAD8AAAAAKgAwADoAOgA6AF8AdABiAG8AdQB0AHAAdQB0AHcAaQBuAF8AZgBvAHIAbQAA/////wAA//////////8AAAAA2wAAAAAAAAAC2wAAAAAAAAAB2wAAAAAAAAAD2wAAAAAAAAAA
+QTOOLBAR 3 0
+AAAA/wAAAAD9AAAAAAAABVYAAAJ7AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAQAFMAdABhAG4AZABhAHIAZAEAAAAA/////wAAAAAAAAAAAAAAHgBDAHUAcgByAGUAbgB0ACAAQwBvAG4AdABlAHgAdAEAAAJg/////wAAAAAAAAAAAAAAIgBTAGUAbABlAGMAdABpAHYAZQAgAEQAaQBzAHAAbABhAHkBAAAEkP////8AAAAAAAAAAA==
+_tbstandard_form 1
+_tbseldisp_form 1
+_tbcontext_form 1

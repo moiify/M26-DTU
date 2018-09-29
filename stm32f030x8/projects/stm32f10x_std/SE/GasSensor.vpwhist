@@ -1,0 +1,231 @@
+[Global]
+CurrentProject=GasSensor.vpj
+[ProjectDates]
+GasSensor.vpj=20180928005209822
+[TreeExpansion2]
++@ GasSensor.vpj
+  + ..\..
+  + ..\Source
+    + Application
+      + User_Task
+    + FML
+      + System
+  + ..\..\Components
+    + BSP
+      + Stm32F0x_BSP
+        + callback
+        + inc
+        + src
+    + MDL
+      + clog
+      + cshell
+      + header
+      + ModbusRTU
+      + osal
+        + ports
+        + src
+      + rttviewer
+  + ..\..\Debug
+    + Exe
+    + Obj
+  + ..\..\Release
+    + Obj
+  + ..\..\Settings
+  + ..\..\..\Components
+    + CMSIS
+      + Device
+        + ST
+          + STM32F0xx
+            + Include
+            + Source
+              + Templates
+                + arm
+                + gcc_ride7
+                + iar
+                + TrueSTUDIO
+      + Documentation
+        + Core
+          + html
+            + search
+        + General
+          + html
+        + RTOS
+          + html
+            + search
+        + SVD
+          + html
+      + Include
+      + RTOS
+      + SVD
+    + STM32F0xx_StdPeriph_Driver
+      + inc
+      + src
+    + Utilities
+scroll:0
+[State]
+SCREEN: 1366 768 132 107 1171 624 0 0 N 0 0 0 0 895 427 0
+CWD: ..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\se
+FILEHIST: 9
+..\..\..\..\..\油烟主界面\User\lcd\bsp_ili9341_lcd.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\bsp_init.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Projects\stm32f10x_std\source\application\main.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\GasSensor\Stm32F0x\projects\stm32f10x_std\Source\Application\main.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\gprs_task\gprs_task.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\gprs\gprs_process.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\gprs\gprs_protocol.h
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\gprs\gprs_protocol.c
+ALLFILEHIST: 27
+D:\展示\承压锅炉智能在线监控从机监听\se\tt.vpwhist
+D:\展示\承压锅炉智能在线监控从机监听\se\tt.vpw
+D:\展示\承压锅炉智能在线监控从机监听\se\tt.vpj
+D:\展示\承压锅炉智能在线监控从机监听\USER\task.h
+D:\展示\承压锅炉智能在线监控从机监听\USER\task.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\Components\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.c
+D:\展示\承压锅炉智能在线监控从机监听\UCOSIII\uCOS-III\Source\os_core.c
+D:\展示\承压锅炉智能在线监控从机监听\UCOSIII\uCOS-III\Source\os.h
+D:\展示\承压锅炉智能在线监控从机监听\USER\main.c
+..\..\..\..\..\油烟主界面\User\main.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Projects\stm32f10x_std\source\application\main.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\GasSensor\Stm32F0x\projects\stm32f10x_std\Source\Application\main.c
+D:\展示\承压锅炉智能在线监控从机监听\EMWIN\STemWin\Config\GUI_X_Touch_Analog.c
+D:\展示\承压锅炉智能在线监控从机监听\EMWIN\STemWin\inc\GUI.h
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\application\gprs_task\gprs_task.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\gprs\gprs_protocol.h
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\gprs\gprs_protocol.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\projects\stm32f10x_std\source\fml\gprs\gprs_process.c
+D:\MinGW\lib\gcc\mingw32\6.3.0\include\c++\tr1\functional
+D:\Program Files\SlickEdit Pro 22.0.2\CTemplate.c
+..\..\..\..\..\油烟主界面\User\lcd\bsp_lcd.h
+..\..\..\..\..\油烟主界面\User\lcd\bsp_lcd.c
+..\..\..\..\..\油烟在线监控\ZSCA-1A01-S5\mainboard\stm32f10x\Components\BSP\bsp_init.c
+..\..\..\..\..\油烟主界面\User\lcd\bsp_ili9341_lcd.h
+..\..\..\..\..\油烟主界面\User\lcd\bsp_ili9341_lcd.c
+..\..\..\..\..\油烟主界面\User\lcd\app_lcd.c
+D:\展示\承压锅炉智能在线监控从机监听\HARDWARE\24CXX\24cxx.c
+DEBUG: 0 0 0 0 5 0 gdb
+printf
+strcpy
+strcmp
+std::*
+boost::*
+DEBUG2: 0
+TBCLASS: 0 0
+STANDARD_LAYOUT: 58 1 41 11 5 N 0
+_tbclass_form F=8
+_tbderivedclasses_form F=40
+_tbbaseclasses_form F=40
+_tbdebug_classes_form F=64
+_tbdebug_threads_form F=64
+_tbopen_form F=40
+_tbslickc_stack_form F=8
+_tbregex_form F=40
+_tbdebug_exceptions_form F=384
+_tboutputwin_form F=8
+_tbtagrefs_form F=8
+_tbtagwin_form F=8
+_tbfind_symbol_form F=32
+_tbsymbol_props_form F=8
+_tbsearch_form F=8
+_tbbookmarks_form F=8
+_tbfind_form F=36
+_tbdeltasave_form F=0
+_tbunittest_form F=0
+_tbsymbolcalls_form F=40
+_tbshell_form F=8
+_tbdebug_stack_form F=64
+_tbdebug_regs_form F=64
+_tbclipboard_form F=44
+_tbbufftabs_form F=11
+_tbdebug_members_form F=64
+_tbdebug_memory_form F=64
+_tbFTPOpen_form F=0
+_tbfilelist_form F=44
+_tbmessages_browser_form F=8
+_tbFTPClient_form F=0
+_tbdebug_watches_form F=64
+_tbnotification_form F=36
+_tbsymbol_args_form F=8
+_tbannotations_browser_form F=0
+_tbcbrowser_form F=8
+_tbproctree_form F=8
+_tbprojects_form F=8
+_tbdebug_locals_form F=64
+_tbdebug_autovars_form F=64
+_tbdebug_breakpoints_form F=384
+_tbshell_form T=0
+_tbmessages_browser_form T=0
+_tbproctree_form T=0
+_tboutputwin_form T=0
+_tbsearch_form T=0
+_tbclass_form T=0
+_tbopen_form T=0
+_tbtagwin_form T=0
+_tbprojects_form T=0
+_tbcbrowser_form T=0
+_tbtagrefs_form T=0
+AAAAAwAAAAEAAAAB2gAAAAIAMAAAAAAAAAAzAAAEkgAAAloAAAAAAAAAAAAABVUAAALXAAAAAesAAARwAAAAAPsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAAAAAAH9AAABoQAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAARAAAQAAAAL7AAAABQAAAAUAAAAAAAAAAwAAAAQAAAACAAAAAfsAAAAFAAAABQAAAAAAAAABAAAAAgAAAAMAAAAE/AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGoAZQBjAHQAcwBfAGYAbwByAG0BAP////8AAf///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGMAdAByAGUAZQBfAGYAbwByAG0AAP////8AAP///////////AAAADcAAAAAIgAwADoAOgA6AF8AdABiAGMAbABhAHMAcwBfAGYAbwByAG0AAP////8AAP///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAGMAYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAADUAAAAAIAAwADoAOgA6AF8AdABiAG8AcABlAG4AXwBmAG8AcgBtAAD/////AAD///////////0AAAJ7AAAAABoAOgA6ADoALwB2AEQAbwBjAGsAQQByAGUAYQEAAAAEQgAAAAAAAfsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAQAAAAD8AAAAKQAAAAAcADoAOgA6AE0ARABJAEEAUgBFAEEAVABJAEwARQEAAAAB/QAA/QAAAfsAAAAAGgA6ADoAOgAvAHYARABvAGMAawBBAHIAZQBhAQAAAAB5AAAAAAAC+wAAAAYAAAAGAAAAAwAAAAIAAAABAAAAAAAAAAUAAAAE+wAAAAYAAAAGAAAAAAAAAAEAAAACAAAAAwAAAAQAAAAF/AAAADkAAAAAJAAwADoAOgA6AF8AdABiAHMAZQBhAHIAYwBoAF8AZgBvAHIAbQAA/////wAA///////////8AAAAOQAAAAAkADAAOgA6ADoAXwB0AGIAdABhAGcAdwBpAG4AXwBmAG8AcgBtAAD/////AAD///////////wAAAA7AAAAACYAMAA6ADoAOgBfAHQAYgB0AGEAZwByAGUAZgBzAF8AZgBvAHIAbQAA/////wAA///////////8AAAANwAAAAAiADAAOgA6ADoAXwB0AGIAcwBoAGUAbABsAF8AZgBvAHIAbQEA/////wAA///////////8AAAATQAAAAA4ADAAOgA6ADoAXwB0AGIAbQBlAHMAcwBhAGcAZQBzAF8AYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAAD8AAAAAKgAwADoAOgA6AF8AdABiAG8AdQB0AHAAdQB0AHcAaQBuAF8AZgBvAHIAbQAA/////wAA//////////8AAAAA2wAAAAAAAAAC2wAAAAAAAAAB2wAAAAAAAAAD2wAAAAAAAAAA
+QTOOLBAR 3 0
+AAAA/wAAAAD9AAAAAAAABJMAAAIoAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAQAFMAdABhAG4AZABhAHIAZAEAAAAA/////wAAAAAAAAAAAAAAHgBDAHUAcgByAGUAbgB0ACAAQwBvAG4AdABlAHgAdAEAAAJg/////wAAAAAAAAAAAAAAIgBTAGUAbABlAGMAdABpAHYAZQAgAEQAaQBzAHAAbABhAHkBAAAEW/////8AAAAAAAAAAA==
+_tbstandard_form 1
+_tbseldisp_form 1
+_tbcontext_form 1
+APP_LAYOUT: 58 1 41 11 5 N 0
+_tbclass_form F=8
+_tbderivedclasses_form F=40
+_tbbaseclasses_form F=40
+_tbdebug_classes_form F=64
+_tbdebug_threads_form F=64
+_tbopen_form F=40
+_tbslickc_stack_form F=8
+_tbregex_form F=40
+_tbdebug_exceptions_form F=384
+_tboutputwin_form F=8
+_tbtagrefs_form F=8
+_tbtagwin_form F=8
+_tbfind_symbol_form F=32
+_tbsymbol_props_form F=8
+_tbsearch_form F=8
+_tbbookmarks_form F=8
+_tbfind_form F=36
+_tbdeltasave_form F=0
+_tbunittest_form F=0
+_tbsymbolcalls_form F=40
+_tbshell_form F=8
+_tbdebug_stack_form F=64
+_tbdebug_regs_form F=64
+_tbclipboard_form F=44
+_tbbufftabs_form F=11
+_tbdebug_members_form F=64
+_tbdebug_memory_form F=64
+_tbFTPOpen_form F=0
+_tbfilelist_form F=44
+_tbmessages_browser_form F=8
+_tbFTPClient_form F=0
+_tbdebug_watches_form F=64
+_tbnotification_form F=36
+_tbsymbol_args_form F=8
+_tbannotations_browser_form F=0
+_tbcbrowser_form F=8
+_tbproctree_form F=8
+_tbprojects_form F=8
+_tbdebug_locals_form F=64
+_tbdebug_autovars_form F=64
+_tbdebug_breakpoints_form F=384
+_tbshell_form T=0
+_tbmessages_browser_form T=0
+_tbproctree_form T=0
+_tboutputwin_form T=0
+_tbsearch_form T=0
+_tbclass_form T=0
+_tbopen_form T=0
+_tbtagwin_form T=0
+_tbprojects_form T=0
+_tbcbrowser_form T=0
+_tbtagrefs_form T=0
+AAAAAwAAAAEAAAAB2gAAAAIAMAAAAAAAAAAzAAAEkgAAAloAAAAAAAAAAAAABVUAAALXAAAAAesAAARwAAAAAPsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAAAAAAH9AAABoQAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAARAAAQAAAAL7AAAABQAAAAUAAAAAAAAAAwAAAAQAAAACAAAAAfsAAAAFAAAABQAAAAAAAAABAAAAAgAAAAMAAAAE/AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGoAZQBjAHQAcwBfAGYAbwByAG0BAP////8AAf///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAHAAcgBvAGMAdAByAGUAZQBfAGYAbwByAG0AAP////8AAP///////////AAAADcAAAAAIgAwADoAOgA6AF8AdABiAGMAbABhAHMAcwBfAGYAbwByAG0AAP////8AAP///////////AAAAD0AAAAAKAAwADoAOgA6AF8AdABiAGMAYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAADUAAAAAIAAwADoAOgA6AF8AdABiAG8AcABlAG4AXwBmAG8AcgBtAAD/////AAD///////////0AAAJ7AAAAABoAOgA6ADoALwB2AEQAbwBjAGsAQQByAGUAYQEAAAAEQgAAAAAAAfsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAQAAAAD8AAAAKQAAAAAcADoAOgA6AE0ARABJAEEAUgBFAEEAVABJAEwARQEAAAAB/QAA/QAAAfsAAAAAGgA6ADoAOgAvAHYARABvAGMAawBBAHIAZQBhAQAAAAB5AAAAAAAC+wAAAAYAAAAGAAAAAwAAAAIAAAABAAAAAAAAAAUAAAAE+wAAAAYAAAAGAAAAAAAAAAEAAAACAAAAAwAAAAQAAAAF/AAAADkAAAAAJAAwADoAOgA6AF8AdABiAHMAZQBhAHIAYwBoAF8AZgBvAHIAbQAA/////wAA///////////8AAAAOQAAAAAkADAAOgA6ADoAXwB0AGIAdABhAGcAdwBpAG4AXwBmAG8AcgBtAAD/////AAD///////////wAAAA7AAAAACYAMAA6ADoAOgBfAHQAYgB0AGEAZwByAGUAZgBzAF8AZgBvAHIAbQAA/////wAA///////////8AAAANwAAAAAiADAAOgA6ADoAXwB0AGIAcwBoAGUAbABsAF8AZgBvAHIAbQEA/////wAA///////////8AAAATQAAAAA4ADAAOgA6ADoAXwB0AGIAbQBlAHMAcwBhAGcAZQBzAF8AYgByAG8AdwBzAGUAcgBfAGYAbwByAG0AAP////8AAP///////////AAAAD8AAAAAKgAwADoAOgA6AF8AdABiAG8AdQB0AHAAdQB0AHcAaQBuAF8AZgBvAHIAbQAA/////wAA//////////8AAAAA2wAAAAAAAAAC2wAAAAAAAAAB2wAAAAAAAAAD2wAAAAAAAAAA
+QTOOLBAR 3 0
+AAAA/wAAAAD9AAAAAAAABJMAAAIoAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAQAFMAdABhAG4AZABhAHIAZAEAAAAA/////wAAAAAAAAAAAAAAHgBDAHUAcgByAGUAbgB0ACAAQwBvAG4AdABlAHgAdAEAAAJg/////wAAAAAAAAAAAAAAIgBTAGUAbABlAGMAdABpAHYAZQAgAEQAaQBzAHAAbABhAHkBAAAEW/////8AAAAAAAAAAA==
+_tbstandard_form 1
+_tbseldisp_form 1
+_tbcontext_form 1
