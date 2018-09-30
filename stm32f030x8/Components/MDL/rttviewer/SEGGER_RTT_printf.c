@@ -191,7 +191,7 @@ static void _PrintUnsigned(SEGGER_RTT_PRINTF_DESC * pBufferDesc, unsigned v, uns
     // Example: If the output is 345 (Base 10), loop 2 times until Digit is 100.
     //
     while (1) {
-      if (NumDigits > 1u) {       // User specified a min number of digits to print? => Make sure we loop at least that often, before checking anything else (> 1 check avoids problems with NumDigits being signed / unsigned)
+      if (NumDigits > 1u) {       // GPRS specified a min number of digits to print? => Make sure we loop at least that often, before checking anything else (> 1 check avoids problems with NumDigits being signed / unsigned)
         NumDigits--;
       } else {
         Div = v / Digit;

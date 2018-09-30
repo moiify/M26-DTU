@@ -108,8 +108,13 @@ void Board_Init()
 }
 
 void BSP_Init(void)
-{
+{   
+    CLog_Init(CLogAppender_RTT);
     BSP_LED_Init(); 
+    BSP_Timer_Init();
+    BSP_USART_Open(BSP_USART1, NULL);
+    BSP_USART_WriteBytes(BSP_USART1,"AT\r\n",4);
+    INFO("OK");
 }
 /**
  * @}

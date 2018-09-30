@@ -1,6 +1,6 @@
 /**
  **************************************************************************************************
- * @file        cshell_user.c
+ * @file        cshell_GPRS.c
  * @author
  * @version
  * @date        
@@ -24,12 +24,12 @@
  */
 
 /**
- * @addtogroup    cshell_user_Modules 
+ * @addtogroup    cshell_GPRS_Modules 
  * @{  
  */
 
 /**
- * @defgroup      cshell_user_IO_Defines 
+ * @defgroup      cshell_GPRS_IO_Defines 
  * @brief         
  * @{  
  */
@@ -39,7 +39,7 @@
  */
 
 /**
- * @defgroup       cshell_user_Macros_Defines 
+ * @defgroup       cshell_GPRS_Macros_Defines 
  * @brief         
  * @{  
  */
@@ -49,7 +49,7 @@
  */
 
 /**
- * @defgroup      cshell_user_Constants_Defines 
+ * @defgroup      cshell_GPRS_Constants_Defines 
  * @brief         
  * @{  
  */
@@ -59,7 +59,7 @@
  */
 
 /**
- * @defgroup       cshell_user_Private_Types
+ * @defgroup       cshell_GPRS_Private_Types
  * @brief         
  * @{  
  */
@@ -69,7 +69,7 @@
  */
 
 /**
- * @defgroup      cshell_user_Private_Variables 
+ * @defgroup      cshell_GPRS_Private_Variables 
  * @brief         
  * @{  
  */
@@ -113,7 +113,7 @@ static LogLevel_t s_LogLevel_Backup;
  */
 
 /**
- * @defgroup      cshell_user_Public_Variables 
+ * @defgroup      cshell_GPRS_Public_Variables 
  * @brief         
  * @{  
  */
@@ -133,7 +133,7 @@ const uint32_t g_CShellDevice_Count = sizeof(g_CShellDevice)/sizeof(g_CShellDevi
  */
 
 /**
- * @defgroup      cshell_user_Private_FunctionPrototypes 
+ * @defgroup      cshell_GPRS_Private_FunctionPrototypes 
  * @brief         
  * @{  
  */
@@ -143,7 +143,7 @@ const uint32_t g_CShellDevice_Count = sizeof(g_CShellDevice)/sizeof(g_CShellDevi
  */
 
 /**
- * @defgroup      cshell_user_Functions 
+ * @defgroup      cshell_GPRS_Functions 
  * @brief         
  * @{  
  */
@@ -180,7 +180,7 @@ void default_set_callback(uint8_t device_index,uint8_t param_index,uint8_t *data
 //    CShell_WriteBytes((uint8_t*)buf,length);
 //}
 
-void CShell_User_Log_off_CB(void)
+void CShell_GPRS_Log_off_CB(void)
 {
     s_LogLevel_Backup = CLog_GetLogLevel(CLogAppender_RTT);
     CLog_SetLogLevel(CLogAppender_RTT,LogLevel_None);
@@ -188,14 +188,14 @@ void CShell_User_Log_off_CB(void)
     CShell_WriteBytes((uint8_t*)buf,sizeof(buf)-1);
 }
 
-void CShell_User_Log_on_CB(void)
+void CShell_GPRS_Log_on_CB(void)
 {
     CLog_SetLogLevel(CLogAppender_RTT,s_LogLevel_Backup);
     char buf[]="ok.log on\r\n";
     CShell_WriteBytes((uint8_t*)buf,sizeof(buf)-1);
 }
 
-void CShell_User_Reboot_CB(void)
+void CShell_GPRS_Reboot_CB(void)
 {
     char buf[]="ok.reboot\r\n";
     CShell_WriteBytes((uint8_t*)buf,sizeof(buf)-1);

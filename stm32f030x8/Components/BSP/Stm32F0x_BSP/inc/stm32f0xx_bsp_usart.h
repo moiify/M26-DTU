@@ -12,7 +12,7 @@
  */
 #ifndef _STM32F0XX_BSP_USART_H_
 #define _STM32F0XX_BSP_USART_H_
-
+#include "stm32f0xx_bsp_conf.h"
 /**
  * @addtogroup    XXX 
  * @{ 
@@ -27,38 +27,11 @@
  * @defgroup      stm32f0xx_bsp_usart_Exported_Macros 
  * @{  
  */
-#if defined (STM32F10X_HD) || defined (STM32F10X_CL)     
-    #define BSP_USARTCOUNT 5
-#elif defined (STM32F10X_MD)
-    #define BSP_USARTCOUNT 3
-#elif defined (STM32F10X_LD)
-    #define BSP_USARTCOUNT 2
-#else
-    #error "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
-#endif
 
 #define BSP_USART1      0
 #define BSP_USART2      1
-#if defined (STM32F10X_HD) || defined (STM32F10X_CL) || defined (STM32F10X_MD)
-#define BSP_USART3      2
-#endif
-#if defined (STM32F10X_HD) || defined (STM32F10X_CL)     
-#define BSP_USART4      3
-#define BSP_USART5      4
-#endif
-
-#define BSP_USART_MODE_DMA      0
-#define BSP_USART_MODE_IRQ      1
-#define BSP_USART_MODE_QUERY    2
-
-#define BSP_USART_DMA_TRANSFERMODE_PACKET   0
-#define BSP_USART_DMA_TRANSFERMODE_FLOW     1
-/* */
-#define USART_CMD_GETRXCOUNT    0
-#define USART_CMD_TXFLUSH       1
-#define USART_CMD_RXFLUSH       2
-#define USART_CMD_RXENABLE      3
-#define USART_CMD_RXDISABLE     4
+     
+#define USART1_Tx_Buf_MAX_SIZE 200
 /**
  * @}
  */
@@ -76,7 +49,34 @@
  * @defgroup      stm32f0xx_bsp_usart_Exported_Types 
  * @{  
  */
+typedef struct
+{
+   uint32_t Baudrate;
+}GPRS_USARTParams_t;
 
+typedef struct
+{
+	uint8_t Buf[300];
+	uint8_t Len;
+}receive_buf_t;
+
+typedef struct 
+{ 
+  receive_buf_t Buf[20];
+  uint8_t In;	
+  uint8_t Out;
+  uint8_t Count;
+  uint8_t Size;  
+}Receive_Cache_t;
+
+typedef struct 
+{ 
+  receive_buf_t Buf[20];
+  uint8_t In;	
+  uint8_t Out;
+  uint8_t Count;
+  uint8_t Size;  
+}Transmit_Cache_t;
 /**
  * @}
  */
@@ -85,7 +85,8 @@
  * @defgroup      stm32f0xx_bsp_usart_Exported_Variables 
  * @{  
  */
-
+extern receive_buf_t g_AT_ReceiveBuf;
+extern uint8_t g_USART1_ReceiveCompleteFlag;
 /**
  * @}
  */
@@ -94,7 +95,17 @@
  * @defgroup      stm32f0xx_bsp_usart_Exported_Functions 
  * @{  
  */
+void     BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams);
+//void     BSP_USART_Close(uint8_t BSP_USARTx);
 
+void     BSP_USART_WriteBytes(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t length);
+//uint16_t BSP_USART_ReadBytes(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t length);
+
+//int16_t  BSP_USART_Control(uint8_t BSP_USARTx,uint8_t cmd,void *arg);
+//void     BSP_USART_ITConfig(uint8_t BSP_USARTx,uint16_t USART_IT,FunctionalState NewState);
+
+//void     BSP_USART_IRQHandler(uint8_t BSP_USARTx);
+void     BSP_USART_TxDMA_IRQHandler(uint8_t BSP_USARTx);
 /**
  * @}
  */

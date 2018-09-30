@@ -1,6 +1,6 @@
 /**
  **************************************************************************************************
- * @file        user_task.c
+ * @file        USER_task.c
  * @author
  * @version   v0.1.0
  * @date        
@@ -24,12 +24,12 @@
  */
 
 /**
- * @addtogroup    user_task_Modules 
+ * @addtogroup    USER_task_Modules 
  * @{  
  */
 
 /**
- * @defgroup      user_task_IO_Defines 
+ * @defgroup      USER_task_IO_Defines 
  * @brief         
  * @{  
  */
@@ -39,7 +39,7 @@
  */
 
 /**
- * @defgroup      user_task_Macros_Defines 
+ * @defgroup      USER_task_Macros_Defines 
  * @brief         
  * @{  
  */
@@ -49,7 +49,7 @@
  */
 
 /**
- * @defgroup      user_task_Constants_Defines 
+ * @defgroup      USER_task_Constants_Defines 
  * @brief         
  * @{  
  */
@@ -59,7 +59,7 @@
  */
 
 /**
- * @defgroup      user_task_Private_Types
+ * @defgroup      USER_task_Private_Types
  * @brief         
  * @{  
  */
@@ -69,7 +69,7 @@
  */
 
 /**
- * @defgroup      user_task_Private_Variables 
+ * @defgroup      USER_task_Private_Variables 
  * @brief         
  * @{  
  */
@@ -79,7 +79,7 @@
  */
 
 /**
- * @defgroup      user_task_Public_Variables 
+ * @defgroup      USER_task_Public_Variables 
  * @brief         
  * @{  
  */
@@ -89,7 +89,7 @@ uint8_t g_UserTask_Id = 0;
  */
 
 /**
- * @defgroup      user_task_Private_FunctionPrototypes 
+ * @defgroup      USER_task_Private_FunctionPrototypes 
  * @brief         
  * @{  
  */
@@ -99,7 +99,7 @@ uint8_t g_UserTask_Id = 0;
  */
 
 /**
- * @defgroup      user_task_Functions 
+ * @defgroup      USER_task_Functions 
  * @brief         
  * @{  
  */

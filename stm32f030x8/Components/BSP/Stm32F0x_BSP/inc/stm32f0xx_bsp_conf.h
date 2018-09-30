@@ -31,7 +31,7 @@
  * @{  
  */
 #define BSP_GPIO_MODULE_ENABLE          1
-#define BSP_NVIC_MODULE_ENABLE          0
+#define BSP_NVIC_MODULE_ENABLE          1
 #define BSP_DMA_MODULE_ENABLE           1
 #define BSP_SYSTICK_MODULE_ENABLE       1
 #define BSP_USART_MODULE_ENABLE         1
@@ -41,7 +41,7 @@
 #define BSP_ADC_MODULE_ENABLE           0
 #define BSP_RTC_MODULE_ENABLE           0
 #define BSP_WDG_MODULE_ENABLE           0
-#define BSP_TIM_MODULE_ENABLE           0
+#define BSP_TIM_MODULE_ENABLE           1
 #define BSP_PWM_MODULE_ENABLE           0
 #define BSP_I2CSW_MODULE_ENABLE         0
 
@@ -81,8 +81,7 @@
 #endif
 
 #if BSP_TIM_MODULE_ENABLE == 1
-#include "stm32f0xx_bsp_tim.h"
-#include "stm32f0xx_bsp_tim_conf.h"
+#include "stm32f0xx_bsp_timer.h"
 #endif
 
 #if BSP_ADC_MODULE_ENABLE == 1

@@ -2097,6 +2097,12 @@
   <group>
     <name>Application</name>
     <group>
+      <name>gprs_task</name>
+      <file>
+        <name>$PROJ_DIR$\..\Source\application\gprs_task\gprs_task.c</name>
+      </file>
+    </group>
+    <group>
       <name>hal_task</name>
       <file>
         <name>$PROJ_DIR$\..\Source\application\hal_task\hal_task.c</name>
@@ -2122,16 +2128,28 @@
       <group>
         <name>src</name>
         <file>
+          <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_dma.c</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_gpio.c</name>
         </file>
         <file>
+          <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_nvic.c</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_systick.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_timer.c</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_usart.c</name>
         </file>
       </group>
     </group>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\Components\BSP\bsp_gprs.c</name>
+    </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\Components\BSP\bsp_init.c</name>
     </file>
@@ -2222,6 +2240,15 @@
   </group>
   <group>
     <name>fml</name>
+    <group>
+      <name>gprs</name>
+      <file>
+        <name>$PROJ_DIR$\..\Source\FML\gprs\gprs_commond.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Source\FML\gprs\gprs_process.c</name>
+      </file>
+    </group>
     <group>
       <name>led</name>
       <file>

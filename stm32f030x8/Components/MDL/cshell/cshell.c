@@ -260,15 +260,15 @@ static void CShell_Process(uint8_t *pBuf,uint16_t length)
         }
         else if ((element_length == 7) && (memcmp(element,"log-off",7) == 0)) // log off
         {
-            CShell_User_Log_off_CB();
+            CShell_GPRS_Log_off_CB();
         }
         else if ((element_length == 6) && (memcmp(element,"log-on",6) == 0)) // log on
         {
-            CShell_User_Log_on_CB();
+            CShell_GPRS_Log_on_CB();
         }
         else if ((element_length == 6) && (memcmp(element,"reboot",6) == 0)) // reboot
         {
-            CShell_User_Reboot_CB();
+            CShell_GPRS_Reboot_CB();
         }
         else if ((element_length == 3) && (memcmp(element, "set", 3) == 0)) // set
         {

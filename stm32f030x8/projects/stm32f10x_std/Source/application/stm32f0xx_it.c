@@ -33,7 +33,6 @@
 #include "stm32f0xx_it.h"
 #include "osal.h"
 #include "clog.h"
-
 /** @addtogroup STM32F0-Discovery_Demo
   * @{
   */
@@ -109,14 +108,29 @@ void SysTick_Handler(void)
 
 
 void USART1_IRQHandler(void)
-{
-	 //ModbusUartIRQn();
-}
+{   
+    if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
+    {          
+        TIM3->CNT=0;         				//¼ÆÊýÆ÷Çå¿Õ	        
+        TIM_Cmd(TIM3,ENABLE);
+        if(!g_USART1_ReceiveCompleteFlag)
+        {
+            g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Len++] = USART_ReceiveData(USART1);  
+        }
+        else 
+        {
+            USART_ReceiveData(USART1);
+        }
+    }
+} 
+
 
 
 void TIM3_IRQHandler(void)
-{
-	//ModbusTimIRQn();
+{   
+    TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
+	TIM_Cmd(TIM3,DISABLE);
+    g_USART1_ReceiveCompleteFlag=1;
 }
 
 void DMA1_Channel1_IRQHandler()

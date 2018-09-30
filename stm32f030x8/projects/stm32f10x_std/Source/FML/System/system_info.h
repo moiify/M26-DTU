@@ -47,11 +47,11 @@
  */
 typedef struct
 {
-    uint8_t     MainServerDomainEnable;
+//    uint8_t     MainServerDomainEnable;
     uint32_t    MainServerIp;
-    uint8_t     MainServerDomainLen;
-    char        MainServerDomainStr[DOMAIN_LENGTH_MAX+1];
-    uint16_t    MainServerPort;
+//    uint8_t     MainServerDomainLen;
+//    char        MainServerDomainStr[DOMAIN_LENGTH_MAX+1];
+//    uint16_t    MainServerPort;
 
 
 }SystemInfo_t;

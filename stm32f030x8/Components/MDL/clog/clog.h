@@ -37,7 +37,7 @@
 #define CLOG_APPENDER_RTT       3
 
 /************************************************
-               user config
+               GPRS config
  ************************************************/
 #define CLOG_APPENDER_SERIAL_ENABLE      0
 #define CLOG_APPENDER_FLASH_ENABLE       0

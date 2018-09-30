@@ -1,219 +1,84 @@
-/**
- **************************************************************************************************
- * @file        stm32f0xx_bsp_usart.c
- * @author
- * @version   v0.1.0
- * @date        
- * @brief
- **************************************************************************************************
- * @attention
- *
- **************************************************************************************************
- */
-#include "stm32f0xx_bsp_conf.h"
-/**
- * @addtogroup    XXX 
- * @{  
- */
-#if BSP_USART_MODULE_ENABLE == 1
+#include "stm32f0xx_bsp_usart.h"
+  
+receive_buf_t g_AT_ReceiveBuf;
+uint8_t g_USART1_ReceiveCompleteFlag=0;
 
-/**
- * @addtogroup    stm32f0xx_bsp_usart_Modules 
- * @{  
- */
-
-/**
- * @defgroup      stm32f0xx_bsp_usart_IO_Defines 
- * @brief         
- * @{  
- */
-
-/**
- * @}
- */
-
-/**
- * @defgroup      stm32f0xx_bsp_usart_Macros_Defines 
- * @brief         
- * @{  
- */
-
-/**
- * @}
- */
-
-/**
- * @defgroup      stm32f0xx_bsp_usart_Constants_Defines 
- * @brief         
- * @{  
- */
-
-/**
- * @}
- */
-
-/**
- * @defgroup      stm32f0xx_bsp_usart_Private_Types
- * @brief         
- * @{  
- */
-uint8_t USART1_Tx_Buf[BSP_USART1_TXBUF_SIZE];
-uint8_t USART1_Rx_Buf[BSP_USART1_RXBUF_SIZE];
-uint8_t USART2_Tx_Buf[BSP_USART2_TXBUF_SIZE];
-uint8_t USART2_Rx_Buf[BSP_USART2_RXBUF_SIZE];
-#if defined (STM32F10X_HD) || defined (STM32F10X_CL) || defined (STM32F10X_MD)
-uint8_t USART3_Tx_Buf[BSP_USART3_TXBUF_SIZE];
-uint8_t USART3_Rx_Buf[BSP_USART3_RXBUF_SIZE];
-#endif
-#if defined (STM32F10X_HD) || defined (STM32F10X_CL) 
-uint8_t USART4_Tx_Buf[BSP_USART4_TXBUF_SIZE];
-uint8_t USART4_Rx_Buf[BSP_USART4_RXBUF_SIZE];
-uint8_t USART5_Tx_Buf[BSP_USART5_TXBUF_SIZE];
-uint8_t USART5_Rx_Buf[BSP_USART5_RXBUF_SIZE];
-#endif 
-#endif
-
-static STM32F10xUSART_Instance_t stm32f10xUSART_Instance[BSP_USARTCOUNT] = 
+void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
 {
-    /* USART1 */
-    {
-        /* USART_TypeDef */
-        .Instance = USART1,
-        /* tx buf */
-        .TxBuf.pData = USART1_Tx_Buf,
-        .TxBuf.Size = sizeof(USART1_Tx_Buf) / sizeof(USART1_Tx_Buf[0]),
-        .TxBuf.Count = 0,
-        .TxBuf.In = 0,
-        .TxBuf.Out = 0,
-        /* rx buf */
-        .RxBuf.pData = USART1_Rx_Buf,
-        .RxBuf.Size = sizeof(USART1_Rx_Buf) / sizeof(USART1_Rx_Buf[0]),
-        .RxBuf.Count = 0,
-        .RxBuf.In = 0,
-        .RxBuf.Out = 0,
-    },
-    /* USART2 */
-    {
-        /* USART_TypeDef */
-        .Instance = USART2,
-        /* tx buf */
-        .TxBuf.pData = USART2_Tx_Buf,
-        .TxBuf.Size = sizeof(USART2_Tx_Buf) / sizeof(USART2_Tx_Buf[0]),
-        .TxBuf.Count = 0,
-        .TxBuf.In = 0,
-        .TxBuf.Out = 0,
-        /* rx buf */
-        .RxBuf.pData = USART2_Rx_Buf,
-        .RxBuf.Size = sizeof(USART2_Rx_Buf) / sizeof(USART2_Rx_Buf[0]),
-        .RxBuf.Count = 0,
-        .RxBuf.In = 0,
-        .RxBuf.Out = 0,
-    },
-#if defined (STM32F10X_HD) || defined (STM32F10X_CL) || defined (STM32F10X_MD)          
-    /* USART3 */
-    {
-        /* USART_TypeDef */
-        .Instance = USART3,
-        /* tx buf */
-        .TxBuf.pData = USART3_Tx_Buf,
-        .TxBuf.Size = sizeof(USART3_Tx_Buf) / sizeof(USART3_Tx_Buf[0]),
-        .TxBuf.Count = 0,
-        .TxBuf.In = 0,
-        .TxBuf.Out = 0,
-        /* rx buf */
-        .RxBuf.pData = USART3_Rx_Buf,
-        .RxBuf.Size = sizeof(USART3_Rx_Buf) / sizeof(USART3_Rx_Buf[0]),
-        .RxBuf.Count = 0,
-        .RxBuf.In = 0,
-        .RxBuf.Out = 0,
-    },
-#endif
-#if defined (STM32F10X_HD) || defined (STM32F10X_CL)
-    /* USART4 */
-    {
-        /* USART_TypeDef */
-        .Instance = UART4,
-        /* tx buf */
-        .TxBuf.pData = USART4_Tx_Buf,
-        .TxBuf.Size = sizeof(USART4_Tx_Buf) / sizeof(USART4_Tx_Buf[0]),
-        .TxBuf.Count = 0,
-        .TxBuf.In = 0,
-        .TxBuf.Out = 0,
-        /* rx buf */
-        .RxBuf.pData = USART4_Rx_Buf,
-        .RxBuf.Size = sizeof(USART4_Rx_Buf) / sizeof(USART4_Rx_Buf[0]),
-        .RxBuf.Count = 0,
-        .RxBuf.In = 0,
-        .RxBuf.Out = 0,
-    },
-    /* USART5 */
-    {
-        /* USART_TypeDef */
-        .Instance = UART5,
-        /* tx buf */
-        .TxBuf.pData = USART5_Tx_Buf,
-        .TxBuf.Size = sizeof(USART5_Tx_Buf) / sizeof(USART5_Tx_Buf[0]),
-        .TxBuf.Count = 0,
-        .TxBuf.In = 0,
-        .TxBuf.Out = 0,
-        /* rx buf */
-        .RxBuf.pData = USART5_Rx_Buf,
-        .RxBuf.Size = sizeof(USART5_Rx_Buf) / sizeof(USART5_Rx_Buf[0]),
-        .RxBuf.Count = 0,
-        .RxBuf.In = 0,
-        .RxBuf.Out = 0,
-    },
-#endif    
-};
-/**
- * @}
- */
+  
+    USART_InitTypeDef usart_initstructure;
+    GPIO_InitTypeDef  gpio_initstructure;
+    NVIC_InitTypeDef  nvic_initstructure;
+//    if (GPRSparams != NULL)
+//    { 
+//        baudrate = GPRSparams->Baudrate;
+//    }
+    if (BSP_USARTx == BSP_USART1)
+    {     
+        RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+        RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+        RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+             
+        GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_1); 
+        GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);    
+              
+        gpio_initstructure.GPIO_Pin=GPIO_Pin_9;
+        gpio_initstructure.GPIO_Mode=GPIO_Mode_AF;
+        gpio_initstructure.GPIO_Speed=GPIO_Speed_50MHz;
+        gpio_initstructure.GPIO_OType=GPIO_OType_PP;
+        gpio_initstructure.GPIO_PuPd=GPIO_PuPd_NOPULL;
+        GPIO_Init(GPIOA, &gpio_initstructure);
+        
+        gpio_initstructure.GPIO_Pin=GPIO_Pin_10;
+        gpio_initstructure.GPIO_Mode=GPIO_Mode_AF;
+        gpio_initstructure.GPIO_Speed=GPIO_Speed_50MHz;
+        gpio_initstructure.GPIO_OType=GPIO_OType_PP;
+        gpio_initstructure.GPIO_PuPd=GPIO_PuPd_UP;
+        GPIO_Init(GPIOA, &gpio_initstructure);
+        
+        
+        nvic_initstructure.NVIC_IRQChannel = USART1_IRQn;
+        nvic_initstructure.NVIC_IRQChannelPriority =2;
+        nvic_initstructure.NVIC_IRQChannelCmd = ENABLE;
+        NVIC_Init(&nvic_initstructure);
 
-/**
- * @defgroup      stm32f0xx_bsp_usart_Private_Variables 
- * @brief         
- * @{  
- */
+        usart_initstructure.USART_BaudRate=115200;        
+        usart_initstructure.USART_WordLength = USART_WordLength_8b,
+        usart_initstructure.USART_StopBits = USART_StopBits_1,
+        usart_initstructure.USART_Parity = USART_Parity_No,
+        usart_initstructure.USART_Mode = USART_Mode_Tx|USART_Mode_Rx,
+        usart_initstructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None,
+        USART_Init(USART1,&usart_initstructure);
+        USART_ITConfig(USART1,USART_IT_RXNE, ENABLE);
+        USART_Cmd(USART1, ENABLE);
+                
+        BSP_DMA_USART1_StructInit();        
+        USART_DMACmd(USART1,USART_DMAReq_Tx|USART_DMAReq_Rx,ENABLE); 
+        DMA_Cmd(DMA1_Channel2, DISABLE);
+        DMA_Cmd(DMA1_Channel1, ENABLE); 
+   
+    }
+}
+void  BSP_USART_WriteBytes(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t length)
+{      
+    if(BSP_USARTx==BSP_USART1)
+    {         
+            DMA_Cmd(DMA1_Channel2,DISABLE);
+            DMA1_Channel2->CMAR = (uint32_t)pBuf;
+            DMA1_Channel2->CNDTR = length;
+            DMA_Cmd(DMA1_Channel2,ENABLE);
+    }
+}
 
-/**
- * @}
- */
 
-/**
- * @defgroup      stm32f0xx_bsp_usart_Public_Variables 
- * @brief         
- * @{  
- */
 
-/**
- * @}
- */
-
-/**
- * @defgroup      stm32f0xx_bsp_usart_Private_FunctionPrototypes 
- * @brief         
- * @{  
- */
-
-/**
- * @}
- */
-
-/**
- * @defgroup      stm32f0xx_bsp_usart_Functions 
- * @brief         
- * @{  
- */
-
-/**
- * @}
- */
-
-/**
- * @}
- */
-
-/**
- * @}
- */
-
+//void BSP_USART_TxDMA_IRQHandler(uint8_t BSP_USARTx)
+//{
+//    
+//    if (DMA_GetITStatus(DMA1_IT_TC4) != RESET)
+//    {
+//        DMA_ClearITPendingBit(DMA1_IT_TC4);
+//        BSP_USART_WriteBytesDMAISR(BSP_USARTx);
+//    }   
+//
+//}

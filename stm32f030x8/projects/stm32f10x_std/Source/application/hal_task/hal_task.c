@@ -14,7 +14,9 @@
 #include "osal.h"
 #include "bsp_led.h"
 #include "hal_task.h"
-
+#include "stm32_bsp_conf.h"
+#include "cshell_port.h"
+#include "clog.h"
 /**
  * @addtogroup    XXX 
  * @{  

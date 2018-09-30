@@ -155,13 +155,19 @@
                     <Folder Name="inc">
                         <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32_bsp_conf.h"/>
                         <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32f0xx_bsp_conf.h"/>
+                        <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32f0xx_bsp_dma.h"/>
                         <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32f0xx_bsp_gpio.h"/>
+                        <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32f0xx_bsp_nvic.h"/>
                         <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32f0xx_bsp_systick.h"/>
+                        <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32f0xx_bsp_timer.h"/>
                         <F N="../../../Components/BSP/Stm32F0x_BSP/inc/stm32f0xx_bsp_usart.h"/>
                     </Folder>
                     <Folder Name="src">
+                        <F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_dma.c"/>
                         <F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_gpio.c"/>
+                        <F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_nvic.c"/>
                         <F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_systick.c"/>
+                        <F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_timer.c"/>
                         <F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_usart.c"/>
                     </Folder>
                 </Folder>
@@ -332,6 +338,10 @@
         </Folder>
         <Folder Name="../Source">
             <Folder Name="application">
+                <Folder Name="gprs_task">
+                    <F N="../Source/application/gprs_task/gprs_task.c"/>
+                    <F N="../Source/application/gprs_task/gprs_task.h"/>
+                </Folder>
                 <Folder Name="hal_task">
                     <F N="../Source/application/hal_task/hal_task.c"/>
                     <F N="../Source/application/hal_task/hal_task.h"/>
@@ -342,9 +352,17 @@
                 </Folder>
                 <F N="../Source/application/env_var.h"/>
                 <F N="../Source/application/main.c"/>
+                <F N="../Source/application/main.h"/>
+                <F N="../Source/application/self_def.h"/>
+                <F N="../Source/application/stm32f0xx_conf.h"/>
                 <F N="../Source/application/stm32f0xx_it.c"/>
+                <F N="../Source/application/stm32f0xx_it.h"/>
             </Folder>
             <Folder Name="FML">
+                <Folder Name="gprs">
+                    <F N="../Source/FML/gprs/gprs_process.c"/>
+                    <F N="../Source/FML/gprs/gprs_process.h"/>
+                </Folder>
                 <Folder Name="led">
                     <F N="../Source/FML/led/led_process.c"/>
                     <F N="../Source/FML/led/led_process.h"/>

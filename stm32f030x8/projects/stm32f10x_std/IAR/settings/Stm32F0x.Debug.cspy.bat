@@ -25,7 +25,7 @@ if not "%1" == "" goto debugFile
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\Administrator\Desktop\GPRS透传\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.general.xcl" --backend -f "C:\Users\Administrator\Desktop\GPRS透传\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.driver.xcl" 
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.general.xcl" --backend -f "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\Administrator\Desktop\GPRS透传\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.general.xcl" "--debug_file=%1" --backend -f "C:\Users\Administrator\Desktop\GPRS透传\GPRS_DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.driver.xcl" 
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.general.xcl" "--debug_file=%1" --backend -f "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\settings\Stm32F0x.Debug.driver.xcl" 
 
 @echo off 
 :end

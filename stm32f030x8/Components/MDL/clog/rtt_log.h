@@ -28,7 +28,7 @@
  * @{  
  */
 #define RTT_LOG_BUF_SIZE         BUFFER_SIZE_UP
-#define DEFAULT_RTT_LOG_LEVEL    LogLevel_Trace
+#define DEFAULT_RTT_LOG_LEVEL    LogLevel_Debug
 /**
  * @}
  */

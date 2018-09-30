@@ -1,6 +1,6 @@
 /**
  **************************************************************************************************
- * @file        user_task.h
+ * @file        USER_task.h
  * @author
  * @version    v0.1.0
  * @date        
@@ -19,12 +19,12 @@
  */
 #include "osal.h"
 /**
- * @addtogroup    user_task_Modules 
+ * @addtogroup    USER_task_Modules 
  * @{  
  */
 
 /**
- * @defgroup      user_task_Exported_Macros 
+ * @defgroup      USER_task_Exported_Macros 
  * @{  
  */
 #define USER_TASK_KEY_PROCESS_EVENT     0x0001
@@ -37,7 +37,7 @@
  */
 
 /**
- * @defgroup      user_task_Exported_Constants
+ * @defgroup      USER_task_Exported_Constants
  * @{  
  */
 
@@ -46,7 +46,7 @@
  */
 
 /**
- * @defgroup      user_task_Exported_Types 
+ * @defgroup      USER_task_Exported_Types 
  * @{  
  */
 
@@ -55,7 +55,7 @@
  */
 
 /**
- * @defgroup      user_task_Exported_Variables 
+ * @defgroup      USER_task_Exported_Variables 
  * @{  
  */
 
@@ -64,7 +64,7 @@
  */
 
 /**
- * @defgroup      user_task_Exported_Functions 
+ * @defgroup      USER_task_Exported_Functions 
  * @{  
  */
 void UserTask_Init(uint8_t taskId);

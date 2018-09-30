@@ -27,7 +27,7 @@
  * @defgroup      osal_task_Exported_Macros 
  * @{  
  */
-#define OSAL_TASK_COUNT      2
+#define OSAL_TASK_COUNT      3
 /**
  * @}
  */
