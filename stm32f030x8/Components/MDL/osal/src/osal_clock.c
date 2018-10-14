@@ -138,6 +138,7 @@ uint32_t OS_Clock_GetSeconds(void)
     return ticks;
 }
 
+
 uint32_t OS_Clock_GetSystemClock(void)
 {
     uint32_t ticks = 0;

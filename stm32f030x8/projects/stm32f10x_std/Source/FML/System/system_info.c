@@ -78,7 +78,23 @@
  * @brief         
  * @{  
  */
-SystemInfo_t g_SystemInfo;
+SystemInfo_t g_SystemInfo=
+{   
+    .MainServerEN=SERVER_ENABLE,
+    .MainServerIp="116.62.102.100",
+    .MainServerPort=14000,
+    .MainServerDomain="www.njzhhb.com",
+    .MainServerConnectway=IP_Connect,
+    
+    .SpareServerIp="116.62.102.100",
+    .SpareServerEN=SERVER_DISABLE,
+    .SpareServerPort=8080,
+    .SpareServerConnectway=IP_Connect,
+    
+    .Gprs_Init_Status=Gprs_Init_NotComplete,
+    .Socket0_Status=Socket_Init_NotComplete,
+    .Socket1_Status=Socket_Init_NotComplete,
+};
 
 /**
  * @}

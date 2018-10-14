@@ -16,6 +16,7 @@
 #include "clog.h"
 #include "cshell.h"
 #include "user_task.h"
+#include "gprs_process.h"
 
 
 /**
@@ -116,18 +117,21 @@ osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
         return events ^ USER_TASK_KEY_PROCESS_EVENT;
     }
     if (events & USER_TASK_LOOP_EVENT)
-    {
-        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,20);
+    {   
+        GPRS_WriteBytes("hello123",8);
+        GPRS_WriteBytes("hello",5);
+        
+        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,500);
         return events ^ USER_TASK_LOOP_EVENT;
     }
     
     if (events & USER_TASK_SHELL_EVENT)
-    {
+    {   
         return events ^ USER_TASK_SHELL_EVENT;
     }
 
     if (events & USER_TASK_OPEN_CMD_EVENT)
-    {
+    {   
         OS_Timer_Start(taskid,USER_TASK_CLOSE_CMD_EVENT,1000);
         return events ^ USER_TASK_OPEN_CMD_EVENT;
     }

@@ -46,6 +46,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+static uint16_t len;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -106,16 +107,18 @@ void SysTick_Handler(void)
 }
 
 
-
 void USART1_IRQHandler(void)
 {   
+    receive_buf_t *p;
+    p = &g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In];
+    USART_ClearITPendingBit(USART1, USART_IT_ORE);
     if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
     {          
         TIM3->CNT=0;         				//¼ÆÊýÆ÷Çå¿Õ	        
         TIM_Cmd(TIM3,ENABLE);
         if(!g_USART1_ReceiveCompleteFlag)
         {
-            g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Len++] = USART_ReceiveData(USART1);  
+            p->Buf[len++] = USART_ReceiveData(USART1);  
         }
         else 
         {
@@ -129,8 +132,16 @@ void USART1_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {   
     TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
-	TIM_Cmd(TIM3,DISABLE);
+    TIM_Cmd(TIM3,DISABLE);
     g_USART1_ReceiveCompleteFlag=1;
+    g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Len=len;
+    g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Buf[len]='\0';
+  //  INFO("[GPRS]AT_ReceiveBuf:%s-In:%d-Len:%d\r\n",g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Buf,g_AT_ReceiveBuf.In,g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Len);
+    len=0;
+    g_AT_ReceiveBuf.In++;
+    g_AT_ReceiveBuf.In %= sizeof (g_AT_ReceiveBuf.Buf)/sizeof(g_AT_ReceiveBuf.Buf[0]);
+    g_AT_ReceiveBuf.Count++;  
+    g_USART1_ReceiveCompleteFlag=0;
 }
 
 void DMA1_Channel1_IRQHandler()

@@ -56,22 +56,23 @@ typedef struct
 
 typedef struct
 {
-	uint8_t Buf[300];
+	uint8_t Buf[250];
 	uint8_t Len;
 }receive_buf_t;
 
 typedef struct 
 { 
-  receive_buf_t Buf[20];
+  receive_buf_t Buf[5];
   uint8_t In;	
   uint8_t Out;
   uint8_t Count;
   uint8_t Size;  
 }Receive_Cache_t;
 
+
 typedef struct 
 { 
-  receive_buf_t Buf[20];
+  receive_buf_t Buf[5];
   uint8_t In;	
   uint8_t Out;
   uint8_t Count;
@@ -85,8 +86,9 @@ typedef struct
  * @defgroup      stm32f0xx_bsp_usart_Exported_Variables 
  * @{  
  */
-extern receive_buf_t g_AT_ReceiveBuf;
 extern uint8_t g_USART1_ReceiveCompleteFlag;
+extern Receive_Cache_t g_AT_ReceiveBuf ;
+extern Transmit_Cache_t g_Machine_TransmitBuf;
 /**
  * @}
  */

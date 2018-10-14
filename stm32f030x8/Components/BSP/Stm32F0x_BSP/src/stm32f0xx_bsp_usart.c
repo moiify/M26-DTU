@@ -1,6 +1,28 @@
 #include "stm32f0xx_bsp_usart.h"
   
-receive_buf_t g_AT_ReceiveBuf;
+Receive_Cache_t g_AT_ReceiveBuf =
+{   
+    .In = 0,
+    .Out = 0,
+    .Count = 0,
+    .Size = 20,
+};
+
+Receive_Cache_t g_Server_ReceiveBuf =
+{
+    .In = 0,
+    .Out = 0,
+    .Count = 0,
+    .Size = 20,
+};
+Transmit_Cache_t g_Machine_TransmitBuf=
+{   
+    .In = 0,
+    .Out = 0,
+    .Count = 0,
+    .Size = 20,
+};    
+
 uint8_t g_USART1_ReceiveCompleteFlag=0;
 
 void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
