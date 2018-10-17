@@ -121,7 +121,7 @@ osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
         GPRS_WriteBytes("hello123",8);
         GPRS_WriteBytes("hello",5);
         
-        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,500);
+        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,1500);
         return events ^ USER_TASK_LOOP_EVENT;
     }
     

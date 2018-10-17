@@ -44,6 +44,16 @@ const LED_IO_Typedef LED_IO[BSP_LEDCOUNT]=
         .OnLevel = Bit_RESET,
         .OffLevel = Bit_SET,
     },
+    {
+        {RCC_AHBPeriph_GPIOB,GPIOB,GPIO_Pin_0,GPIO_Mode_OUT,GPIO_Speed_50MHz,GPIO_OType_PP,GPIO_PuPd_NOPULL},
+        .OnLevel = Bit_SET,
+        .OffLevel =Bit_RESET,
+    },
+    {
+        {RCC_AHBPeriph_GPIOA,GPIOA,GPIO_Pin_11,GPIO_Mode_OUT,GPIO_Speed_50MHz,GPIO_OType_PP,GPIO_PuPd_NOPULL},
+        .OnLevel = Bit_SET,
+        .OffLevel =Bit_RESET,
+    },
 };
 /**
  * @}
@@ -139,7 +149,7 @@ void BSP_LED_Init()
         RCC_AHBPeriphClockCmd(LED_IO[i].Pin.Clock,ENABLE);
         GPIO_Init(LED_IO[i].Pin.GPIOx,(GPIO_InitTypeDef*)&LED_IO[i].Pin.Init);
         GPIO_WriteBit(LED_IO[i].Pin.GPIOx, LED_IO[i].Pin.Init.GPIO_Pin, LED_IO[i].OffLevel);
-    }
+    } 
 }
 
 /**

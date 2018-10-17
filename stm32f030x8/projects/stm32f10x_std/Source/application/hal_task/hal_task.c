@@ -106,7 +106,7 @@ void HalTask_Init(uint8_t taskId)
 {
     g_HalTask_Id = taskId;
      
- //   OS_Events_Set(g_HalTask_Id, HAL_TASK_LED_OPEN_EVENT);
+    OS_Events_Set(g_HalTask_Id, HAL_TASK_LED_OPEN_EVENT);
     OS_Events_Set(g_HalTask_Id, HAL_TASK_LED_TOGGLE_EVENT);
     
 }
@@ -115,7 +115,10 @@ osal_event_t HalTask_Process(uint8_t taskid,osal_event_t events)
 {   
     if (events & HAL_TASK_LED_OPEN_EVENT)
     {
-        BSP_LED_Open(BSP_LEDRUN);
+ //       BSP_LED_Open(BSP_LEDRUN);
+//        BSP_LED_Open(BSP_LEDM26);
+        GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_SET);
+        GPIO_WriteBit(GPIOA,GPIO_Pin_11,Bit_SET);
         return events ^ HAL_TASK_LED_OPEN_EVENT;
     }
     if (events & HAL_TASK_LED_TOGGLE_EVENT)

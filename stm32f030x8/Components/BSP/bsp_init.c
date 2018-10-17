@@ -111,6 +111,8 @@ void BSP_Init(void)
 {   
     CLog_Init(CLogAppender_RTT);
     BSP_LED_Init(); 
+    GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_SET);
+    GPIO_WriteBit(GPIOA,GPIO_Pin_11,Bit_SET);
     BSP_Timer_Init();
     BSP_USART_Open(BSP_USART1, NULL);
 }

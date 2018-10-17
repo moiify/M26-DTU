@@ -28,9 +28,10 @@
  * @{  
  */
 #define BSP_LEDRUN          0
+#define BSP_LEDM26          1     
 
 
-#define BSP_LEDCOUNT        1
+#define BSP_LEDCOUNT        3
 
 
 #define BSP_LED_BLINK_ENABLE   TRUE

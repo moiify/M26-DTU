@@ -5,7 +5,7 @@ Receive_Cache_t g_AT_ReceiveBuf =
     .In = 0,
     .Out = 0,
     .Count = 0,
-    .Size = 20,
+    .Size = sizeof(g_AT_ReceiveBuf.Buf)/sizeof(g_AT_ReceiveBuf.Buf[0]),
 };
 
 Receive_Cache_t g_Server_ReceiveBuf =
@@ -13,14 +13,14 @@ Receive_Cache_t g_Server_ReceiveBuf =
     .In = 0,
     .Out = 0,
     .Count = 0,
-    .Size = 20,
+    .Size = sizeof(g_Server_ReceiveBuf.Buf)/sizeof(g_Server_ReceiveBuf.Buf[0]),
 };
 Transmit_Cache_t g_Machine_TransmitBuf=
 {   
     .In = 0,
     .Out = 0,
     .Count = 0,
-    .Size = 20,
+    .Size = sizeof(g_Machine_TransmitBuf.Buf)/sizeof(g_Machine_TransmitBuf.Buf[0]),
 };    
 
 uint8_t g_USART1_ReceiveCompleteFlag=0;

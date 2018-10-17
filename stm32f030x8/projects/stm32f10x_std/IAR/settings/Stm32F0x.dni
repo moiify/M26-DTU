@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=766608289
+Checksum=1025637708
 [JLinkDriver]
 CStepIntDis=_ 0
 TraceBufferSize=0x00010000
@@ -132,7 +132,8 @@ ProbeSetup0=2 1 1 2 0 0
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Count=0
+Bp0=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\Source\FML\gprs\gprs_process.c}.240.1" 0 0 1 "" 0 "" 0
+Count=1
 [Aliases]
 A0=_ "C:\Users\Administrator\Desktop\GPRS_DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\GPRSÍ¸´«\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
 A1=_ "C:\Users\Administrator\Desktop\GPRSÍ¸´«\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"

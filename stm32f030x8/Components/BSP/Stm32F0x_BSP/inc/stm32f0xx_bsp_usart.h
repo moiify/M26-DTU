@@ -72,7 +72,7 @@ typedef struct
 
 typedef struct 
 { 
-  receive_buf_t Buf[5];
+  receive_buf_t Buf[8];
   uint8_t In;	
   uint8_t Out;
   uint8_t Count;

@@ -50,7 +50,7 @@ typedef enum
 {
   IP_Connect,
   Domain_Connect,   
-}TCP_Connectway;
+}Socket_Connectway;
 
 typedef enum
 {
@@ -71,12 +71,12 @@ typedef struct
     uint8_t     MainServerIp[15];
     uint32_t    MainServerPort;
     uint8_t     MainServerDomain[20];
-    TCP_Connectway MainServerConnectway;
+    Socket_Connectway MainServerConnectway;
     uint8_t     SpareServerEN;
     uint8_t     SpareServerIp[15];
     uint32_t    SpareServerPort;
-    uint8_t     SpareServerDomain;
-    TCP_Connectway SpareServerConnectway;
+    uint8_t     SpareServerDomain[20];
+    Socket_Connectway SpareServerConnectway;
     
     uint8_t      Gprs_Boundrate;
     Gprs_Running_Status    Gprs_Init_Status;
