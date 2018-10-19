@@ -17,6 +17,7 @@
 #include "cshell.h"
 #include "user_task.h"
 #include "gprs_process.h"
+#include "gprs_commond.h"
 
 
 /**
@@ -118,10 +119,12 @@ osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
     }
     if (events & USER_TASK_LOOP_EVENT)
     {   
-        GPRS_WriteBytes("hello123",8);
-        GPRS_WriteBytes("hello",5);
-        
-        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,1500);
+       
+        GPRS_SendData("Socket0",7,0);
+        GPRS_SendData("Socket1",7,1);
+        GPRS_SendData("Socket1-2",9,1);
+        GPRS_SendData("Socket2",7,2);
+        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,1000);
         return events ^ USER_TASK_LOOP_EVENT;
     }
     

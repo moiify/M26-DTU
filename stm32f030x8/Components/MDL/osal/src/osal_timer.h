@@ -27,7 +27,7 @@
  * @defgroup      osal_timer_Exported_Macros 
  * @{  
  */
-#define OSAL_TIMER_HEAP_SIZE    10
+#define OSAL_TIMER_HEAP_SIZE    20
 /**
  * @}
  */

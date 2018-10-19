@@ -33,6 +33,7 @@
 #include "stm32f0xx_it.h"
 #include "osal.h"
 #include "clog.h"
+#include "gprs_task.h"
 /** @addtogroup STM32F0-Discovery_Demo
   * @{
   */
@@ -140,7 +141,8 @@ void TIM3_IRQHandler(void)
     len=0;
     g_AT_ReceiveBuf.In++;
     g_AT_ReceiveBuf.In %= sizeof (g_AT_ReceiveBuf.Buf)/sizeof(g_AT_ReceiveBuf.Buf[0]);
-    g_AT_ReceiveBuf.Count++;  
+    g_AT_ReceiveBuf.Count++;
+    GprsTask_Send_Event(GPRS_TASK_ACK_EVENT);
     g_USART1_ReceiveCompleteFlag=0;
 }
 

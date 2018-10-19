@@ -104,7 +104,7 @@
 int main()
 {
     Board_Init();
-    
+     
     BSP_SYSTICK_Open();
  
     __enable_irq();

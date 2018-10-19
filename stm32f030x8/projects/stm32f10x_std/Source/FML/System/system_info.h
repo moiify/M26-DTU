@@ -57,13 +57,7 @@ typedef enum
   Gprs_Init_NotComplete,
   Gprs_Init_Complete, 
 }Gprs_Running_Status;
-typedef enum
-{
-  Socket_Init_NotComplete,
-  Socket_Init_Complete, 
-  Socket_Open_Success, 
-  Socket_Open_Failed, 
-}Socket_Status;
+
 
 typedef struct
 {
@@ -80,14 +74,6 @@ typedef struct
     
     uint8_t      Gprs_Boundrate;
     Gprs_Running_Status    Gprs_Init_Status;
-    Socket_Status  Socket0_Status;
-    Socket_Status  Socket1_Status;
-    uint8_t      Gprs_RssiValue;
-//    uint8_t     MainServerDomainLen;
-//    char        MainServerDomainStr[DOMAIN_LENGTH_MAX+1];
-//    uint16_t    MainServerPort;
-
-
 }SystemInfo_t;
 /**
  * @}

@@ -92,8 +92,6 @@ SystemInfo_t g_SystemInfo=
     .SpareServerConnectway=IP_Connect,
     
     .Gprs_Init_Status=Gprs_Init_NotComplete,
-    .Socket0_Status=Socket_Init_NotComplete,
-    .Socket1_Status=Socket_Init_NotComplete,
 };
 
 /**

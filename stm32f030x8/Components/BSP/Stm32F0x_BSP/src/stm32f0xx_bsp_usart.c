@@ -15,7 +15,7 @@ Receive_Cache_t g_Server_ReceiveBuf =
     .Count = 0,
     .Size = sizeof(g_Server_ReceiveBuf.Buf)/sizeof(g_Server_ReceiveBuf.Buf[0]),
 };
-Transmit_Cache_t g_Machine_TransmitBuf=
+Socket_Cache_t g_Machine_TransmitBuf=
 {   
     .In = 0,
     .Out = 0,
