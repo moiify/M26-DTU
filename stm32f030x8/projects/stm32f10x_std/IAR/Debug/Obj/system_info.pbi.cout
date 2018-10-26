@@ -56,6 +56,16 @@ C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\..
 -I
 C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\..\Source\FML\gprs
 -I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\..\Source\FML\maintain
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\..\Source\FML\zsproto
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\..\Source\FML\zsproto\zsproto_p2p
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\..\Source\FML\zsproto\zsproto_tcpip
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\..\Source\FML\zsproto\zsproto_uart
+-I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\CMSIS\Include
 -I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\inc
@@ -115,6 +125,16 @@ C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source
 C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\application\gprs_task
 -I
 C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\FML\gprs
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\FML\maintain
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\FML\zsproto
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\FML\zsproto\zsproto_p2p
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\FML\zsproto\zsproto_tcpip
+-I
+C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\FML\zsproto\zsproto_uart
 -I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\CMSIS\Include
 -DUSE_STDPERIPH_DRIVER=1

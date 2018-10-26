@@ -342,6 +342,11 @@
           <state>$PROJ_DIR$\..\Source\FML</state>
           <state>$PROJ_DIR$\..\Source\application\gprs_task</state>
           <state>$PROJ_DIR$\..\Source\FML\gprs</state>
+          <state>$PROJ_DIR$\..\Source\FML\maintain</state>
+          <state>$PROJ_DIR$\..\Source\FML\zsproto</state>
+          <state>$PROJ_DIR$\..\Source\FML\zsproto\zsproto_p2p</state>
+          <state>$PROJ_DIR$\..\Source\FML\zsproto\zsproto_tcpip</state>
+          <state>$PROJ_DIR$\..\Source\FML\zsproto\zsproto_uart</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1956,14 +1961,20 @@
     <group>
       <name>user_task</name>
       <file>
-        <name>$PROJ_DIR$\..\Source\Application\User_Task\user_task.c</name>
+        <name>$PROJ_DIR$\..\Source\application\user_Task\user_task.c</name>
       </file>
     </group>
     <file>
-      <name>$PROJ_DIR$\..\Source\Application\main.c</name>
+      <name>$PROJ_DIR$\..\Source\application\env_var.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\Source\Application\stm32f0xx_it.c</name>
+      <name>$PROJ_DIR$\..\Source\application\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\application\self_def.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\application\stm32f0xx_it.c</name>
     </file>
   </group>
   <group>
@@ -2088,6 +2099,9 @@
     <group>
       <name>gprs</name>
       <file>
+        <name>$PROJ_DIR$\..\Source\FML\gprs\gprs_cache.c</name>
+      </file>
+      <file>
         <name>$PROJ_DIR$\..\Source\FML\gprs\gprs_commond.c</name>
       </file>
       <file>
@@ -2104,6 +2118,12 @@
       </file>
     </group>
     <group>
+      <name>maintain</name>
+      <file>
+        <name>$PROJ_DIR$\..\Source\FML\maintain\maintain_process.c</name>
+      </file>
+    </group>
+    <group>
       <name>system</name>
       <file>
         <name>$PROJ_DIR$\..\Source\FML\System\system_info.c</name>
@@ -2116,6 +2136,18 @@
         <excluded>
           <configuration>Debug</configuration>
         </excluded>
+      </file>
+    </group>
+    <group>
+      <name>zsproto</name>
+      <file>
+        <name>$PROJ_DIR$\..\Source\FML\zsproto\zsproto.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Source\FML\zsproto\zsproto_package_process.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Source\FML\zsproto\zsproto_penetrate_process.c</name>
       </file>
     </group>
   </group>

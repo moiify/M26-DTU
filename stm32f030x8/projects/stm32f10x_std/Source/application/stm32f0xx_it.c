@@ -31,8 +31,7 @@
 #include "stm32f0xx.h"
 #include "stm32_bsp_conf.h"
 #include "stm32f0xx_it.h"
-#include "osal.h"
-#include "clog.h"
+#include "gprs_cache.h"      
 #include "gprs_task.h"
 /** @addtogroup STM32F0-Discovery_Demo
   * @{
@@ -47,7 +46,6 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-static uint16_t len;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -107,7 +105,8 @@ void SysTick_Handler(void)
     OS_Clock_Update(1);
 }
 
-
+static uint8_t s_USART1_ReceiveCompleteFlag;
+static uint8_t len;
 void USART1_IRQHandler(void)
 {   
     receive_buf_t *p;
@@ -117,7 +116,7 @@ void USART1_IRQHandler(void)
     {          
         TIM3->CNT=0;         				//¼ÆÊýÆ÷Çå¿Õ	        
         TIM_Cmd(TIM3,ENABLE);
-        if(!g_USART1_ReceiveCompleteFlag)
+        if(!s_USART1_ReceiveCompleteFlag)
         {
             p->Buf[len++] = USART_ReceiveData(USART1);  
         }
@@ -134,16 +133,20 @@ void TIM3_IRQHandler(void)
 {   
     TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
     TIM_Cmd(TIM3,DISABLE);
-    g_USART1_ReceiveCompleteFlag=1;
-    g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Len=len;
-    g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Buf[len]='\0';
-  //  INFO("[GPRS]AT_ReceiveBuf:%s-In:%d-Len:%d\r\n",g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Buf,g_AT_ReceiveBuf.In,g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Len);
-    len=0;
-    g_AT_ReceiveBuf.In++;
-    g_AT_ReceiveBuf.In %= sizeof (g_AT_ReceiveBuf.Buf)/sizeof(g_AT_ReceiveBuf.Buf[0]);
-    g_AT_ReceiveBuf.Count++;
-    GprsTask_Send_Event(GPRS_TASK_ACK_EVENT);
-    g_USART1_ReceiveCompleteFlag=0;
+    s_USART1_ReceiveCompleteFlag=1;
+    //BSP_TIMER_IRQHandler(BSP_TIM3);
+    if(g_AT_ReceiveBuf.Count<g_AT_ReceiveBuf.Size)
+    {
+        g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Len=len;
+        g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.In].Buf[len]='\0';
+        len=0;
+        g_AT_ReceiveBuf.In++;
+        g_AT_ReceiveBuf.In %= sizeof (g_AT_ReceiveBuf.Buf)/sizeof(g_AT_ReceiveBuf.Buf[0]);
+        g_AT_ReceiveBuf.Count++;
+        GprsTask_Send_Event(GPRS_TASK_ACK_EVENT);
+    }
+    s_USART1_ReceiveCompleteFlag=0;
+
 }
 
 void DMA1_Channel1_IRQHandler()
@@ -155,8 +158,10 @@ void ADC1_COMP_IRQHandler()
 {
     //GasADC_IRQn();
 }
-
-
+void USART2_IRQHandler(void)
+{
+   BSP_USART_IRQHandler(BSP_USART2);
+}
 
 /******************************************************************************/
 /*                 STM32F0xx Peripherals Interrupt Handlers                   */

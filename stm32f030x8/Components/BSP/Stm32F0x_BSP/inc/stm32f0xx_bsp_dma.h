@@ -63,7 +63,7 @@
  * @defgroup      stm32f0xx_bsp_dma_Exported_Functions 
  * @{  
  */
-void BSP_DMA_USART1_StructInit(void);
+void  BSP_DMA_USART_StructInit(uint8_t BSP_USARTx);
 /**
  * @}
  */

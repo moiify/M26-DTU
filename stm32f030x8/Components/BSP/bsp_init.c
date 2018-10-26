@@ -115,6 +115,7 @@ void BSP_Init(void)
 //    GPIO_WriteBit(GPIOA,GPIO_Pin_11,Bit_SET);  //¿ª»ú
     BSP_Timer_Init(); 
     BSP_USART_Open(BSP_USART1, NULL);
+    BSP_USART_Open(BSP_USART2, NULL);
 }
 /**
  * @}

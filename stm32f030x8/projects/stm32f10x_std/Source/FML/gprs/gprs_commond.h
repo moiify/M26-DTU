@@ -28,21 +28,7 @@
  * @defgroup      gprs_commond_Exported_Macros 
  * @{  
  */
-typedef struct
-{
-    uint8_t SocketNum;
-    uint8_t Len;
-    uint8_t Buf[150];
-}Server_receiveDataInfo_t;
 
-typedef struct
-{
-    Server_receiveDataInfo_t buf[5];
-    uint8_t In;	
-    uint8_t Out;
-    uint8_t Count;
-    uint8_t Size;
-}Server_receiveDataInfo_Cache;
 /**
  * @}
  */
@@ -72,7 +58,6 @@ typedef struct
  * @defgroup      gprs_commond_Exported_Variables 
  * @{  
  */
-extern Server_receiveDataInfo_Cache Server_receiveDataInfo;
 /**
  * @}
  */

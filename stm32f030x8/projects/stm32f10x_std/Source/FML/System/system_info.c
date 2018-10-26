@@ -81,17 +81,18 @@
 SystemInfo_t g_SystemInfo=
 {   
     .MainServerEN=SERVER_ENABLE,
-    .MainServerIp="116.62.102.100",
-    .MainServerPort=14000,
+    .MainServerIp="103.46.128.43",
+    .MainServerPort=56527,
     .MainServerDomain="www.njzhhb.com",
     .MainServerConnectway=IP_Connect,
     
-    .SpareServerIp="116.62.102.100",
+    .SpareServerIp="103.46.128.43",
     .SpareServerEN=SERVER_DISABLE,
-    .SpareServerPort=8080,
+    .SpareServerPort=56527,
     .SpareServerConnectway=IP_Connect,
     
     .Gprs_Init_Status=Gprs_Init_NotComplete,
+    .Gprs_Operatingmode=Gprs_Packagemode,
 };
 
 /**

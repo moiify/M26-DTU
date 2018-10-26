@@ -28,7 +28,7 @@
  * @defgroup      env_var_Exported_Macros 
  * @{  
 */
-#define PROBE_IN_CHANNEL    0
+#define COM_USART_MAINTAIN  BSP_USART2
 
 /**
  * @}

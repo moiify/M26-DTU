@@ -18,8 +18,9 @@
 #include "user_task.h"
 #include "gprs_process.h"
 #include "gprs_commond.h"
-
-
+#include "gprs_cache.h"
+#include "zsproto.h"
+#include "maintain_process.h"
 /**
  * @addtogroup    XXX 
  * @{  
@@ -109,6 +110,7 @@ void UserTask_Init(uint8_t taskId)
 {
     g_UserTask_Id = taskId;
     OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,20);
+    ZSProto_FlowSetCallback(ZSPROTO_FLOWCHANNEL_MAINTAIN, Maintain_Trans_Process);
 }
 
 osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
@@ -119,15 +121,11 @@ osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
     }
     if (events & USER_TASK_LOOP_EVENT)
     {   
-       
-        GPRS_SendData("Socket0",7,0);
-        GPRS_SendData("Socket1",7,1);
-        GPRS_SendData("Socket1-2",9,1);
-        GPRS_SendData("Socket2",7,2);
-        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,1000);
+        Maintain_Trans_Check();
+//        Server_Trans_Check();
+        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,50);
         return events ^ USER_TASK_LOOP_EVENT;
     }
-    
     if (events & USER_TASK_SHELL_EVENT)
     {   
         return events ^ USER_TASK_SHELL_EVENT;

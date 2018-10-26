@@ -135,7 +135,8 @@ osal_event_t GprsTask_Process(uint8_t taskid,osal_event_t events)
     }
     if (events & GPRS_TASK_QISACK_EVENT)
     {   
-        
+//        Gprs_Cmd_QIACK();
+//        OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_RSSI_EVENT,5000);
         return events ^ GPRS_TASK_QISACK_EVENT;
     }
     return 0;

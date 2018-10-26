@@ -391,6 +391,8 @@
 			</Folder>
 			<Folder Name="FML">
 				<Folder Name="gprs">
+					<F N="../Source/FML/gprs/gprs_cache.c"/>
+					<F N="../Source/FML/gprs/gprs_cache.h"/>
 					<F N="../Source/FML/gprs/gprs_commond.c"/>
 					<F N="../Source/FML/gprs/gprs_commond.h"/>
 					<F N="../Source/FML/gprs/gprs_process.c"/>
@@ -400,6 +402,10 @@
 					<F N="../Source/FML/led/led_process.c"/>
 					<F N="../Source/FML/led/led_process.h"/>
 				</Folder>
+				<Folder Name="maintain">
+					<F N="../Source/FML/maintain/maintain_process.c"/>
+					<F N="../Source/FML/maintain/maintain_process.h"/>
+				</Folder>
 				<Folder Name="System">
 					<F N="../Source/FML/System/system_info.c"/>
 					<F N="../Source/FML/System/system_info.h"/>
@@ -407,6 +413,18 @@
 					<F N="../Source/FML/System/system_init.h"/>
 					<F N="../Source/FML/System/system_param.c"/>
 					<F N="../Source/FML/System/system_param.h"/>
+				</Folder>
+				<Folder Name="zsproto">
+					<F N="../Source/FML/zsproto/zsproto.c"/>
+					<F N="../Source/FML/zsproto/zsproto.h"/>
+					<F N="../Source/FML/zsproto/zsproto_ack_make.c"/>
+					<F N="../Source/FML/zsproto/zsproto_ack_make.h"/>
+					<F N="../Source/FML/zsproto/zsproto_config_make.c"/>
+					<F N="../Source/FML/zsproto/zsproto_config_make.h"/>
+					<F N="../Source/FML/zsproto/zsproto_config_process.c"/>
+					<F N="../Source/FML/zsproto/zsproto_config_process.h"/>
+					<F N="../Source/FML/zsproto/zsproto_uart.c"/>
+					<F N="../Source/FML/zsproto/zsproto_uart.h"/>
 				</Folder>
 			</Folder>
 		</Folder>

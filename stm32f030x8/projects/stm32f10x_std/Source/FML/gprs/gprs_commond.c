@@ -13,9 +13,7 @@
 #include "gprs_commond.h"
 #include "stm32_bsp_conf.h"
 #include "system_info.h"
-#include "osal.h"
-#include "cshell_port.h"
-#include "clog.h"
+#include "gprs_cache.h"
 #include "string.h"
 
 /**
@@ -83,13 +81,6 @@
 * @brief         
 * @{  
 */
-Server_receiveDataInfo_Cache Server_receiveDataInfo=
-{
-    .In=0,
-    .Out=0,
-    .Count=0,
-    .Size=sizeof(Server_receiveDataInfo.buf)/sizeof(Server_receiveDataInfo.buf[0]),
-};
 /**
 * @}
 */
@@ -187,14 +178,16 @@ void Gprs_GetSocketAndLength(void)
     }    
 }
 void GPRS_SendData(uint8_t * pbuf,uint8_t length,uint8_t mux) // 发送数据接口
-{
-    sprintf((char*)g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Buf,"%s",(const char *)pbuf);
-    g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Len=length;
-    g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Mux=mux;
-    g_Machine_TransmitBuf.In++;
-    g_Machine_TransmitBuf.In %= sizeof (g_Machine_TransmitBuf.Buf)/sizeof(g_Machine_TransmitBuf.Buf[0]);
-    g_Machine_TransmitBuf.Count++;    
-    
+{	
+    if( g_Machine_TransmitBuf.Count< g_Machine_TransmitBuf.Size)
+    {
+        memcpy(g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Buf,(const char *)pbuf,length);
+        g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Len=length;
+        g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Mux=mux;
+        g_Machine_TransmitBuf.In++;
+        g_Machine_TransmitBuf.In %= sizeof (g_Machine_TransmitBuf.Buf)/sizeof(g_Machine_TransmitBuf.Buf[0]);
+        g_Machine_TransmitBuf.Count++;    
+    }
 }
 
 /**
