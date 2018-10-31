@@ -110,7 +110,7 @@ void  BSP_Timer_Init(void)
     TIM_DeInit( TIM3);
     TIM_TimeBaseInitStruct.TIM_ClockDivision=TIM_CKD_DIV1;
     TIM_TimeBaseInitStruct.TIM_CounterMode=TIM_CounterMode_Up;
-    TIM_TimeBaseInitStruct.TIM_Period=4000-1;
+    TIM_TimeBaseInitStruct.TIM_Period=250-1;
     TIM_TimeBaseInitStruct.TIM_Prescaler=48;
     TIM_TimeBaseInit( TIM3, &TIM_TimeBaseInitStruct);
     

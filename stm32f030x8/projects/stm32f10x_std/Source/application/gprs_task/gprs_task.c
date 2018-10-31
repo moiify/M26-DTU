@@ -106,11 +106,10 @@ uint8_t g_GprsTask_Id = 0;
 void GprsTask_Init(uint8_t taskId)
 {
     g_GprsTask_Id = taskId;
-    Gprs_Add_Sockets(IP_Connect,g_SystemInfo.MainServerIp, g_SystemInfo.MainServerPort);
-    Gprs_Add_Sockets(IP_Connect,g_SystemInfo.MainServerIp, g_SystemInfo.MainServerPort);
-    Gprs_Add_Sockets(IP_Connect,g_SystemInfo.MainServerIp, g_SystemInfo.MainServerPort);
-    OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_LOOP_EVENT,100);
+    OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_RESET_EVENT,50);
+    OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_LOOP_EVENT,200);
     OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_RSSI_EVENT,8000);
+    OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_QISACK_EVENT,5000);
 }
 
 osal_event_t GprsTask_Process(uint8_t taskid,osal_event_t events)
@@ -135,9 +134,16 @@ osal_event_t GprsTask_Process(uint8_t taskid,osal_event_t events)
     }
     if (events & GPRS_TASK_QISACK_EVENT)
     {   
-//        Gprs_Cmd_QIACK();
-//        OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_RSSI_EVENT,5000);
+        Gprs_Cmd_QIACK();
+        OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_QISACK_EVENT,5000);
         return events ^ GPRS_TASK_QISACK_EVENT;
+    }
+    if (events & GPRS_TASK_RESET_EVENT)
+    {   
+        Gprs_Reset_Moudle();
+        Gprs_Add_Sockets(g_SystemInfo.Socket_ListInfo[0]);
+        Gprs_Add_Sockets(g_SystemInfo.Socket_ListInfo[1]);
+        return events ^ GPRS_TASK_RESET_EVENT;
     }
     return 0;
 }

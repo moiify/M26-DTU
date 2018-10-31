@@ -16,6 +16,7 @@
 #include "clog.h"
 #include "bsp_init.h"
 #include "bsp_led.h"
+#include "system_param.h"
 
 /**
  * @addtogroup    XXX 

@@ -32,8 +32,7 @@
 #define GPRS_TASK_LOOP_EVENT            0x0002
 #define GPRS_TASK_RSSI_EVENT            0x0004
 #define GPRS_TASK_QISACK_EVENT          0x0008
-//#define GPRS_TASK_CHECK_DATA_EVENT      0x0020
-//#define GPRS_TASK_UPDATERSSI_EVENT      0x0010
+#define GPRS_TASK_RESET_EVENT           0x0010
 /**
  * @}
  */

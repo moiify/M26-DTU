@@ -16,11 +16,13 @@
  *              直接修改该变量的值，然后调用对应handle id的保存函数即可。
  **************************************************************************************************
  */
+#include "env_var.h"
 #include "self_def.h"
 #include "system_info.h"
-#include "cdb.h"
+#include "crc.h"
+#include "clog.h"
+#include "stm32_bsp_conf.h"
 #include "system_param.h"
-
 /**
  * @addtogroup    XXX 
  * @{  
@@ -76,13 +78,6 @@
  * @brief         
  * @{  
  */
-const SystemParam_Config_t SystemParam_Config_Default = 
-{
-    .ServerIp = 0xC0A8001A,
-    .ServerPort = 20000,
-    .WifiSSIDStr = "TP-LINK_wf",
-    .WifiPasswordStr = "13951089024",
-};
 /**
  * @}
  */
@@ -92,7 +87,6 @@ const SystemParam_Config_t SystemParam_Config_Default =
  * @brief         
  * @{  
  */
-SystemParam_Config_t g_SystemParam_Config;
 /**
  * @}
  */
@@ -112,70 +106,98 @@ SystemParam_Config_t g_SystemParam_Config;
  * @brief         
  * @{  
  */
-void SystemParam_Init()
+int16_t SystemParam_Init(void)
 {
-    CDB_Inflash_Param_Init(SYSTEMPARAM_CONFIG,sizeof(g_SystemParam_Config));
-}
-
-int16_t SystemParam_Read(uint8_t handle)
-{
-    switch (handle)
+    BSP_FLASH_ReadBytes(FLASH_PARAM_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
+    if (CRC16_Modbus((uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo)) == 0)
     {
-        case SYSTEMPARAM_CONFIG:
+        
+    }
+    else
+    { 
+        BSP_FLASH_ReadBytes(FLASH_PARAM_BACK_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
+        if (CRC16_Modbus((uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo)) == 0)
         {
-            if (CDB_Inflash_Param_Read(handle, (uint8_t *)&g_SystemParam_Config) != 0)
-            {
-                g_SystemParam_Config = SystemParam_Config_Default;
-            }
-            break;
+            
+        }
+        else
+        {
+            g_SystemInfo.Socket_ListInfo[0].ServerEN=SERVER_ENABLE;
+            sprintf((char *)g_SystemInfo.Socket_ListInfo[0].ServerIp,"116.62.102.100");
+            g_SystemInfo.Socket_ListInfo[0].byte_ServerIp=0x743E6664;
+            g_SystemInfo.Socket_ListInfo[0].ServerPort=14000;
+            sprintf((char *)g_SystemInfo.Socket_ListInfo[0].ServerDomain,"www.njzhhb.com");
+            g_SystemInfo.Socket_ListInfo[0].ServerConnectway=IP_Connect;
+            sprintf((char *)g_SystemInfo.Socket_ListInfo[1].ServerIp,"103.46.128.43");
+            g_SystemInfo.Socket_ListInfo[1].byte_ServerIp=0x672E802B;
+            g_SystemInfo.Socket_ListInfo[1].ServerEN=SERVER_ENABLE;
+            g_SystemInfo.Socket_ListInfo[1].ServerPort=56527;
+            sprintf((char *)g_SystemInfo.Socket_ListInfo[1].ServerDomain,"www.njzhhb.com");
+            g_SystemInfo.Socket_ListInfo[1].ServerConnectway=IP_Connect;
+            g_SystemInfo.Gprs_Operatingmode=Gprs_Packagemode;     
+            g_SystemInfo.Gprs_Boundrate=115200;
+            g_SystemInfo.Gprs_HeartbeatEN=0;
+            SystemParam_Save();
+            return -1;
         }
     }
+    INFO("[system]->[param]->init ok\r\n");
+
     return 0;
 }
 
-void SystemParam_Save(uint8_t handle)
+int16_t SystemParam_Read(void)
 {
-    switch (handle)
+    uint8_t i = 0;
+    BSP_FLASH_ReadBytes(FLASH_PARAM_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
+    if (CRC16_Modbus((uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo)) == 0)
     {
-        case SYSTEMPARAM_CONFIG:
-        {
-            CDB_Inflash_Param_Write(handle, (uint8_t *)&g_SystemParam_Config);
-            break;
-        }
+        
     }
-}
-
-void SystemParam_Reset(uint8_t handle)
-{
-    switch (handle)
+    else
     {
-        case SYSTEMPARAM_CONFIG:
+        BSP_FLASH_ReadBytes(FLASH_PARAM_BACK_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
+        if (CRC16_Modbus((uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo)) == 0)
         {
-            g_SystemParam_Config = SystemParam_Config_Default;
-            SystemParam_Save(handle);
-            break;
-        }
-    }
-}
-
-void SystemParam_Apply(uint8_t handle)
-{
-    switch (handle)
-    {
-        case SYSTEMPARAM_CONFIG:
-        {
-            g_SystemInfo.ServerIp = g_SystemParam_Config.ServerIp;
-            uint32_t tmp = g_SystemInfo.ServerIp;
-            sprintf(g_SystemInfo.ServerIpStr,"%d.%d.%d.%d",(uint8_t)(tmp>>24),(uint8_t)(tmp>>16),(uint8_t)(tmp>>8),(uint8_t)tmp);
             
-            g_SystemInfo.ServerPort = g_SystemParam_Config.ServerPort;
-            sprintf(g_SystemInfo.ServerPortStr,"%d",g_SystemInfo.ServerPort);
 
-            memcpy(g_SystemInfo.WifiSSIDStr, g_SystemParam_Config.WifiSSIDStr, WIFI_SSID_LENGTH_MAX);
-            memcpy(g_SystemInfo.WifiPasswordStr, g_SystemParam_Config.WifiPasswordStr, WIFI_PASSWORD_LENGTH_MAX);
-            break;
+         }
+        else
+        {
+            for (i=0;i<8;i++)
+            {
+			}
+            INFO("[system]->[param]->read error then init \r\n");
+            return -1;
         }
     }
+
+    INFO("[system]->[param]->read ok\r\n");
+    return 0;
+}
+
+void SystemParam_Save(void)
+{
+    g_SystemInfo.crc = CRC16_Modbus((uint8_t*)&g_SystemInfo, sizeof(g_SystemInfo) - sizeof(g_SystemInfo.crc));
+    BSP_FLASH_EraseSector(FLASH_PARAM_START_ADDR);
+    BSP_FLASH_WriteBytes(FLASH_PARAM_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
+    BSP_FLASH_EraseSector(FLASH_PARAM_BACK_START_ADDR);
+    BSP_FLASH_WriteBytes(FLASH_PARAM_BACK_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
+
+    INFO("[system]->[param]->save\r\n");
+}
+
+void SystemParam_Reset(void)
+{
+    SystemParam_Save();
+    INFO("[system]->[param]->reset ok \r\n");
+}
+
+void SystemParam_Apply(void)
+{
+
+    INFO("[system]->[param]->apply ok\r\n");
+
 }
 /**
  * @}

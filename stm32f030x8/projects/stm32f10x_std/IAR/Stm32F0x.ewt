@@ -2137,6 +2137,9 @@
           <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_dma.c</name>
         </file>
         <file>
+          <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_flash.c</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_gpio.c</name>
         </file>
         <file>

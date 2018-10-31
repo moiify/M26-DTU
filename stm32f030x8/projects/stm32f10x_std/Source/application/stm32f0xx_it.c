@@ -33,6 +33,7 @@
 #include "stm32f0xx_it.h"
 #include "gprs_cache.h"      
 #include "gprs_task.h"
+#include "clog.h"
 /** @addtogroup STM32F0-Discovery_Demo
   * @{
   */
@@ -116,6 +117,7 @@ void USART1_IRQHandler(void)
     {          
         TIM3->CNT=0;         				//¼ÆÊýÆ÷Çå¿Õ	        
         TIM_Cmd(TIM3,ENABLE);
+        //DEBUG("Timer Start\r\n");
         if(!s_USART1_ReceiveCompleteFlag)
         {
             p->Buf[len++] = USART_ReceiveData(USART1);  
@@ -131,6 +133,7 @@ void USART1_IRQHandler(void)
 
 void TIM3_IRQHandler(void)
 {   
+    //DEBUG("Timer Handler\r\n");
     TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
     TIM_Cmd(TIM3,DISABLE);
     s_USART1_ReceiveCompleteFlag=1;

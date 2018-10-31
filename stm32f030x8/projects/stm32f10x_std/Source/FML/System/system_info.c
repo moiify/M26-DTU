@@ -12,7 +12,7 @@
  */
 #include "self_def.h"
 #include "system_info.h"
-
+#include "system_param.h"
 /**
  * @addtogroup    XXX 
  * @{  
@@ -78,22 +78,7 @@
  * @brief         
  * @{  
  */
-SystemInfo_t g_SystemInfo=
-{   
-    .MainServerEN=SERVER_ENABLE,
-    .MainServerIp="103.46.128.43",
-    .MainServerPort=56527,
-    .MainServerDomain="www.njzhhb.com",
-    .MainServerConnectway=IP_Connect,
-    
-    .SpareServerIp="103.46.128.43",
-    .SpareServerEN=SERVER_DISABLE,
-    .SpareServerPort=56527,
-    .SpareServerConnectway=IP_Connect,
-    
-    .Gprs_Init_Status=Gprs_Init_NotComplete,
-    .Gprs_Operatingmode=Gprs_Packagemode,
-};
+SystemInfo_t g_SystemInfo;
 
 /**
  * @}
@@ -116,7 +101,7 @@ SystemInfo_t g_SystemInfo=
  */
 void SystemInfo_Init(void)
 {
-
+    SystemParam_Init();
 }
 
 void SystemInfo_ReadSn(uint8_t *pBuf)

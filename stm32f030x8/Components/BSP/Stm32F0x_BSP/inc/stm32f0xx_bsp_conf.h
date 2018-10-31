@@ -36,7 +36,7 @@
 #define BSP_SYSTICK_MODULE_ENABLE       1
 #define BSP_USART_MODULE_ENABLE         1
 #define BSP_EXTI_MODULE_ENABLE          0
-#define BSP_FLASH_MODULE_ENABLE         0
+#define BSP_FLASH_MODULE_ENABLE         1
 #define BSP_SPI_MODULE_ENABLE           0
 #define BSP_ADC_MODULE_ENABLE           0
 #define BSP_RTC_MODULE_ENABLE           0

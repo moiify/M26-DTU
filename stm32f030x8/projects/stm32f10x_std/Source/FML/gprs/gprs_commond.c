@@ -15,6 +15,7 @@
 #include "system_info.h"
 #include "gprs_cache.h"
 #include "string.h"
+#include "clog.h"
 
 /**
 * @addtogroup    XXX 
@@ -138,9 +139,9 @@ static char gprs_check_param(uint8_t *ackparm,uint8_t check_way)
     }
     else return (unsigned char)-1;
 }
-void GPRS_WriteBytes(uint8_t *pbuf)    //USART1 发送AT命令
+void GPRS_WriteBytes(uint8_t *pbuf,uint16_t length)    //USART1 发送AT命令
 {   
-    BSP_USART_WriteBytes(BSP_USART1,pbuf,strlen((char *)pbuf));
+    BSP_USART_WriteBytes(BSP_USART1,pbuf,length);
 }
 char Gprs_ACK_Check(uint8_t *ackparm,uint8_t chack_way)  //检查收到的数据
 {       
@@ -177,16 +178,19 @@ void Gprs_GetSocketAndLength(void)
         }
     }    
 }
-void GPRS_SendData(uint8_t * pbuf,uint8_t length,uint8_t mux) // 发送数据接口
+void GPRS_SendData(uint8_t * pbuf,uint16_t length,uint8_t mux) // 发送数据接口
 {	
-    if( g_Machine_TransmitBuf.Count< g_Machine_TransmitBuf.Size)
-    {
-        memcpy(g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Buf,(const char *)pbuf,length);
+    if( g_Machine_TransmitBuf.Count< g_Machine_TransmitBuf.Size
+      &&g_SystemInfo.Socket_ListInfo[mux].ServerEN==SERVER_ENABLE)
+    {   
+        *(pbuf+length)=0;
+        memcpy(g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Buf,(const char *)pbuf,length+1);
         g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Len=length;
         g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Mux=mux;
         g_Machine_TransmitBuf.In++;
         g_Machine_TransmitBuf.In %= sizeof (g_Machine_TransmitBuf.Buf)/sizeof(g_Machine_TransmitBuf.Buf[0]);
-        g_Machine_TransmitBuf.Count++;    
+        g_Machine_TransmitBuf.Count++;
+        DEBUG("[GPRS] TransmitQueue Count:%d\r\n",g_Machine_TransmitBuf.Count);
     }
 }
 

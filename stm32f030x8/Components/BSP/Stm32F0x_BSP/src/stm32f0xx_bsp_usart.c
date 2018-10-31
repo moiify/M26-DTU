@@ -85,7 +85,7 @@ void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
         
         nvic_initstructure.NVIC_IRQChannel=USART2_IRQn;
         nvic_initstructure.NVIC_IRQChannelCmd=ENABLE;
-        nvic_initstructure.NVIC_IRQChannelPriority=1;
+        nvic_initstructure.NVIC_IRQChannelPriority=3;
         NVIC_Init(&nvic_initstructure);   
         USART_ClearITPendingBit( USART2, USART_IT_IDLE);
         USART_ITConfig( USART2, USART_IT_IDLE, ENABLE);

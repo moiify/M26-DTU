@@ -148,8 +148,9 @@ typedef enum
 void GPRS_Loop_Process(void);
 void GPRS_ACK_Process(void);     
 void Gprs_UpdateRssi(void);
-void Gprs_Cmd_QIACK(void); 
-void Gprs_Add_Sockets(Socket_Connectway connectway,uint8_t * address,uint32_t port);
+void Gprs_Cmd_QIACK(void);
+void Gprs_Reset_Moudle(void);
+void Gprs_Add_Sockets(Socket_Info_t scoket);
 /**
  * @}
  */

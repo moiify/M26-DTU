@@ -1987,6 +1987,9 @@
           <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_dma.c</name>
         </file>
         <file>
+          <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_flash.c</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\..\..\Components\BSP\Stm32F0x_BSP\src\stm32f0xx_bsp_gpio.c</name>
         </file>
         <file>
@@ -2133,9 +2136,6 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\Source\FML\System\system_param.c</name>
-        <excluded>
-          <configuration>Debug</configuration>
-        </excluded>
       </file>
     </group>
     <group>

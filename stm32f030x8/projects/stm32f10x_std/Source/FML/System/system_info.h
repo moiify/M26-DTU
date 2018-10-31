@@ -29,6 +29,8 @@
  */
 #define SERVER_ENABLE 1
 #define SERVER_DISABLE 0
+     
+#define SOCKETCOUNT 2 
 /**
  * @}
  */
@@ -63,24 +65,31 @@ typedef enum
  Gprs_Transparentmode,   
  Gprs_Packagemode,  
 }Gprs_OperatingMode;
+#pragma pack(1)
 typedef struct
 {
-    uint8_t                      MainServerEN;
-    uint8_t                      MainServerIp[16];
-    uint32_t                     MainServerPort;
-    uint8_t                      MainServerDomain[80];
-    Socket_Connectway            MainServerConnectway;
-    uint8_t                      SpareServerEN;
-    uint8_t                      SpareServerIp[16];
-    uint32_t                     SpareServerPort;
-    uint8_t                      SpareServerDomain[80];
-    Socket_Connectway            SpareServerConnectway;
-    
-    uint8_t                      Gprs_Boundrate;
-    Gprs_Running_Status          Gprs_Init_Status;
-    Gprs_OperatingMode           Gprs_Operatingmode;
+    uint8_t                      ServerEN;
+    uint8_t                      ServerIp[16];
+    uint32_t                     byte_ServerIp;
+    uint16_t                     ServerPort;
+    uint8_t                      ServerDomain[80];
+    Socket_Connectway            ServerConnectway;
+}Socket_Info_t;
 
+
+typedef struct
+{
+  
+    Socket_Info_t   Socket_ListInfo[SOCKETCOUNT];
+
+    uint32_t                     Gprs_Boundrate;
+    
+    Gprs_OperatingMode           Gprs_Operatingmode;
+    
+    uint8_t                      Gprs_HeartbeatEN;
+    uint16_t                     crc;
 }SystemInfo_t;
+#pragma pack()
 /**
  * @}
  */

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V7.40.3.8902/W32 for ARM                 26/Oct/2018  10:12:04
+# IAR ELF Linker V7.40.3.8902/W32 for ARM                 31/Oct/2018  09:48:42
 # Copyright 2007-2015 IAR Systems AB.
 #
 #    Output file  =  
@@ -43,6 +43,7 @@
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\startup_stm32f030.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_adc.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_dma.o
+#        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_flash.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_gpio.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_nvic.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_bsp_systick.o
@@ -73,6 +74,7 @@
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\stm32f0xx_wwdg.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\system_info.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\system_init.o
+#        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\system_param.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\system_stm32f0xx.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\user_task.o
 #        C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj\zsproto.o
@@ -104,224 +106,268 @@ __SystemLibrary = DLib
 "P1":  place in [from 0x08000000 to 0x0800ffff] { ro };
 "P2":  place in [from 0x20000000 to 0x20001fff] { rw, block CSTACK, block HEAP };
 
-  Section            Kind        Address    Size  Object
-  -------            ----        -------    ----  ------
-"A1":                                       0xb4
-  .intvec            ro code  0x08000000    0xb4  startup_stm32f030.o [1]
-                            - 0x080000b4    0xb4
+  Section             Kind        Address    Size  Object
+  -------             ----        -------    ----  ------
+"A1":                                        0xb4
+  .intvec             ro code  0x08000000    0xb4  startup_stm32f030.o [1]
+                             - 0x080000b4    0xb4
 
-"P1":                                     0x5849
-  .text              ro code  0x080000b4  0x121c  gprs_process.o [1]
-  .text              ro code  0x080012d0    0xe0  I32DivModFast.o [5]
-  .text              ro code  0x080013b0   0x210  gprs_commond.o [1]
-  .text              ro code  0x080015c0    0xc0  gprs_task.o [1]
-  .text              ro code  0x08001680    0x10  strlen.o [5]
-  .text              ro code  0x08001690   0x204  osal_clock.o [1]
-  .text              ro code  0x08001894    0x44  bsp_gprs.o [1]
-  .text              ro code  0x080018d8    0x38  sprintf.o [3]
-  .text              ro code  0x08001910    0x10  gprs_process.o [1]
-  .text              ro code  0x08001920     0x2  IntDivZer.o [5]
-  .text              ro code  0x08001922     0xa  xsprout.o [3]
-  .text              ro code  0x0800192c   0x300  stm32f0xx_bsp_usart.o [1]
-  .text              ro code  0x08001c2c    0x10  strcpy.o [5]
-  .text              ro code  0x08001c3c    0x5c  ABImemcpy.o [5]
-  .text              ro code  0x08001c98   0x1bc  osal_timer.o [1]
-  .text              ro code  0x08001e54    0xf8  osal_core.o [1]
-  .text              ro code  0x08001f4c   0x140  stm32f0xx_gpio.o [1]
-  .text              ro code  0x0800208c   0xebe  xprintffull_nomb.o [3]
-  .text              ro code  0x08002f4a    0x38  strstr.o [3]
-  .rodata            const    0x08002f82     0x2  clog.o [1]
-  .text              ro code  0x08002f84   0x300  stm32f0xx_rcc.o [1]
-  .text              ro code  0x08003284    0x78  stm32f0xx_misc.o [1]
-  .text              ro code  0x080032fc   0x2f2  stm32f0xx_usart.o [1]
-  .text              ro code  0x080035ee     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x080035f0   0x120  stm32f0xx_bsp_dma.o [1]
-  .text              ro code  0x08003710    0xa0  stm32f0xx_dma.o [1]
-  .text              ro code  0x080037b0    0x90  user_task.o [1]
-  .text              ro code  0x08003840     0x2  osal_msg.o [1]
-  .text              ro code  0x08003842    0x24  osal_task.o [1]
-  .text              ro code  0x08003866    0x14  strchr.o [5]
-  .text              ro code  0x0800387a    0x18  memchr.o [5]
-  .text              ro code  0x08003892    0x6a  I64DivMod.o [5]
-  .text              ro code  0x080038fc    0x44  xdnorm.o [4]
-  .text              ro code  0x08003940    0x32  DblCmpLe.o [4]
-  .text              ro code  0x08003972    0x32  DblCmpGe.o [4]
-  .text              ro code  0x080039a4   0x11c  xdscale.o [4]
-  .text              ro code  0x08003ac0    0x52  DblToI32.o [4]
-  .text              ro code  0x08003b12     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08003b14    0x34  I32ToDbl.o [4]
-  .text              ro code  0x08003b48   0x1a8  DblAddSub.o [4]
-  .text              ro code  0x08003cf0   0x184  DblMul.o [4]
-  .text              ro code  0x08003e74    0xc2  DblDiv.o [4]
-  .text              ro code  0x08003f36    0x20  div.o [3]
-  .text              ro code  0x08003f56     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08003f58   0x1f0  zsproto.o [1]
-  .text              ro code  0x08004148    0xf8  maintain_process.o [1]
-  .text              ro code  0x08004240    0x4c  hal_task.o [1]
-  .text              ro code  0x0800428c     0x2  I64DivZer.o [5]
-  .text              ro code  0x0800428e     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08004290   0x1b0  zsproto_package_process.o [1]
-  .text              ro code  0x08004440   0x104  bsp_led.o [1]
-  .text              ro code  0x08004544    0x16  uread4.o [5]
-  .text              ro code  0x0800455a     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x0800455c   0x240  SEGGER_RTT.o [1]
-  .text              ro code  0x0800479c   0x1c4  rtt_log.o [1]
-  .text              ro code  0x08004960    0x38  clog.o [1]
-  .text              ro code  0x08004998    0x3c  vsnprint.o [3]
-  .text              ro code  0x080049d4   0x1c0  stm32f0xx_tim.o [1]
-  .text              ro code  0x08004b94   0x160  system_stm32f0xx.o [1]
-  .text              ro code  0x08004cf4   0x136  stm32f0xx_it.o [1]
-  .text              ro code  0x08004e2a     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08004e2c    0xfc  stm32f0xx_bsp_systick.o [1]
-  .text              ro code  0x08004f28    0xd8  packbits_init.o [5]
-  .text              ro code  0x08005000     0xa  abort.o [3]
-  .text              ro code  0x0800500a     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x0800500c    0x14  exit.o [6]
-  .text              ro code  0x08005020    0x68  stm32f0xx_bsp_timer.o [1]
-  .rodata            const    0x08005088    0x54  bsp_led.o [1]
-  .text              ro code  0x080050dc    0x3c  startup_stm32f030.o [1]
-  .text              ro code  0x08005118    0x3c  zero_init3.o [5]
-  .text              ro code  0x08005154    0x2a  bsp_init.o [1]
-  .text              ro code  0x0800517e     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08005180    0x28  data_init.o [5]
-  .iar.init_table    const    0x080051a8    0x2c  - Linker created -
-  .rodata            const    0x080051d4    0x20  gprs_process.o [1]
-  .rodata            const    0x080051f4    0x20  gprs_process.o [1]
-  .rodata            const    0x08005214    0x20  gprs_process.o [1]
-  .rodata            const    0x08005234    0x20  gprs_process.o [1]
-  .rodata            const    0x08005254    0x20  gprs_process.o [1]
-  .rodata            const    0x08005274    0x20  gprs_process.o [1]
-  .rodata            const    0x08005294    0x20  gprs_process.o [1]
-  .rodata            const    0x080052b4    0x20  gprs_process.o [1]
-  .rodata            const    0x080052d4    0x20  gprs_process.o [1]
-  .rodata            const    0x080052f4    0x20  gprs_process.o [1]
-  .rodata            const    0x08005314    0x20  gprs_process.o [1]
-  .rodata            const    0x08005334    0x20  gprs_process.o [1]
-  .rodata            const    0x08005354    0x20  gprs_process.o [1]
-  .rodata            const    0x08005374    0x20  maintain_process.o [1]
-  .rodata            const    0x08005394    0x20  maintain_process.o [1]
-  .rodata            const    0x080053b4    0x1c  gprs_process.o [1]
-  .rodata            const    0x080053d0    0x1c  gprs_process.o [1]
-  .rodata            const    0x080053ec    0x1c  gprs_process.o [1]
-  .rodata            const    0x08005408    0x1c  gprs_process.o [1]
-  .rodata            const    0x08005424    0x1c  gprs_process.o [1]
-  .rodata            const    0x08005440    0x1c  gprs_process.o [1]
-  .rodata            const    0x0800545c    0x1c  gprs_process.o [1]
-  .rodata            const    0x08005478    0x1c  gprs_process.o [1]
-  .rodata            const    0x08005494    0x1c  gprs_process.o [1]
-  .rodata            const    0x080054b0    0x1c  gprs_process.o [1]
-  .rodata            const    0x080054cc    0x1c  gprs_process.o [1]
-  .rodata            const    0x080054e8    0x1c  gprs_process.o [1]
-  .rodata            const    0x08005504    0x1c  gprs_process.o [1]
-  .rodata            const    0x08005520    0x1c  gprs_process.o [1]
-  .rodata            const    0x0800553c    0x1c  gprs_process.o [1]
-  .text              ro code  0x08005558    0x1c  main.o [1]
-  .text              ro code  0x08005574     0xc  system_init.o [1]
-  .text              ro code  0x08005580     0x2  system_info.o [1]
-  .text              ro code  0x08005582    0x1c  xsnprout.o [3]
-  .text              ro code  0x0800559e     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x080055a0    0x1a  cmain.o [5]
-  .text              ro code  0x080055ba     0x4  low_level_init.o [3]
-  .text              ro code  0x080055be     0x8  exit.o [3]
-  .text              ro code  0x080055c6     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x080055c8     0xa  cexit.o [5]
-  .text              ro code  0x080055d2     0x2  startup_stm32f030.o [1]
-  .rodata            const    0x080055d4    0x18  gprs_process.o [1]
-  .rodata            const    0x080055ec    0x18  gprs_process.o [1]
-  .rodata            const    0x08005604    0x18  gprs_process.o [1]
-  .rodata            const    0x0800561c    0x18  maintain_process.o [1]
-  .rodata            const    0x08005634    0x18  maintain_process.o [1]
-  .rodata            const    0x0800564c    0x18  rtt_log.o [1]
-  .rodata            const    0x08005664    0x18  xprintffull_nomb.o [3]
-  .rodata            const    0x0800567c    0x14  gprs_process.o [1]
-  .rodata            const    0x08005690    0x14  gprs_process.o [1]
-  .rodata            const    0x080056a4    0x14  gprs_process.o [1]
-  .rodata            const    0x080056b8    0x14  gprs_process.o [1]
-  .rodata            const    0x080056cc    0x10  gprs_process.o [1]
-  .rodata            const    0x080056dc    0x10  gprs_process.o [1]
-  .rodata            const    0x080056ec    0x10  gprs_process.o [1]
-  .rodata            const    0x080056fc    0x10  gprs_process.o [1]
-  .rodata            const    0x0800570c    0x10  gprs_process.o [1]
-  .rodata            const    0x0800571c    0x10  gprs_process.o [1]
-  .rodata            const    0x0800572c     0xc  gprs_process.o [1]
-  .rodata            const    0x08005738     0xc  gprs_process.o [1]
-  .rodata            const    0x08005744     0xc  gprs_process.o [1]
-  .rodata            const    0x08005750     0xc  gprs_process.o [1]
-  .rodata            const    0x0800575c     0xc  gprs_process.o [1]
-  .rodata            const    0x08005768     0xc  gprs_process.o [1]
-  .rodata            const    0x08005774     0xc  gprs_process.o [1]
-  .rodata            const    0x08005780     0xc  gprs_process.o [1]
-  .rodata            const    0x0800578c     0xc  osal_task.o [1]
-  .rodata            const    0x08005798     0xc  SEGGER_RTT.o [1]
-  .rodata            const    0x080057a4     0xc  zsproto_package_process.o [1]
-  .text              ro code  0x080057b0     0xc  cstartup_M.o [5]
-  .rodata            const    0x080057bc     0x8  clog.o [1]
-  .rodata            const    0x080057c4     0x8  clog.o [1]
-  .rodata            const    0x080057cc     0x8  clog.o [1]
-  .rodata            const    0x080057d4     0x8  clog.o [1]
-  .rodata            const    0x080057dc     0x8  clog.o [1]
-  .rodata            const    0x080057e4     0x8  clog.o [1]
-  .rodata            const    0x080057ec     0x8  gprs_process.o [1]
-  .rodata            const    0x080057f4     0x8  gprs_process.o [1]
-  .rodata            const    0x080057fc     0x8  gprs_process.o [1]
-  .rodata            const    0x08005804     0x8  gprs_process.o [1]
-  .rodata            const    0x0800580c     0x8  gprs_process.o [1]
-  .rodata            const    0x08005814     0x8  gprs_process.o [1]
-  .rodata            const    0x0800581c     0x8  gprs_process.o [1]
-  .rodata            const    0x08005824     0x8  rtt_log.o [1]
-  .rodata            const    0x0800582c     0x8  SEGGER_RTT.o [1]
-  .text              ro code  0x08005834     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08005836     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08005838     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x0800583a     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x0800583c     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x0800583e     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08005840     0x2  startup_stm32f030.o [1]
-  .text              ro code  0x08005842     0x2  startup_stm32f030.o [1]
-  .rodata            const    0x08005844     0x0  zero_init3.o [5]
-  .rodata            const    0x08005844     0x0  packbits_init.o [5]
-  Initializer bytes  const    0x08005844    0xb9  <for P2 s0>
-                            - 0x080058fd  0x5849
+"P1":                                      0x6bcf
+  .text               ro code  0x080000b4  0x1500  gprs_process.o [1]
+  .text               ro code  0x080015b4    0xe0  I32DivModFast.o [5]
+  .text               ro code  0x08001694   0x248  gprs_commond.o [1]
+  .text               ro code  0x080018dc    0xf8  gprs_task.o [1]
+  .text               ro code  0x080019d4    0x10  strlen.o [5]
+  .text               ro code  0x080019e4   0x870  zsproto_package_process.o [1]
+  .text               ro code  0x08002254     0xc  atoi.o [3]
+  .text               ro code  0x08002260   0x204  osal_clock.o [1]
+  .text               ro code  0x08002464    0x44  bsp_gprs.o [1]
+  .text               ro code  0x080024a8    0x16  uread4.o [5]
+  .text               ro code  0x080024be     0xa  xsprout.o [3]
+  .text               ro code  0x080024c8    0x38  sprintf.o [3]
+  .text               ro code  0x08002500    0x5c  ABImemcpy.o [5]
+  .text               ro code  0x0800255c    0x10  gprs_process.o [1]
+  .text               ro code  0x0800256c    0x88  user_task.o [1]
+  .text               ro code  0x080025f4     0x2  IntDivZer.o [5]
+  .rodata             const    0x080025f6     0x2  clog.o [1]
+  .text               ro code  0x080025f8   0x300  stm32f0xx_bsp_usart.o [1]
+  .text               ro code  0x080028f8    0x10  strcpy.o [5]
+  .text               ro code  0x08002908   0x1bc  osal_timer.o [1]
+  .text               ro code  0x08002ac4    0xf8  osal_core.o [1]
+  .text               ro code  0x08002bbc    0x14  uwrite4.o [5]
+  .text               ro code  0x08002bd0   0x168  system_param.o [1]
+  .text               ro code  0x08002d38   0x180  xstoul.o [3]
+  .text               ro code  0x08002eb8   0x140  stm32f0xx_gpio.o [1]
+  .text               ro code  0x08002ff8   0xebe  xprintffull_nomb.o [3]
+  .text               ro code  0x08003eb6    0x38  strstr.o [3]
+  .text               ro code  0x08003eee     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08003ef0   0x298  zsproto.o [1]
+  .text               ro code  0x08004188   0x178  maintain_process.o [1]
+  .text               ro code  0x08004300   0x300  stm32f0xx_rcc.o [1]
+  .text               ro code  0x08004600    0x78  stm32f0xx_misc.o [1]
+  .text               ro code  0x08004678   0x2f2  stm32f0xx_usart.o [1]
+  .text               ro code  0x0800496a     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x0800496c   0x120  stm32f0xx_bsp_dma.o [1]
+  .text               ro code  0x08004a8c    0xa0  stm32f0xx_dma.o [1]
+  .text               ro code  0x08004b2c     0x2  osal_msg.o [1]
+  .text               ro code  0x08004b2e    0x24  osal_task.o [1]
+  .text               ro code  0x08004b52    0x86  stm32f0xx_bsp_flash.o [1]
+  .text               ro code  0x08004bd8    0x4c  crc.o [1]
+  .text               ro code  0x08004c24    0x18  memchr.o [5]
+  .text               ro code  0x08004c3c    0x10  errno.o [3]
+  .text               ro code  0x08004c4c    0x14  strchr.o [5]
+  .text               ro code  0x08004c60    0x6a  I64DivMod.o [5]
+  .text               ro code  0x08004cca    0x44  xdnorm.o [4]
+  .text               ro code  0x08004d0e    0x32  DblCmpLe.o [4]
+  .text               ro code  0x08004d40    0x32  DblCmpGe.o [4]
+  .text               ro code  0x08004d72     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08004d74   0x11c  xdscale.o [4]
+  .text               ro code  0x08004e90    0x52  DblToI32.o [4]
+  .text               ro code  0x08004ee2     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08004ee4    0x34  I32ToDbl.o [4]
+  .text               ro code  0x08004f18   0x1a8  DblAddSub.o [4]
+  .text               ro code  0x080050c0   0x184  DblMul.o [4]
+  .text               ro code  0x08005244    0xc2  DblDiv.o [4]
+  .text               ro code  0x08005306    0x20  div.o [3]
+  .text               ro code  0x08005326     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08005328    0x38  zsproto_penetrate_process.o [1]
+  .text               ro code  0x08005360    0x4c  hal_task.o [1]
+  .text               ro code  0x080053ac   0x13e  stm32f0xx_flash.o [1]
+  .text               ro code  0x080054ea     0x2  xtls.o [3]
+  .text               ro code  0x080054ec     0x2  I64DivZer.o [5]
+  .text               ro code  0x080054ee     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x080054f0   0x104  bsp_led.o [1]
+  .text               ro code  0x080055f4   0x240  SEGGER_RTT.o [1]
+  .text               ro code  0x08005834   0x1c4  rtt_log.o [1]
+  .text               ro code  0x080059f8    0x38  clog.o [1]
+  .text               ro code  0x08005a30    0x3c  vsnprint.o [3]
+  .text               ro code  0x08005a6c   0x1c0  stm32f0xx_tim.o [1]
+  .text               ro code  0x08005c2c   0x160  system_stm32f0xx.o [1]
+  .text               ro code  0x08005d8c   0x136  stm32f0xx_it.o [1]
+  .text               ro code  0x08005ec2     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08005ec4    0xfc  stm32f0xx_bsp_systick.o [1]
+  .text               ro code  0x08005fc0    0xd8  packbits_init.o [5]
+  .text               ro code  0x08006098     0xa  abort.o [3]
+  .text               ro code  0x080060a2     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x080060a4    0x14  exit.o [6]
+  .text               ro code  0x080060b8    0x64  stm32f0xx_bsp_timer.o [1]
+  .rodata             const    0x0800611c    0x54  bsp_led.o [1]
+  .text               ro code  0x08006170    0x3c  startup_stm32f030.o [1]
+  .text               ro code  0x080061ac    0x3c  zero_init3.o [5]
+  .text               ro code  0x080061e8    0x2a  bsp_init.o [1]
+  .text               ro code  0x08006212     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006214    0x28  data_init.o [5]
+  .rodata             const    0x0800623c    0x24  zsproto_package_process.o [1]
+  .iar.init_table     const    0x08006260    0x2c  - Linker created -
+  .rodata             const    0x0800628c    0x20  gprs_commond.o [1]
+  .rodata             const    0x080062ac    0x20  gprs_process.o [1]
+  .rodata             const    0x080062cc    0x20  gprs_process.o [1]
+  .rodata             const    0x080062ec    0x20  gprs_process.o [1]
+  .rodata             const    0x0800630c    0x20  gprs_process.o [1]
+  .rodata             const    0x0800632c    0x20  gprs_process.o [1]
+  .rodata             const    0x0800634c    0x20  gprs_process.o [1]
+  .rodata             const    0x0800636c    0x20  gprs_process.o [1]
+  .rodata             const    0x0800638c    0x20  gprs_process.o [1]
+  .rodata             const    0x080063ac    0x20  gprs_process.o [1]
+  .rodata             const    0x080063cc    0x20  gprs_process.o [1]
+  .rodata             const    0x080063ec    0x20  gprs_process.o [1]
+  .rodata             const    0x0800640c    0x20  gprs_process.o [1]
+  .rodata             const    0x0800642c    0x20  gprs_process.o [1]
+  .rodata             const    0x0800644c    0x20  gprs_process.o [1]
+  .rodata             const    0x0800646c    0x20  maintain_process.o [1]
+  .rodata             const    0x0800648c    0x20  system_param.o [1]
+  .rodata             const    0x080064ac    0x20  zsproto.o [1]
+  .rodata             const    0x080064cc    0x20  zsproto_package_process.o [1]
+  .rodata             const    0x080064ec    0x20  zsproto_package_process.o [1]
+  .rodata             const    0x0800650c    0x20  zsproto_package_process.o [1]
+  .rodata             const    0x0800652c    0x20  zsproto_package_process.o [1]
+  .rodata             const    0x0800654c    0x20  zsproto_package_process.o [1]
+  .rodata             const    0x0800656c    0x1c  gprs_process.o [1]
+  .rodata             const    0x08006588    0x1c  gprs_process.o [1]
+  .rodata             const    0x080065a4    0x1c  gprs_process.o [1]
+  .rodata             const    0x080065c0    0x1c  gprs_process.o [1]
+  .rodata             const    0x080065dc    0x1c  gprs_process.o [1]
+  .rodata             const    0x080065f8    0x1c  gprs_process.o [1]
+  .rodata             const    0x08006614    0x1c  gprs_process.o [1]
+  .rodata             const    0x08006630    0x1c  gprs_process.o [1]
+  .rodata             const    0x0800664c    0x1c  gprs_process.o [1]
+  .rodata             const    0x08006668    0x1c  gprs_process.o [1]
+  .rodata             const    0x08006684    0x1c  gprs_process.o [1]
+  .rodata             const    0x080066a0    0x1c  gprs_process.o [1]
+  .rodata             const    0x080066bc    0x1c  gprs_process.o [1]
+  .rodata             const    0x080066d8    0x1c  gprs_process.o [1]
+  .rodata             const    0x080066f4    0x1c  gprs_process.o [1]
+  .rodata             const    0x08006710    0x1c  gprs_process.o [1]
+  .rodata             const    0x0800672c    0x1c  gprs_process.o [1]
+  .rodata             const    0x08006748    0x1c  system_param.o [1]
+  .rodata             const    0x08006764    0x1c  zsproto.o [1]
+  .rodata             const    0x08006780    0x1c  zsproto.o [1]
+  .rodata             const    0x0800679c    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x080067b8    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x080067d4    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x080067f0    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x0800680c    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x08006828    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x08006844    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x08006860    0x1c  zsproto_package_process.o [1]
+  .rodata             const    0x0800687c    0x1c  zsproto_package_process.o [1]
+  .text               ro code  0x08006898    0x1c  main.o [1]
+  .text               ro code  0x080068b4     0xc  system_init.o [1]
+  .text               ro code  0x080068c0     0x8  system_info.o [1]
+  .text               ro code  0x080068c8    0x1c  xsnprout.o [3]
+  .text               ro code  0x080068e4    0x1a  cmain.o [5]
+  .text               ro code  0x080068fe     0x4  low_level_init.o [3]
+  .text               ro code  0x08006902     0x8  exit.o [3]
+  .text               ro code  0x0800690a     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x0800690c     0xa  cexit.o [5]
+  .text               ro code  0x08006916     0x2  startup_stm32f030.o [1]
+  .rodata             const    0x08006918    0x18  gprs_process.o [1]
+  .rodata             const    0x08006930    0x18  gprs_process.o [1]
+  .rodata             const    0x08006948    0x18  gprs_process.o [1]
+  .rodata             const    0x08006960    0x18  gprs_process.o [1]
+  .rodata             const    0x08006978    0x18  rtt_log.o [1]
+  .rodata             const    0x08006990    0x18  zsproto_package_process.o [1]
+  .rodata             const    0x080069a8    0x18  zsproto_package_process.o [1]
+  .rodata             const    0x080069c0    0x18  zsproto_package_process.o [1]
+  .rodata             const    0x080069d8    0x18  zsproto_package_process.o [1]
+  .rodata             const    0x080069f0    0x18  xprintffull_nomb.o [3]
+  .rodata             const    0x08006a08    0x14  gprs_process.o [1]
+  .rodata             const    0x08006a1c    0x14  gprs_process.o [1]
+  .rodata             const    0x08006a30    0x14  gprs_process.o [1]
+  .rodata             const    0x08006a44    0x14  gprs_process.o [1]
+  .rodata             const    0x08006a58    0x10  gprs_process.o [1]
+  .rodata             const    0x08006a68    0x10  gprs_process.o [1]
+  .rodata             const    0x08006a78    0x10  gprs_process.o [1]
+  .rodata             const    0x08006a88    0x10  gprs_process.o [1]
+  .rodata             const    0x08006a98    0x10  gprs_process.o [1]
+  .rodata             const    0x08006aa8    0x10  gprs_process.o [1]
+  .rodata             const    0x08006ab8    0x10  system_param.o [1]
+  .rodata             const    0x08006ac8    0x10  system_param.o [1]
+  .rodata             const    0x08006ad8    0x10  system_param.o [1]
+  .rodata             const    0x08006ae8     0xc  gprs_process.o [1]
+  .rodata             const    0x08006af4     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b00     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b0c     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b18     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b24     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b30     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b3c     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b48     0xc  gprs_process.o [1]
+  .rodata             const    0x08006b54     0xc  osal_task.o [1]
+  .rodata             const    0x08006b60     0xc  SEGGER_RTT.o [1]
+  .rodata             const    0x08006b6c     0xc  zsproto_package_process.o [1]
+  .text               ro code  0x08006b78     0xc  cstartup_M.o [5]
+  .rodata             const    0x08006b84     0x8  clog.o [1]
+  .rodata             const    0x08006b8c     0x8  clog.o [1]
+  .rodata             const    0x08006b94     0x8  clog.o [1]
+  .rodata             const    0x08006b9c     0x8  clog.o [1]
+  .rodata             const    0x08006ba4     0x8  clog.o [1]
+  .rodata             const    0x08006bac     0x8  clog.o [1]
+  .rodata             const    0x08006bb4     0x8  gprs_process.o [1]
+  .rodata             const    0x08006bbc     0x8  gprs_process.o [1]
+  .rodata             const    0x08006bc4     0x8  gprs_process.o [1]
+  .rodata             const    0x08006bcc     0x8  gprs_process.o [1]
+  .rodata             const    0x08006bd4     0x8  gprs_process.o [1]
+  .rodata             const    0x08006bdc     0x8  gprs_process.o [1]
+  .rodata             const    0x08006be4     0x8  gprs_process.o [1]
+  .rodata             const    0x08006bec     0x8  rtt_log.o [1]
+  .rodata             const    0x08006bf4     0x8  SEGGER_RTT.o [1]
+  .text               ro code  0x08006bfc     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006bfe     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006c00     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006c02     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006c04     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006c06     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006c08     0x2  startup_stm32f030.o [1]
+  .text               ro code  0x08006c0a     0x2  startup_stm32f030.o [1]
+  .rodata             const    0x08006c0c     0x0  zero_init3.o [5]
+  .rodata             const    0x08006c0c     0x0  packbits_init.o [5]
+  Initializer bytes   const    0x08006c0c    0x77  <for P2 s0>
+                             - 0x08006c83  0x6bcf
 
-"P2":                                     0x1f00
-  P2 s0                       0x20000000   0xbc1  <Init block>
-    .data            inited   0x20000000   0x3f8  gprs_cache.o [1]
-    .data            inited   0x200003f8   0x2fc  gprs_cache.o [1]
-    .data            inited   0x200006f4   0x2f8  gprs_cache.o [1]
-    .data            inited   0x200009ec    0xd4  system_info.o [1]
-    .data            inited   0x20000ac0    0xb8  gprs_process.o [1]
-    .data            inited   0x20000b78    0x1c  clog.o [1]
-    .data            inited   0x20000b94    0x10  gprs_process.o [1]
-    .data            inited   0x20000ba4    0x10  stm32f0xx_rcc.o [1]
-    .data            inited   0x20000bb4     0xc  gprs_cache.o [1]
-    .data            inited   0x20000bc0     0x1  rtt_log.o [1]
-  .bss               zero     0x20000bc4   0x3e8  gprs_cache.o [1]
-  .bss               zero     0x20000fac   0x1e0  osal_timer.o [1]
-  .bss               zero     0x2000118c   0x138  zsproto.o [1]
-  .bss               zero     0x200012c4   0x12c  rtt_log.o [1]
-  .bss               zero     0x200013f0   0x12c  SEGGER_RTT.o [1]
-  .bss               zero     0x2000151c    0x78  SEGGER_RTT.o [1]
-  .bss               zero     0x20001594    0x64  gprs_process.o [1]
-  .bss               zero     0x200015f8    0x64  maintain_process.o [1]
-  .bss               zero     0x2000165c    0x34  SEGGER_RTT.o [1]
-  .bss               zero     0x20001690    0x30  bsp_led.o [1]
-  .bss               zero     0x200016c0    0x14  clog.o [1]
-  .bss               zero     0x200016d4     0xc  osal_task.o [1]
-  .bss               zero     0x200016e0     0x4  osal_clock.o [1]
-  .bss               zero     0x200016e4     0x4  osal_clock.o [1]
-  .bss               zero     0x200016e8     0x4  osal_core.o [1]
-  .bss               zero     0x200016ec     0x4  osal_timer.o [1]
-  .bss               zero     0x200016f0     0x4  stm32f0xx_bsp_systick.o [1]
-  .bss               zero     0x200016f4     0x2  osal_clock.o [1]
-  .bss               zero     0x200016f6     0x1  gprs_process.o [1]
-  .bss               zero     0x200016f7     0x1  gprs_task.o [1]
-  .bss               zero     0x200016f8     0x1  hal_task.o [1]
-  .bss               zero     0x200016f9     0x1  stm32f0xx_it.o [1]
-  .bss               zero     0x200016fa     0x1  stm32f0xx_it.o [1]
-  .bss               zero     0x200016fb     0x1  user_task.o [1]
-  CSTACK                      0x20001700   0x800  <Block>
-    CSTACK           uninit   0x20001700   0x800  <Block tail>
-                            - 0x20001f00  0x1f00
+"P2":                                      0x1ea0
+  P2 s0                        0x20000000   0x97d  <Init block>
+    .data             inited   0x20000000   0x308  gprs_cache.o [1]
+    .data             inited   0x20000308   0x2fc  gprs_cache.o [1]
+    .data             inited   0x20000604   0x26c  gprs_cache.o [1]
+    .data             inited   0x20000870    0xc0  gprs_process.o [1]
+    .data             inited   0x20000930    0x1c  clog.o [1]
+    .data             inited   0x2000094c    0x10  gprs_process.o [1]
+    .data             inited   0x2000095c    0x10  stm32f0xx_rcc.o [1]
+    .data             inited   0x2000096c     0xc  gprs_cache.o [1]
+    __DLIB_PERTHREAD  inited   0x20000978     0x4  errno.o [3]
+    .data             inited   0x2000097c     0x1  rtt_log.o [1]
+  .bss                zero     0x20000980   0x3e8  gprs_cache.o [1]
+  .bss                zero     0x20000d68   0x1e0  osal_timer.o [1]
+  .bss                zero     0x20000f48   0x138  zsproto.o [1]
+  .bss                zero     0x20001080   0x12c  rtt_log.o [1]
+  .bss                zero     0x200011ac   0x12c  SEGGER_RTT.o [1]
+  .bss                zero     0x200012d8   0x104  zsproto.o [1]
+  .bss                zero     0x200013dc    0xd8  system_info.o [1]
+  .bss                zero     0x200014b4    0x78  SEGGER_RTT.o [1]
+  .bss                zero     0x2000152c    0x64  gprs_process.o [1]
+  .bss                zero     0x20001590    0x64  maintain_process.o [1]
+  .bss                zero     0x200015f4    0x34  SEGGER_RTT.o [1]
+  .bss                zero     0x20001628    0x30  bsp_led.o [1]
+  .bss                zero     0x20001658    0x14  clog.o [1]
+  .bss                zero     0x2000166c     0xc  osal_task.o [1]
+  .bss                zero     0x20001678     0x4  osal_clock.o [1]
+  .bss                zero     0x2000167c     0x4  osal_clock.o [1]
+  .bss                zero     0x20001680     0x4  osal_core.o [1]
+  .bss                zero     0x20001684     0x4  osal_timer.o [1]
+  .bss                zero     0x20001688     0x4  stm32f0xx_bsp_systick.o [1]
+  .bss                zero     0x2000168c     0x4  zsproto.o [1]
+  .bss                zero     0x20001690     0x2  osal_clock.o [1]
+  .bss                zero     0x20001692     0x1  gprs_process.o [1]
+  .bss                zero     0x20001693     0x1  gprs_process.o [1]
+  .bss                zero     0x20001694     0x1  gprs_task.o [1]
+  .bss                zero     0x20001695     0x1  hal_task.o [1]
+  .bss                zero     0x20001696     0x1  stm32f0xx_it.o [1]
+  .bss                zero     0x20001697     0x1  stm32f0xx_it.o [1]
+  .bss                zero     0x20001698     0x1  user_task.o [1]
+  CSTACK                       0x200016a0   0x800  <Block>
+    CSTACK            uninit   0x200016a0   0x800  <Block tail>
+                             - 0x20001ea0  0x1ea0
 
 
 *******************************************************************************
@@ -331,14 +377,14 @@ __SystemLibrary = DLib
           Address     Size
           -------     ----
 Zero (__iar_zero_init3)
-    1 destination range, total size 0xb38:
-          0x20000bc4  0xb38
+    1 destination range, total size 0xd19:
+          0x20000980  0xd19
 
 Copy/packbits (__iar_packbits_init3)
-    1 source range, total size 0xb9 (6% of destination):
-          0x08005844   0xb9
-    1 destination range, total size 0xbc1:
-          0x20000000  0xbc1
+    1 source range, total size 0x77 (4% of destination):
+          0x08006c0c   0x77
+    1 destination range, total size 0x97d:
+          0x20000000  0x97d
 
 
 
@@ -346,108 +392,118 @@ Copy/packbits (__iar_packbits_init3)
 *** MODULE SUMMARY
 ***
 
-    Module                     ro code  ro data  rw data
-    ------                     -------  -------  -------
+    Module                       ro code  ro data  rw data
+    ------                       -------  -------  -------
 C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj: [1]
-    SEGGER_RTT.o                   576       20      472
-    bsp_gprs.o                      68
-    bsp_init.o                      42
-    bsp_led.o                      260       84       48
-    clog.o                          56       52       48
-    gprs_cache.o                            156    3 552
-    gprs_commond.o                 528
-    gprs_process.o               4 652    1 248      301
-    gprs_task.o                    192                 1
-    hal_task.o                      76                 1
-    main.o                          28
-    maintain_process.o             248      112      100
-    osal_clock.o                   516                10
-    osal_core.o                    248                 4
-    osal_msg.o                       2
-    osal_task.o                     36       12       12
-    osal_timer.o                   444               484
-    rtt_log.o                      452       33      301
-    startup_stm32f030.o            278
-    stm32f0xx_bsp_dma.o            288
-    stm32f0xx_bsp_systick.o        252                 4
-    stm32f0xx_bsp_timer.o          104
-    stm32f0xx_bsp_usart.o          768
-    stm32f0xx_dma.o                160
-    stm32f0xx_gpio.o               320
-    stm32f0xx_it.o                 310                 2
-    stm32f0xx_misc.o               120
-    stm32f0xx_rcc.o                768        1       16
-    stm32f0xx_tim.o                448
-    stm32f0xx_usart.o              754
-    system_info.o                    2       13      212
-    system_init.o                   12
-    system_stm32f0xx.o             352
-    user_task.o                    144                 1
-    zsproto.o                      496               312
-    zsproto_package_process.o      432       12
-    ----------------------------------------------------
-    Total:                      14 432    1 743    5 881
+    SEGGER_RTT.o                     576       20      472
+    bsp_gprs.o                        68
+    bsp_init.o                        42
+    bsp_led.o                        260       84       48
+    clog.o                            56       51       48
+    crc.o                             76
+    gprs_cache.o                              105    3 172
+    gprs_commond.o                   584       32
+    gprs_process.o                 5 392    1 371      310
+    gprs_task.o                      248                 1
+    hal_task.o                        76                 1
+    main.o                            28
+    maintain_process.o               376       32      100
+    osal_clock.o                     516                10
+    osal_core.o                      248                 4
+    osal_msg.o                         2
+    osal_task.o                       36       12       12
+    osal_timer.o                     444               484
+    rtt_log.o                        452       33      301
+    startup_stm32f030.o              278
+    stm32f0xx_bsp_dma.o              288
+    stm32f0xx_bsp_flash.o            134
+    stm32f0xx_bsp_systick.o          252                 4
+    stm32f0xx_bsp_timer.o            100
+    stm32f0xx_bsp_usart.o            768
+    stm32f0xx_dma.o                  160
+    stm32f0xx_flash.o                318
+    stm32f0xx_gpio.o                 320
+    stm32f0xx_it.o                   310                 2
+    stm32f0xx_misc.o                 120
+    stm32f0xx_rcc.o                  768        1       16
+    stm32f0xx_tim.o                  448
+    stm32f0xx_usart.o                754
+    system_info.o                      8               216
+    system_init.o                     12
+    system_param.o                   360      108
+    system_stm32f0xx.o               352
+    user_task.o                      136                 1
+    zsproto.o                        664       88      576
+    zsproto_package_process.o      2 160      556
+    zsproto_penetrate_process.o       56
+    ------------------------------------------------------
+    Total:                        18 246    2 493    5 778
 
 command line: [2]
-    ----------------------------------------------------
+    ------------------------------------------------------
     Total:
 
 dl6M_tln.a: [3]
-    abort.o                         10
-    div.o                           32
-    exit.o                           8
-    low_level_init.o                 4
-    sprintf.o                       56
-    strstr.o                        56
-    vsnprint.o                      60
-    xprintffull_nomb.o           3 774       24
-    xsnprout.o                      28
-    xsprout.o                       10
-    ----------------------------------------------------
-    Total:                       4 038       24
+    abort.o                           10
+    atoi.o                            12
+    div.o                             32
+    errno.o                           16                 4
+    exit.o                             8
+    low_level_init.o                   4
+    sprintf.o                         56
+    strstr.o                          56
+    vsnprint.o                        60
+    xprintffull_nomb.o             3 774       24
+    xsnprout.o                        28
+    xsprout.o                         10
+    xstoul.o                         384
+    xtls.o                             2
+    ------------------------------------------------------
+    Total:                         4 452       24        4
 
 m6M_tl.a: [4]
-    DblAddSub.o                    424
-    DblCmpGe.o                      50
-    DblCmpLe.o                      50
-    DblDiv.o                       194
-    DblMul.o                       388
-    DblToI32.o                      82
-    I32ToDbl.o                      52
-    xdnorm.o                        68
-    xdscale.o                      284
-    ----------------------------------------------------
-    Total:                       1 592
+    DblAddSub.o                      424
+    DblCmpGe.o                        50
+    DblCmpLe.o                        50
+    DblDiv.o                         194
+    DblMul.o                         388
+    DblToI32.o                        82
+    I32ToDbl.o                        52
+    xdnorm.o                          68
+    xdscale.o                        284
+    ------------------------------------------------------
+    Total:                         1 592
 
 rt6M_tl.a: [5]
-    ABImemcpy.o                     92
-    I32DivModFast.o                224
-    I64DivMod.o                    106
-    I64DivZer.o                      2
-    IntDivZer.o                      2
-    cexit.o                         10
-    cmain.o                         26
-    cstartup_M.o                    12
-    data_init.o                     40
-    memchr.o                        24
-    packbits_init.o                216
-    strchr.o                        20
-    strcpy.o                        16
-    strlen.o                        16
-    uread4.o                        22
-    zero_init3.o                    60
-    ----------------------------------------------------
-    Total:                         888
+    ABImemcpy.o                       92
+    I32DivModFast.o                  224
+    I64DivMod.o                      106
+    I64DivZer.o                        2
+    IntDivZer.o                        2
+    cexit.o                           10
+    cmain.o                           26
+    cstartup_M.o                      12
+    data_init.o                       40
+    memchr.o                          24
+    packbits_init.o                  216
+    strchr.o                          20
+    strcpy.o                          16
+    strlen.o                          16
+    uread4.o                          22
+    uwrite4.o                         20
+    zero_init3.o                      60
+    ------------------------------------------------------
+    Total:                           908
 
 shb_l.a: [6]
-    exit.o                          20
-    ----------------------------------------------------
-    Total:                          20
+    exit.o                            20
+    ------------------------------------------------------
+    Total:                            20
 
-    Gaps                                               3
-    Linker created                           44    2 048
---------------------------------------------------------
-    Grand Total:                20 970    1 811    7 932
+    Gaps                                                 3
+    Linker created                             44    2 048
+----------------------------------------------------------
+    Grand Total:                  25 218    2 561    7 833
 
 
 *******************************************************************************
@@ -456,244 +512,283 @@ shb_l.a: [6]
 
 Entry                      Address   Size  Type      Object
 -----                      -------   ----  ----      ------
-.iar.init_table$$Base   0x080051a8          --   Gb  - Linker created -
-.iar.init_table$$Limit  0x080051d4          --   Gb  - Linker created -
-?main                   0x080055a1         Code  Gb  cmain.o [5]
-ADC1_IRQHandler         0x08004e1f    0x2  Code  Gb  stm32f0xx_it.o [1]
-APBAHBPrescTable        0x20000ba4   0x10  Data  Lc  stm32f0xx_rcc.o [1]
+.iar.init_table$$Base   0x08006260          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x0800628c          --   Gb  - Linker created -
+?main                   0x080068e5         Code  Gb  cmain.o [5]
+ADC1_IRQHandler         0x08005eb7    0x2  Code  Gb  stm32f0xx_it.o [1]
+APBAHBPrescTable        0x2000095c   0x10  Data  Lc  stm32f0xx_rcc.o [1]
 BSP_DMA_USART_StructInit
-                        0x080035f1  0x120  Code  Gb  stm32f0xx_bsp_dma.o [1]
-BSP_GPRS_PowerKeyHigh   0x080018b5   0x12  Code  Gb  bsp_gprs.o [1]
-BSP_GPRS_PowerKeyLow    0x080018c7   0x12  Code  Gb  bsp_gprs.o [1]
-BSP_GPRS_PowerOff       0x08001895    0xe  Code  Gb  bsp_gprs.o [1]
-BSP_GPRS_PowerOn        0x080018a3    0xe  Code  Gb  bsp_gprs.o [1]
-BSP_Init                0x0800515d   0x22  Code  Gb  bsp_init.o [1]
-BSP_LED_Close           0x080044d9   0x3c  Code  Gb  bsp_led.o [1]
-BSP_LED_Init            0x08004441   0x5c  Code  Gb  bsp_led.o [1]
-BSP_LED_Open            0x0800449d   0x3c  Code  Gb  bsp_led.o [1]
-BSP_LED_Toggle          0x08004515   0x26  Code  Gb  bsp_led.o [1]
-BSP_SYSTICK_IncTick     0x08004f05    0xc  Code  Gb  stm32f0xx_bsp_systick.o [1]
-BSP_SYSTICK_Open        0x08004ee9   0x1c  Code  Gb  stm32f0xx_bsp_systick.o [1]
-BSP_Timer_Init          0x08005021   0x5e  Code  Gb  stm32f0xx_bsp_timer.o [1]
-BSP_USART_IRQHandler    0x08001b43   0x2c  Code  Gb  stm32f0xx_bsp_usart.o [1]
-BSP_USART_Open          0x0800192d  0x1cc  Code  Gb  stm32f0xx_bsp_usart.o [1]
-BSP_USART_ReadBytes     0x08001b6f   0x22  Code  Gb  stm32f0xx_bsp_usart.o [1]
-BSP_USART_ReadBytesDMA  0x08001b91   0x68  Code  Lc  stm32f0xx_bsp_usart.o [1]
-BSP_USART_WriteBytes    0x08001af9   0x4a  Code  Gb  stm32f0xx_bsp_usart.o [1]
-Board_Init              0x08005155    0x8  Code  Gb  bsp_init.o [1]
-CLog_GetCurrentTaskID   0x08004961    0x4  Code  Gb  clog.o [1]
-CLog_GetTime            0x08004965   0x1c  Code  Gb  clog.o [1]
-CLog_Init               0x08004981   0x14  Code  Gb  clog.o [1]
-CSTACK$$Base            0x20001700          --   Gb  - Linker created -
-CSTACK$$Limit           0x20001f00          --   Gb  - Linker created -
+                        0x0800496d  0x120  Code  Gb  stm32f0xx_bsp_dma.o [1]
+BSP_FLASH_EraseSector   0x08004b53   0x18  Code  Gb  stm32f0xx_bsp_flash.o [1]
+BSP_FLASH_ReadBytes     0x08004bbb   0x1e  Code  Gb  stm32f0xx_bsp_flash.o [1]
+BSP_FLASH_WriteBytes    0x08004b6b   0x50  Code  Gb  stm32f0xx_bsp_flash.o [1]
+BSP_GPRS_PowerKeyHigh   0x08002485   0x12  Code  Gb  bsp_gprs.o [1]
+BSP_GPRS_PowerKeyLow    0x08002497   0x12  Code  Gb  bsp_gprs.o [1]
+BSP_GPRS_PowerOff       0x08002465    0xe  Code  Gb  bsp_gprs.o [1]
+BSP_GPRS_PowerOn        0x08002473    0xe  Code  Gb  bsp_gprs.o [1]
+BSP_Init                0x080061f1   0x22  Code  Gb  bsp_init.o [1]
+BSP_LED_Close           0x08005589   0x3c  Code  Gb  bsp_led.o [1]
+BSP_LED_Init            0x080054f1   0x5c  Code  Gb  bsp_led.o [1]
+BSP_LED_Open            0x0800554d   0x3c  Code  Gb  bsp_led.o [1]
+BSP_LED_Toggle          0x080055c5   0x26  Code  Gb  bsp_led.o [1]
+BSP_SYSTICK_IncTick     0x08005f9d    0xc  Code  Gb  stm32f0xx_bsp_systick.o [1]
+BSP_SYSTICK_Open        0x08005f81   0x1c  Code  Gb  stm32f0xx_bsp_systick.o [1]
+BSP_Timer_Init          0x080060b9   0x5e  Code  Gb  stm32f0xx_bsp_timer.o [1]
+BSP_USART_IRQHandler    0x0800280f   0x2c  Code  Gb  stm32f0xx_bsp_usart.o [1]
+BSP_USART_Open          0x080025f9  0x1cc  Code  Gb  stm32f0xx_bsp_usart.o [1]
+BSP_USART_ReadBytes     0x0800283b   0x22  Code  Gb  stm32f0xx_bsp_usart.o [1]
+BSP_USART_ReadBytesDMA  0x0800285d   0x68  Code  Lc  stm32f0xx_bsp_usart.o [1]
+BSP_USART_WriteBytes    0x080027c5   0x4a  Code  Gb  stm32f0xx_bsp_usart.o [1]
+Board_Init              0x080061e9    0x8  Code  Gb  bsp_init.o [1]
+CLog_GetCurrentTaskID   0x080059f9    0x4  Code  Gb  clog.o [1]
+CLog_GetTime            0x080059fd   0x1c  Code  Gb  clog.o [1]
+CLog_Init               0x08005a19   0x14  Code  Gb  clog.o [1]
+CRC16_Modbus            0x08004bd9   0x44  Code  Gb  crc.o [1]
+CSTACK$$Base            0x200016a0          --   Gb  - Linker created -
+CSTACK$$Limit           0x20001ea0          --   Gb  - Linker created -
 DMA1_Channel1_IRQHandler
-                        0x08004e1d    0x2  Code  Gb  stm32f0xx_it.o [1]
-DMA_Cmd                 0x08003753   0x1c  Code  Gb  stm32f0xx_dma.o [1]
-DMA_GetCurrDataCounter  0x0800379d    0x6  Code  Gb  stm32f0xx_dma.o [1]
-DMA_Init                0x08003711   0x42  Code  Gb  stm32f0xx_dma.o [1]
-DMA_RemapConfig         0x0800376f   0x2e  Code  Gb  stm32f0xx_dma.o [1]
-GPIO_Init               0x08001f4d   0xbe  Code  Gb  stm32f0xx_gpio.o [1]
-GPIO_PinAFConfig        0x0800201d   0x70  Code  Gb  stm32f0xx_gpio.o [1]
-GPIO_WriteBit           0x0800200b   0x12  Code  Gb  stm32f0xx_gpio.o [1]
-GPRS_ACK_Process        0x080010ad  0x118  Code  Gb  gprs_process.o [1]
-GPRS_Loop_Process       0x08000719  0x958  Code  Gb  gprs_process.o [1]
-GPRS_SendData           0x0800152d   0x72  Code  Gb  gprs_commond.o [1]
-GPRS_WriteBytes         0x0800140f   0x18  Code  Gb  gprs_commond.o [1]
-GprsTask_Init           0x080015c1   0x48  Code  Gb  gprs_task.o [1]
-GprsTask_Process        0x08001609   0x56  Code  Gb  gprs_task.o [1]
-GprsTask_Send_Event     0x0800165f   0x10  Code  Gb  gprs_task.o [1]
-Gprs_ACK_Check          0x08001427   0x18  Code  Gb  gprs_commond.o [1]
-Gprs_Add_Sockets        0x080011c9   0x96  Code  Gb  gprs_process.o [1]
+                        0x08005eb5    0x2  Code  Gb  stm32f0xx_it.o [1]
+DMA_Cmd                 0x08004acf   0x1c  Code  Gb  stm32f0xx_dma.o [1]
+DMA_GetCurrDataCounter  0x08004b19    0x6  Code  Gb  stm32f0xx_dma.o [1]
+DMA_Init                0x08004a8d   0x42  Code  Gb  stm32f0xx_dma.o [1]
+DMA_RemapConfig         0x08004aeb   0x2e  Code  Gb  stm32f0xx_dma.o [1]
+FLASH_ClearFlag         0x08005479    0x6  Code  Gb  stm32f0xx_flash.o [1]
+FLASH_ErasePage         0x080053d3   0x4e  Code  Gb  stm32f0xx_flash.o [1]
+FLASH_GetStatus         0x08005481   0x36  Code  Gb  stm32f0xx_flash.o [1]
+FLASH_Lock              0x080053c5    0xe  Code  Gb  stm32f0xx_flash.o [1]
+FLASH_ProgramHalfWord   0x08005421   0x42  Code  Gb  stm32f0xx_flash.o [1]
+FLASH_Unlock            0x080053ad   0x18  Code  Gb  stm32f0xx_flash.o [1]
+FLASH_WaitForLastOperation
+                        0x080054bd   0x2e  Code  Gb  stm32f0xx_flash.o [1]
+GPIO_Init               0x08002eb9   0xbe  Code  Gb  stm32f0xx_gpio.o [1]
+GPIO_PinAFConfig        0x08002f89   0x70  Code  Gb  stm32f0xx_gpio.o [1]
+GPIO_WriteBit           0x08002f77   0x12  Code  Gb  stm32f0xx_gpio.o [1]
+GPRS_ACK_Process        0x080012d5  0x142  Code  Gb  gprs_process.o [1]
+GPRS_Loop_Process       0x0800081d  0xa88  Code  Gb  gprs_process.o [1]
+GPRS_SendData           0x08001813   0x98  Code  Gb  gprs_commond.o [1]
+GPRS_WriteBytes         0x080016f3   0x14  Code  Gb  gprs_commond.o [1]
+GprsTask_Init           0x080018dd   0x3c  Code  Gb  gprs_task.o [1]
+GprsTask_Process        0x08001919   0x9c  Code  Gb  gprs_task.o [1]
+GprsTask_Send_Event     0x080019b5   0x10  Code  Gb  gprs_task.o [1]
+Gprs_ACK_Check          0x08001707   0x18  Code  Gb  gprs_commond.o [1]
+Gprs_Add_Sockets        0x08001421   0xb0  Code  Gb  gprs_process.o [1]
+Gprs_Cmd_QIACK          0x08001501   0x5c  Code  Gb  gprs_process.o [1]
 Gprs_GetSocketAndLength
-                        0x0800143f   0xee  Code  Gb  gprs_commond.o [1]
-Gprs_UpdateRssi         0x0800126d   0x16  Code  Gb  gprs_process.o [1]
-HalTask_Init            0x08004241   0x14  Code  Gb  hal_task.o [1]
-HalTask_Process         0x08004255   0x32  Code  Gb  hal_task.o [1]
-HardFault_Handler       0x08004cf7    0x4  Code  Gb  stm32f0xx_it.o [1]
-InStream_Read           0x08004f29   0x22  Code  Lc  packbits_init.o [5]
-LED_IO                  0x08005088   0x54  Data  Gb  bsp_led.o [1]
-LoadInt                 0x08002649   0x68  Code  Lc  xprintffull_nomb.o [3]
-Maintain_Trans_Check    0x08004149   0x42  Code  Gb  maintain_process.o [1]
-Maintain_Trans_Process  0x0800418b   0x36  Code  Gb  maintain_process.o [1]
-NMI_Handler             0x08004cf5    0x2  Code  Gb  stm32f0xx_it.o [1]
-NVIC_Init               0x08003285   0x6a  Code  Gb  stm32f0xx_misc.o [1]
-NVIC_SetPriority        0x08004e2d   0x8a  Code  Lc  stm32f0xx_bsp_systick.o [1]
+                        0x0800171f   0xf4  Code  Gb  gprs_commond.o [1]
+Gprs_Reset_Moudle       0x0800155d    0xe  Code  Gb  gprs_process.o [1]
+Gprs_UpdateRssi         0x080014dd   0x16  Code  Gb  gprs_process.o [1]
+HalTask_Init            0x08005361   0x14  Code  Gb  hal_task.o [1]
+HalTask_Process         0x08005375   0x32  Code  Gb  hal_task.o [1]
+HardFault_Handler       0x08005d8f    0x4  Code  Gb  stm32f0xx_it.o [1]
+InStream_Read           0x08005fc1   0x22  Code  Lc  packbits_init.o [5]
+LED_IO                  0x0800611c   0x54  Data  Gb  bsp_led.o [1]
+LoadInt                 0x080035b5   0x68  Code  Lc  xprintffull_nomb.o [3]
+Maintain_Trans_Check    0x08004189   0x7e  Code  Gb  maintain_process.o [1]
+Maintain_Trans_Process  0x08004207   0x2c  Code  Gb  maintain_process.o [1]
+NMI_Handler             0x08005d8d    0x2  Code  Gb  stm32f0xx_it.o [1]
+NVIC_Init               0x08004601   0x6a  Code  Gb  stm32f0xx_misc.o [1]
+NVIC_SetPriority        0x08005ec5   0x8a  Code  Lc  stm32f0xx_bsp_systick.o [1]
 OS_Clock_ConvertToDateTime
-                        0x0800173f  0x144  Code  Gb  osal_clock.o [1]
-OS_Clock_GetSeconds     0x080016ef   0x14  Code  Gb  osal_clock.o [1]
+                        0x0800230f  0x144  Code  Gb  osal_clock.o [1]
+OS_Clock_GetSeconds     0x080022bf   0x14  Code  Gb  osal_clock.o [1]
 OS_Clock_GetSystemClock
-                        0x08001703   0x14  Code  Gb  osal_clock.o [1]
-OS_Clock_Update         0x08001691   0x5e  Code  Gb  osal_clock.o [1]
-OS_Events_Set           0x08001f0f   0x30  Code  Gb  osal_core.o [1]
-OS_Init                 0x08001e55   0x10  Code  Gb  osal_core.o [1]
-OS_Msg_Init             0x08003841    0x2  Code  Gb  osal_msg.o [1]
-OS_Start                0x08001e65    0x8  Code  Gb  osal_core.o [1]
-OS_Task_Init            0x08003843   0x24  Code  Gb  osal_task.o [1]
-OS_Timer_Init           0x08001c99   0x20  Code  Gb  osal_timer.o [1]
-OS_Timer_Start          0x08001dc1   0x28  Code  Gb  osal_timer.o [1]
-OS_Timer_Update         0x08001de9   0x64  Code  Gb  osal_timer.o [1]
-PendSV_Handler          0x08004cfd    0x2  Code  Gb  stm32f0xx_it.o [1]
-RCC_AHBPeriphClockCmd   0x080031ad   0x20  Code  Gb  stm32f0xx_rcc.o [1]
-RCC_APB1PeriphClockCmd  0x080031ed   0x20  Code  Gb  stm32f0xx_rcc.o [1]
-RCC_APB1PeriphResetCmd  0x08003241   0x20  Code  Gb  stm32f0xx_rcc.o [1]
-RCC_APB2PeriphClockCmd  0x080031cd   0x20  Code  Gb  stm32f0xx_rcc.o [1]
-RCC_APB2PeriphResetCmd  0x0800321d   0x20  Code  Gb  stm32f0xx_rcc.o [1]
-RCC_GetClocksFreq       0x08002f85  0x222  Code  Gb  stm32f0xx_rcc.o [1]
-RTTLog_GetLogLevel      0x0800492b    0x6  Code  Lc  rtt_log.o [1]
-RTTLog_Init             0x0800479d   0x16  Code  Gb  rtt_log.o [1]
-RTTLog_SetLogLevel      0x08004931    0x6  Code  Lc  rtt_log.o [1]
-RTTLog_Write            0x080047b3   0xb4  Code  Lc  rtt_log.o [1]
-RTTLog_WriteRAW         0x08004917   0x14  Code  Lc  rtt_log.o [1]
-RTTLog_vprintf          0x08004867   0xb0  Code  Lc  rtt_log.o [1]
-Region$$Table$$Base     0x080051a8          --   Gb  - Linker created -
-Region$$Table$$Limit    0x080051d4          --   Gb  - Linker created -
-SEGGER_RTT_Write        0x08004767   0x32  Code  Gb  SEGGER_RTT.o [1]
-SEGGER_RTT_WriteNoLock  0x080046e9   0x7e  Code  Gb  SEGGER_RTT.o [1]
-SVC_Handler             0x08004cfb    0x2  Code  Gb  stm32f0xx_it.o [1]
-Server_receiveDataInfo  0x200003f8  0x2fc  Data  Gb  gprs_cache.o [1]
-SetSysClock             0x08004c03   0xbe  Code  Lc  system_stm32f0xx.o [1]
-SysTick_Config          0x08004eb7   0x32  Code  Lc  stm32f0xx_bsp_systick.o [1]
-SysTick_Handler         0x08004cff   0x14  Code  Gb  stm32f0xx_it.o [1]
-SystemInfo_Init         0x08005581    0x2  Code  Gb  system_info.o [1]
-SystemInit              0x08004b95   0x6e  Code  Gb  system_stm32f0xx.o [1]
-System_Load             0x08005575    0xc  Code  Gb  system_init.o [1]
-TIM3_IRQHandler         0x08004d6d   0x84  Code  Gb  stm32f0xx_it.o [1]
-TIM_ClearITPendingBit   0x08004b8d    0x8  Code  Gb  stm32f0xx_tim.o [1]
-TIM_Cmd                 0x08004b2d   0x1c  Code  Gb  stm32f0xx_tim.o [1]
-TIM_DeInit              0x080049d5   0xf2  Code  Gb  stm32f0xx_tim.o [1]
-TIM_ITConfig            0x08004b75   0x18  Code  Gb  stm32f0xx_tim.o [1]
-TIM_TimeBaseInit        0x08004ac7   0x66  Code  Gb  stm32f0xx_tim.o [1]
-USART1_IRQHandler       0x08004d13   0x5a  Code  Gb  stm32f0xx_it.o [1]
-USART2_IRQHandler       0x08004e21    0xa  Code  Gb  stm32f0xx_it.o [1]
-USART2_Rx_Buf           0x20000bc4  0x3e8  Data  Gb  gprs_cache.o [1]
+                        0x080022d3   0x14  Code  Gb  osal_clock.o [1]
+OS_Clock_Update         0x08002261   0x5e  Code  Gb  osal_clock.o [1]
+OS_Events_Set           0x08002b7f   0x30  Code  Gb  osal_core.o [1]
+OS_Init                 0x08002ac5   0x10  Code  Gb  osal_core.o [1]
+OS_Msg_Init             0x08004b2d    0x2  Code  Gb  osal_msg.o [1]
+OS_Start                0x08002ad5    0x8  Code  Gb  osal_core.o [1]
+OS_Task_Init            0x08004b2f   0x24  Code  Gb  osal_task.o [1]
+OS_Timer_Init           0x08002909   0x20  Code  Gb  osal_timer.o [1]
+OS_Timer_Start          0x08002a31   0x28  Code  Gb  osal_timer.o [1]
+OS_Timer_Update         0x08002a59   0x64  Code  Gb  osal_timer.o [1]
+PendSV_Handler          0x08005d95    0x2  Code  Gb  stm32f0xx_it.o [1]
+RCC_AHBPeriphClockCmd   0x08004529   0x20  Code  Gb  stm32f0xx_rcc.o [1]
+RCC_APB1PeriphClockCmd  0x08004569   0x20  Code  Gb  stm32f0xx_rcc.o [1]
+RCC_APB1PeriphResetCmd  0x080045bd   0x20  Code  Gb  stm32f0xx_rcc.o [1]
+RCC_APB2PeriphClockCmd  0x08004549   0x20  Code  Gb  stm32f0xx_rcc.o [1]
+RCC_APB2PeriphResetCmd  0x08004599   0x20  Code  Gb  stm32f0xx_rcc.o [1]
+RCC_GetClocksFreq       0x08004301  0x222  Code  Gb  stm32f0xx_rcc.o [1]
+RTTLog_GetLogLevel      0x080059c3    0x6  Code  Lc  rtt_log.o [1]
+RTTLog_Init             0x08005835   0x16  Code  Gb  rtt_log.o [1]
+RTTLog_SetLogLevel      0x080059c9    0x6  Code  Lc  rtt_log.o [1]
+RTTLog_Write            0x0800584b   0xb4  Code  Lc  rtt_log.o [1]
+RTTLog_WriteRAW         0x080059af   0x14  Code  Lc  rtt_log.o [1]
+RTTLog_vprintf          0x080058ff   0xb0  Code  Lc  rtt_log.o [1]
+Region$$Table$$Base     0x08006260          --   Gb  - Linker created -
+Region$$Table$$Limit    0x0800628c          --   Gb  - Linker created -
+SEGGER_RTT_Write        0x080057ff   0x32  Code  Gb  SEGGER_RTT.o [1]
+SEGGER_RTT_WriteNoLock  0x08005781   0x7e  Code  Gb  SEGGER_RTT.o [1]
+SVC_Handler             0x08005d93    0x2  Code  Gb  stm32f0xx_it.o [1]
+Server_Trans_Check      0x08004281   0x5c  Code  Gb  maintain_process.o [1]
+Server_receiveDataInfo  0x20000000  0x308  Data  Gb  gprs_cache.o [1]
+SetSysClock             0x08005c9b   0xbe  Code  Lc  system_stm32f0xx.o [1]
+SysTick_Config          0x08005f4f   0x32  Code  Lc  stm32f0xx_bsp_systick.o [1]
+SysTick_Handler         0x08005d97   0x14  Code  Gb  stm32f0xx_it.o [1]
+SystemInfo_Init         0x080068c1    0x8  Code  Gb  system_info.o [1]
+SystemInit              0x08005c2d   0x6e  Code  Gb  system_stm32f0xx.o [1]
+SystemParam_Init        0x08002bd1   0xbc  Code  Gb  system_param.o [1]
+SystemParam_Save        0x08002c8d   0x46  Code  Gb  system_param.o [1]
+System_Load             0x080068b5    0xc  Code  Gb  system_init.o [1]
+TIM3_IRQHandler         0x08005e05   0x82  Code  Gb  stm32f0xx_it.o [1]
+TIM_ClearITPendingBit   0x08005c25    0x8  Code  Gb  stm32f0xx_tim.o [1]
+TIM_Cmd                 0x08005bc5   0x1c  Code  Gb  stm32f0xx_tim.o [1]
+TIM_DeInit              0x08005a6d   0xf2  Code  Gb  stm32f0xx_tim.o [1]
+TIM_ITConfig            0x08005c0d   0x18  Code  Gb  stm32f0xx_tim.o [1]
+TIM_TimeBaseInit        0x08005b5f   0x66  Code  Gb  stm32f0xx_tim.o [1]
+USART1_IRQHandler       0x08005dab   0x5a  Code  Gb  stm32f0xx_it.o [1]
+USART2_IRQHandler       0x08005eb9    0xa  Code  Gb  stm32f0xx_it.o [1]
+USART2_Rx_Buf           0x20000980  0x3e8  Data  Gb  gprs_cache.o [1]
 USART_ClearITPendingBit
-                        0x080035d7   0x18  Code  Gb  stm32f0xx_usart.o [1]
-USART_Cmd               0x080034bb   0x1c  Code  Gb  stm32f0xx_usart.o [1]
-USART_DMACmd            0x08003511   0x18  Code  Gb  stm32f0xx_usart.o [1]
-USART_DeInit            0x080032fd   0xd8  Code  Gb  stm32f0xx_usart.o [1]
-USART_GetITStatus       0x0800356d   0x6a  Code  Gb  stm32f0xx_usart.o [1]
-USART_ITConfig          0x08003529   0x44  Code  Gb  stm32f0xx_usart.o [1]
-USART_Init              0x080033d5   0xe6  Code  Gb  stm32f0xx_usart.o [1]
-USART_ReceiveData       0x080034fd    0x8  Code  Gb  stm32f0xx_usart.o [1]
-UserTask_Init           0x080037b1   0x1e  Code  Gb  user_task.o [1]
-UserTask_Process        0x080037cf   0x5a  Code  Gb  user_task.o [1]
-UserTask_Send_Event     0x08003829   0x10  Code  Gb  user_task.o [1]
+                        0x08004953   0x18  Code  Gb  stm32f0xx_usart.o [1]
+USART_Cmd               0x08004837   0x1c  Code  Gb  stm32f0xx_usart.o [1]
+USART_DMACmd            0x0800488d   0x18  Code  Gb  stm32f0xx_usart.o [1]
+USART_DeInit            0x08004679   0xd8  Code  Gb  stm32f0xx_usart.o [1]
+USART_GetITStatus       0x080048e9   0x6a  Code  Gb  stm32f0xx_usart.o [1]
+USART_ITConfig          0x080048a5   0x44  Code  Gb  stm32f0xx_usart.o [1]
+USART_Init              0x08004751   0xe6  Code  Gb  stm32f0xx_usart.o [1]
+USART_ReceiveData       0x08004879    0x8  Code  Gb  stm32f0xx_usart.o [1]
+UserTask_Init           0x0800256d   0x1e  Code  Gb  user_task.o [1]
+UserTask_Process        0x0800258b   0x52  Code  Gb  user_task.o [1]
+UserTask_Send_Event     0x080025dd   0x10  Code  Gb  user_task.o [1]
 ZSProto_ConfigSetReq_Process
-                        0x080042a9  0x178  Code  Gb  zsproto_package_process.o [1]
-ZSProto_FlowAnalysis    0x08004051   0xc6  Code  Gb  zsproto.o [1]
+                        0x080019fd  0x378  Code  Gb  zsproto_package_process.o [1]
+ZSProto_FlowAnalysis    0x08003fe9   0xc6  Code  Gb  zsproto.o [1]
 ZSProto_FlowGetCacheIdleLength
-                        0x0800412b   0x1a  Code  Gb  zsproto.o [1]
+                        0x080040c3   0x1c  Code  Gb  zsproto.o [1]
 ZSProto_FlowSetCallback
-                        0x08004117   0x14  Code  Gb  zsproto.o [1]
+                        0x080040af   0x14  Code  Gb  zsproto.o [1]
+ZSProto_IsPackage       0x080040df   0x94  Code  Gb  zsproto.o [1]
+ZSProto_Make_ConfigSetResp
+                        0x08001de1  0x250  Code  Gb  zsproto_package_process.o [1]
+ZSProto_Make_RssiResp   0x0800205d   0xe8  Code  Gb  zsproto_package_process.o [1]
+ZSProto_Make_SocketDataPackage
+                        0x08002151   0xea  Code  Gb  zsproto_package_process.o [1]
 ZSProto_SendDataReq_Process
-                        0x08004291   0x18  Code  Gb  zsproto_package_process.o [1]
-_DoInit                 0x0800455d   0x58  Code  Lc  SEGGER_RTT.o [1]
-_GenldFullNoMb          0x08002c79  0x2a0  Code  Lc  xprintffull_nomb.o [3]
-_GetAvailWriteSpace     0x080046ad   0x24  Code  Lc  SEGGER_RTT.o [1]
-_LdtobFullNoMb          0x080027e5  0x480  Code  Lc  xprintffull_nomb.o [3]
-_LitobFullNoMb          0x080026b1  0x12e  Code  Lc  xprintffull_nomb.o [3]
-_PrintfFullNoMb         0x0800208d  0x5bc  Code  Gb  xprintffull_nomb.o [3]
-_PutcharsFullNoMb       0x08002f19   0x30  Code  Lc  xprintffull_nomb.o [3]
-_SEGGER_RTT             0x2000151c   0x78  Data  Gb  SEGGER_RTT.o [1]
-_SNProut                0x08005583   0x1c  Code  Gb  xsnprout.o [3]
-_SProut                 0x08001923    0xa  Code  Gb  xsprout.o [3]
-_WriteBlocking          0x080045b5   0x88  Code  Lc  SEGGER_RTT.o [1]
-_WriteNoCheck           0x0800463d   0x70  Code  Lc  SEGGER_RTT.o [1]
+                        0x080019e5   0x16  Code  Gb  zsproto_package_process.o [1]
+ZSProto_TransparentData
+                        0x08005329   0x38  Code  Gb  zsproto_penetrate_process.o [1]
+_DoInit                 0x080055f5   0x58  Code  Lc  SEGGER_RTT.o [1]
+_GenldFullNoMb          0x08003be5  0x2a0  Code  Lc  xprintffull_nomb.o [3]
+_GetAvailWriteSpace     0x08005745   0x24  Code  Lc  SEGGER_RTT.o [1]
+_LdtobFullNoMb          0x08003751  0x480  Code  Lc  xprintffull_nomb.o [3]
+_LitobFullNoMb          0x0800361d  0x12e  Code  Lc  xprintffull_nomb.o [3]
+_PrintfFullNoMb         0x08002ff9  0x5bc  Code  Gb  xprintffull_nomb.o [3]
+_PutcharsFullNoMb       0x08003e85   0x30  Code  Lc  xprintffull_nomb.o [3]
+_SEGGER_RTT             0x200014b4   0x78  Data  Gb  SEGGER_RTT.o [1]
+_SNProut                0x080068c9   0x1c  Code  Gb  xsnprout.o [3]
+_SProut                 0x080024bf    0xa  Code  Gb  xsprout.o [3]
+_WriteBlocking          0x0800564d   0x88  Code  Lc  SEGGER_RTT.o [1]
+_WriteNoCheck           0x080056d5   0x70  Code  Lc  SEGGER_RTT.o [1]
 __ICFEDIT_region_RAM_end__ {Abs}
                         0x20001fff          --   Gb  command line/config [2]
 __ICFEDIT_region_RAM_start__ {Abs}
                         0x20000000          --   Gb  command line/config [2]
-__aeabi_cdcmple         0x08003941         Code  Gb  DblCmpLe.o [4]
-__aeabi_cdrcmple        0x08003973         Code  Gb  DblCmpGe.o [4]
-__aeabi_d2iz            0x08003ac1         Code  Gb  DblToI32.o [4]
-__aeabi_d2uiz           0x08003ae5         Code  Gb  DblToI32.o [4]
-__aeabi_ddiv            0x08003e75         Code  Gb  DblDiv.o [4]
-__aeabi_dmul            0x08003cf1         Code  Gb  DblMul.o [4]
-__aeabi_dsub            0x08003c03         Code  Gb  DblAddSub.o [4]
-__aeabi_i2d             0x08003b15         Code  Gb  I32ToDbl.o [4]
-__aeabi_idiv            0x080012fd         Code  Gb  I32DivModFast.o [5]
-__aeabi_idiv0           0x08001921         Code  Gb  IntDivZer.o [5]
-__aeabi_idivmod         0x080012fd         Code  Gb  I32DivModFast.o [5]
-__aeabi_ldiv0           0x0800428d         Code  Gb  I64DivZer.o [5]
-__aeabi_memcpy          0x08001c3d         Code  Gb  ABImemcpy.o [5]
-__aeabi_ui2d            0x08003b29         Code  Gb  I32ToDbl.o [4]
-__aeabi_uidiv           0x08001303         Code  Gb  I32DivModFast.o [5]
-__aeabi_uidivmod        0x08001303         Code  Gb  I32DivModFast.o [5]
-__aeabi_uldivmod        0x08003893         Code  Gb  I64DivMod.o [5]
-__aeabi_uread4          0x08004545         Code  Gb  uread4.o [5]
-__cmain                 0x080055a1         Code  Gb  cmain.o [5]
-__exit                  0x0800500d   0x14  Code  Gb  exit.o [6]
-__iar_Dnorm             0x080038fd   0x44  Code  Gb  xdnorm.o [4]
-__iar_Dscale            0x080039a5  0x11c  Code  Gb  xdscale.o [4]
-__iar_Memchr            0x0800387b   0x18  Code  Gb  memchr.o [5]
-__iar_Strchr            0x08003867   0x14  Code  Gb  strchr.o [5]
-__iar_Strstr            0x08002f4b   0x38  Code  Gb  strstr.o [3]
-__iar_d2uiz             0x08003ae9         Code  Gb  DblToI32.o [4]
-__iar_data_init3        0x08005181   0x28  Code  Gb  data_init.o [5]
-__iar_packbits_init3    0x08004f4b   0xb6  Code  Gb  packbits_init.o [5]
-__iar_program_start     0x080057b1         Code  Gb  cstartup_M.o [5]
-__iar_ui2d              0x08003b2d         Code  Gb  I32ToDbl.o [4]
-__iar_zero_init3        0x08005119   0x3c  Code  Gb  zero_init3.o [5]
-__low_level_init        0x080055bb    0x4  Code  Gb  low_level_init.o [3]
+__aeabi_cdcmple         0x08004d0f         Code  Gb  DblCmpLe.o [4]
+__aeabi_cdrcmple        0x08004d41         Code  Gb  DblCmpGe.o [4]
+__aeabi_d2iz            0x08004e91         Code  Gb  DblToI32.o [4]
+__aeabi_d2uiz           0x08004eb5         Code  Gb  DblToI32.o [4]
+__aeabi_ddiv            0x08005245         Code  Gb  DblDiv.o [4]
+__aeabi_dmul            0x080050c1         Code  Gb  DblMul.o [4]
+__aeabi_dsub            0x08004fd3         Code  Gb  DblAddSub.o [4]
+__aeabi_errno_addr      0x08004c3d    0xa  Code  Gb  errno.o [3]
+__aeabi_i2d             0x08004ee5         Code  Gb  I32ToDbl.o [4]
+__aeabi_idiv            0x080015e1         Code  Gb  I32DivModFast.o [5]
+__aeabi_idiv0           0x080025f5         Code  Gb  IntDivZer.o [5]
+__aeabi_idivmod         0x080015e1         Code  Gb  I32DivModFast.o [5]
+__aeabi_ldiv0           0x080054ed         Code  Gb  I64DivZer.o [5]
+__aeabi_memcpy          0x08002501         Code  Gb  ABImemcpy.o [5]
+__aeabi_ui2d            0x08004ef9         Code  Gb  I32ToDbl.o [4]
+__aeabi_uidiv           0x080015e7         Code  Gb  I32DivModFast.o [5]
+__aeabi_uidivmod        0x080015e7         Code  Gb  I32DivModFast.o [5]
+__aeabi_uldivmod        0x08004c61         Code  Gb  I64DivMod.o [5]
+__aeabi_uread4          0x080024a9         Code  Gb  uread4.o [5]
+__aeabi_uwrite4         0x08002bbd         Code  Gb  uwrite4.o [5]
+__cmain                 0x080068e5         Code  Gb  cmain.o [5]
+__exit                  0x080060a5   0x14  Code  Gb  exit.o [6]
+__iar_Dnorm             0x08004ccb   0x44  Code  Gb  xdnorm.o [4]
+__iar_Dscale            0x08004d75  0x11c  Code  Gb  xdscale.o [4]
+__iar_Errno             0x20000978    0x4  Data  Gb  errno.o [3]
+__iar_Memchr            0x08004c25   0x18  Code  Gb  memchr.o [5]
+__iar_Stoul             0x08002e5f    0xa  Code  Gb  xstoul.o [3]
+__iar_Stoulx            0x08002d39  0x126  Code  Gb  xstoul.o [3]
+__iar_Strchr            0x08004c4d   0x14  Code  Gb  strchr.o [5]
+__iar_Strstr            0x08003eb7   0x38  Code  Gb  strstr.o [3]
+__iar_d2uiz             0x08004eb9         Code  Gb  DblToI32.o [4]
+__iar_data_init3        0x08006215   0x28  Code  Gb  data_init.o [5]
+__iar_dlib_perthread_access
+                        0x080054eb    0x2  Code  Gb  xtls.o [3]
+__iar_packbits_init3    0x08005fe3   0xb6  Code  Gb  packbits_init.o [5]
+__iar_program_start     0x08006b79         Code  Gb  cstartup_M.o [5]
+__iar_ui2d              0x08004efd         Code  Gb  I32ToDbl.o [4]
+__iar_zero_init3        0x080061ad   0x3c  Code  Gb  zero_init3.o [5]
+__low_level_init        0x080068ff    0x4  Code  Gb  low_level_init.o [3]
 __vector_table          0x08000000         Data  Gb  startup_stm32f030.o [1]
-_acDownBuffer           0x2000165c   0x34  Data  Lc  SEGGER_RTT.o [1]
-_acUpBuffer             0x200013f0  0x12c  Data  Lc  SEGGER_RTT.o [1]
-_call_main              0x080055ad         Code  Gb  cmain.o [5]
-_exit                   0x080055c9         Code  Gb  cexit.o [5]
-_main                   0x080055b7         Code  Gb  cmain.o [5]
-abort                   0x08005001    0xa  Code  Gb  abort.o [3]
-div                     0x08003f37   0x20  Code  Gb  div.o [3]
-exit                    0x080055bf    0x8  Code  Gb  exit.o [3]
-g_AT_ReceiveBuf         0x200006f4  0x2f8  Data  Gb  gprs_cache.o [1]
-g_GprsTask_Id           0x200016f7    0x1  Data  Gb  gprs_task.o [1]
-g_HalTask_Id            0x200016f8    0x1  Data  Gb  hal_task.o [1]
-g_LogLevelText          0x20000b78   0x1c  Data  Gb  clog.o [1]
-g_Machine_ReceiveBuf    0x20000bb4    0xc  Data  Gb  gprs_cache.o [1]
-g_Machine_TransmitBuf   0x20000000  0x3f8  Data  Gb  gprs_cache.o [1]
-g_SystemInfo            0x200009ec   0xd4  Data  Gb  system_info.o [1]
-g_TasksEvents           0x200016d4    0xc  Data  Gb  osal_task.o [1]
-g_TasksFnArr            0x0800578c    0xc  Data  Gb  osal_task.o [1]
-g_UserTask_Id           0x200016fb    0x1  Data  Gb  user_task.o [1]
+_acDownBuffer           0x200015f4   0x34  Data  Lc  SEGGER_RTT.o [1]
+_acUpBuffer             0x200011ac  0x12c  Data  Lc  SEGGER_RTT.o [1]
+_call_main              0x080068f1         Code  Gb  cmain.o [5]
+_exit                   0x0800690d         Code  Gb  cexit.o [5]
+_main                   0x080068fb         Code  Gb  cmain.o [5]
+abort                   0x08006099    0xa  Code  Gb  abort.o [3]
+atoi                    0x08002255    0xc  Code  Gb  atoi.o [3]
+digits                  0x08002e68   0x28  Data  Lc  xstoul.o [3]
+div                     0x08005307   0x20  Code  Gb  div.o [3]
+exit                    0x08006903    0x8  Code  Gb  exit.o [3]
+g_AT_ReceiveBuf         0x20000308  0x2fc  Data  Gb  gprs_cache.o [1]
+g_GprsTask_Id           0x20001694    0x1  Data  Gb  gprs_task.o [1]
+g_HalTask_Id            0x20001695    0x1  Data  Gb  hal_task.o [1]
+g_LogLevelText          0x20000930   0x1c  Data  Gb  clog.o [1]
+g_Machine_ReceiveBuf    0x2000096c    0xc  Data  Gb  gprs_cache.o [1]
+g_Machine_TransmitBuf   0x20000604  0x26c  Data  Gb  gprs_cache.o [1]
+g_SystemInfo            0x200013dc   0xd8  Data  Gb  system_info.o [1]
+g_TasksEvents           0x2000166c    0xc  Data  Gb  osal_task.o [1]
+g_TasksFnArr            0x08006b54    0xc  Data  Gb  osal_task.o [1]
+g_UserTask_Id           0x20001698    0x1  Data  Gb  user_task.o [1]
+g_ZSProtoMakeCache      0x200012d8  0x104  Data  Gb  zsproto.o [1]
+g_ZSProto_Seq           0x2000168c    0x4  Data  Gb  zsproto.o [1]
+getnoackLen             0x08000771   0x5a  Code  Lc  gprs_process.o [1]
 gprs_add_state          0x080000b5   0x3e  Code  Lc  gprs_process.o [1]
-gprs_check_param        0x080013b1   0x5e  Code  Lc  gprs_commond.o [1]
-gprs_check_process      0x080002d1  0x392  Code  Lc  gprs_process.o [1]
-gprs_idle_process       0x08000675   0x10  Code  Lc  gprs_process.o [1]
-gprs_msg_queue_clear    0x08000685   0x14  Code  Lc  gprs_process.o [1]
-gprs_socket_deinit      0x080006a1   0x26  Code  Lc  gprs_process.o [1]
+gprs_attribute_deinit   0x08000745   0x1a  Code  Lc  gprs_process.o [1]
+gprs_check_param        0x08001695   0x5e  Code  Lc  gprs_commond.o [1]
+gprs_check_process      0x080002bd  0x420  Code  Lc  gprs_process.o [1]
+gprs_idle_process       0x080006e9   0x10  Code  Lc  gprs_process.o [1]
+gprs_msg_queue_clear    0x080006f9   0x14  Code  Lc  gprs_process.o [1]
+gprs_socket_deinit      0x08000711   0x26  Code  Lc  gprs_process.o [1]
 gprs_update_request     0x0800012f   0xae  Code  Lc  gprs_process.o [1]
-gprs_update_socket      0x080001dd   0xd0  Code  Lc  gprs_process.o [1]
+gprs_update_socket      0x080001dd   0xba  Code  Lc  gprs_process.o [1]
 gprs_update_state       0x080000f3   0x3c  Code  Lc  gprs_process.o [1]
-len                     0x200016fa    0x1  Data  Lc  stm32f0xx_it.o [1]
-main                    0x08005559   0x1c  Code  Gb  main.o [1]
-maintain_apd_process    0x080041c1   0x64  Code  Lc  maintain_process.o [1]
-month_length            0x08001717   0x28  Code  Lc  osal_clock.o [1]
-osalRun                 0x08001e87   0x88  Code  Lc  osal_core.o [1]
-osalTimeUpdate          0x08001e6d   0x1a  Code  Lc  osal_core.o [1]
-osalTimerAdd            0x08001d49   0x78  Code  Gb  osal_timer.o [1]
-osalTimerAlloc          0x08001cb9   0x5e  Code  Gb  osal_timer.o [1]
-osalTimerFind           0x08001d17   0x32  Code  Gb  osal_timer.o [1]
-s_BSPLedControlTable    0x20001690   0x30  Data  Lc  bsp_led.o [1]
-s_GPRSMsgQueue          0x20000b94   0x10  Data  Lc  gprs_process.o [1]
-s_GPRS_CB               0x20000ac0   0xb8  Data  Lc  gprs_process.o [1]
-s_LogLevel              0x20000bc0    0x1  Data  Lc  rtt_log.o [1]
-s_RTTLog                0x200016c0   0x14  Data  Gb  clog.o [1]
-s_RTTLogBuf             0x200012c4  0x12c  Data  Lc  rtt_log.o [1]
-s_Systick_Ticks         0x200016f0    0x4  Data  Gb  stm32f0xx_bsp_systick.o [1]
+len                     0x20001697    0x1  Data  Lc  stm32f0xx_it.o [1]
+main                    0x08006899   0x1c  Code  Gb  main.o [1]
+maintain_apd_process    0x08004233   0x4e  Code  Lc  maintain_process.o [1]
+month_length            0x080022e7   0x28  Code  Lc  osal_clock.o [1]
+ndigs                   0x08002e90   0x28  Data  Lc  xstoul.o [3]
+osalRun                 0x08002af7   0x88  Code  Lc  osal_core.o [1]
+osalTimeUpdate          0x08002add   0x1a  Code  Lc  osal_core.o [1]
+osalTimerAdd            0x080029b9   0x78  Code  Gb  osal_timer.o [1]
+osalTimerAlloc          0x08002929   0x5e  Code  Gb  osal_timer.o [1]
+osalTimerFind           0x08002987   0x32  Code  Gb  osal_timer.o [1]
+s_BSPLedControlTable    0x20001628   0x30  Data  Lc  bsp_led.o [1]
+s_GPRSMsgQueue          0x2000094c   0x10  Data  Lc  gprs_process.o [1]
+s_GPRS_CB               0x20000870   0xc0  Data  Lc  gprs_process.o [1]
+s_LogLevel              0x2000097c    0x1  Data  Lc  rtt_log.o [1]
+s_RTTLog                0x20001658   0x14  Data  Gb  clog.o [1]
+s_RTTLogBuf             0x20001080  0x12c  Data  Lc  rtt_log.o [1]
+s_Systick_Ticks         0x20001688    0x4  Data  Gb  stm32f0xx_bsp_systick.o [1]
 s_USART1_ReceiveCompleteFlag
-                        0x200016f9    0x1  Data  Lc  stm32f0xx_it.o [1]
-s_ZSProtoFlowCacheList  0x2000118c  0x138  Data  Lc  zsproto.o [1]
-s_osalClock_ElapsedMs   0x200016e4    0x4  Data  Lc  osal_clock.o [1]
+                        0x20001696    0x1  Data  Lc  stm32f0xx_it.o [1]
+s_ZSProtoFlowCacheList  0x20000f48  0x138  Data  Lc  zsproto.o [1]
+s_osalClock_ElapsedMs   0x2000167c    0x4  Data  Lc  osal_clock.o [1]
 s_osalClock_MilliSeconds
-                        0x200016f4    0x2  Data  Lc  osal_clock.o [1]
-s_osalClock_Seconds     0x200016e0    0x4  Data  Lc  osal_clock.o [1]
-s_osalTimerHead         0x200016ec    0x4  Data  Lc  osal_timer.o [1]
-s_osalTimerMemHeap      0x20000fac  0x1e0  Data  Lc  osal_timer.o [1]
-sprintf                 0x080018d9   0x38  Code  Gb  sprintf.o [3]
-strcpy                  0x08001c2d         Code  Gb  strcpy.o [5]
-strlen                  0x08001681   0x10  Code  Gb  strlen.o [5]
-strstr                  0x08001911   0x10  Code  Gb  gprs_process.o [1]
-vsnprintf               0x08004999   0x3c  Code  Gb  vsnprint.o [3]
-zsproto_flow_decode     0x08003f59   0xf8  Code  Lc  zsproto.o [1]
+                        0x20001690    0x2  Data  Lc  osal_clock.o [1]
+s_osalClock_Seconds     0x20001678    0x4  Data  Lc  osal_clock.o [1]
+s_osalTimerHead         0x20001684    0x4  Data  Lc  osal_timer.o [1]
+s_osalTimerMemHeap      0x20000d68  0x1e0  Data  Lc  osal_timer.o [1]
+sprintf                 0x080024c9   0x38  Code  Gb  sprintf.o [3]
+strcpy                  0x080028f9         Code  Gb  strcpy.o [5]
+strlen                  0x080019d5   0x10  Code  Gb  strlen.o [5]
+strstr                  0x0800255d   0x10  Code  Gb  gprs_process.o [1]
+vsnprintf               0x08005a31   0x3c  Code  Gb  vsnprint.o [3]
+zsproto_flow_decode     0x08003ef1   0xf8  Code  Lc  zsproto.o [1]
 
 
 [1] = C:\Users\Administrator\Desktop\M26-DTU\stm32f030x8\projects\stm32f10x_std\IAR\Debug\Obj
@@ -703,9 +798,9 @@ zsproto_flow_decode     0x08003f59   0xf8  Code  Lc  zsproto.o [1]
 [5] = rt6M_tl.a
 [6] = shb_l.a
 
-  20 970 bytes of readonly  code memory
-   1 811 bytes of readonly  data memory
-   7 932 bytes of readwrite data memory
+  25 218 bytes of readonly  code memory
+   2 561 bytes of readonly  data memory
+   7 833 bytes of readwrite data memory
 
 Errors: none
 Warnings: none

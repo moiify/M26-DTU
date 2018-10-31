@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=1969540345
+Checksum=-323851755
 [JLinkDriver]
 CStepIntDis=_ 0
 TraceBufferSize=0x00010000
@@ -48,29 +48,29 @@ ITMlogFile=$PROJ_DIR$\ITM.log
 Enabled=0
 ShowSource=1
 [struct_types]
-Fmt0=SystemInfo_t-MainServerPort	4	0
-Fmt1=ZSProtoAPDU_P2P_t-Cmd	4	0
+Fmt0=ZSProtoAPDU_P2P_t-Cmd	4	0
 [array_types]
 Fmt0=uint8_t[1000]	3	0
 [watch_formats]
 Fmt0={W}1:checkresult	4	0
-Fmt1={W}1:g_USART1_ReceiveCompleteFlag	4	0
-Fmt2={W}1:length	3	0
-Fmt3={W}42:Send_OK_Flag	3	0
-Fmt4={W}42:Server_receiveDataInfo[Server_receiveData_Count-1].Len	3	0
-Fmt5={W}42:Server_receiveDataInfo[Server_receiveData_Count-1].SocketNum	3	0
-Fmt6={W}42:Server_receiveDataInfo[Server_receiveData_Count].Len	3	0
-Fmt7={W}42:Server_receiveDataInfo[Server_receiveData_Count].SocketNum	3	0
-Fmt8={W}42:Server_receiveData_Count	3	0
-Fmt9={W}42:g_AT_ReceiveBuf.Out	3	0
-Fmt10={W}42:g_Machine_ReceiveBuf.Buf[g_Machine_ReceiveBuf.In-1].Len	3	0
-Fmt11={W}42:g_Machine_ReceiveBuf.pData	4	0
-Fmt12={W}42:g_Machine_TransmitBuf.Count	3	0
-Fmt13={W}42:g_SystemInfo.Gprs_RssiValue	3	0
-Fmt14={W}42:s_GPRSMsgQueue.Size	3	0
-Fmt15={W}42:s_GPRS_CB.moudle_status	3	0
-Fmt16={W}42:s_GPRS_CB.rssi	3	0
-Fmt17={W}42:s_Gprs_UpdateRssiCount	3	0
+Fmt1={W}1:cmd	4	0
+Fmt2={W}1:g_USART1_ReceiveCompleteFlag	4	0
+Fmt3={W}1:length	3	0
+Fmt4={W}42:Send_OK_Flag	3	0
+Fmt5={W}42:Server_receiveDataInfo[Server_receiveData_Count-1].Len	3	0
+Fmt6={W}42:Server_receiveDataInfo[Server_receiveData_Count-1].SocketNum	3	0
+Fmt7={W}42:Server_receiveDataInfo[Server_receiveData_Count].Len	3	0
+Fmt8={W}42:Server_receiveDataInfo[Server_receiveData_Count].SocketNum	3	0
+Fmt9={W}42:Server_receiveData_Count	3	0
+Fmt10={W}42:g_AT_ReceiveBuf.Out	3	0
+Fmt11={W}42:g_Machine_ReceiveBuf.Buf[g_Machine_ReceiveBuf.In-1].Len	3	0
+Fmt12={W}42:g_Machine_ReceiveBuf.pData	4	0
+Fmt13={W}42:g_Machine_TransmitBuf.Count	3	0
+Fmt14={W}42:g_SystemInfo.Gprs_RssiValue	3	0
+Fmt15={W}42:s_GPRSMsgQueue.Size	3	0
+Fmt16={W}42:s_GPRS_CB.moudle_status	3	0
+Fmt17={W}42:s_GPRS_CB.rssi	3	0
+Fmt18={W}42:s_Gprs_UpdateRssiCount	3	0
 [Trace2]
 Enabled=0
 ShowSource=0
@@ -143,9 +143,7 @@ ProbeSetup0=2 1 1 2 0 0
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Source\FML\maintain\maintain_process.c}.177.21" 0 0 1 "" 0 "" 0
-Bp1=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Source\FML\maintain\maintain_process.c}.183.21" 0 0 1 "" 0 "" 0
-Count=2
+Count=0
 [Aliases]
 A0=_ "C:\Users\Administrator\Desktop\GPRS_DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\GPRSÍ¸´«\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
 A1=_ "C:\Users\Administrator\Desktop\GPRSÍ¸´«\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"

@@ -66,10 +66,10 @@
  * @defgroup      gprs_commond_Exported_Functions 
  * @{  
  */
-void GPRS_WriteBytes(uint8_t *pbuf);
+void GPRS_WriteBytes(uint8_t *pbuf,uint16_t length);
 char Gprs_ACK_Check(uint8_t *ackparm,uint8_t chack_way);
 void Gprs_GetSocketAndLength(void);
-void GPRS_SendData(uint8_t * pbuf,uint8_t length,uint8_t mux);
+void GPRS_SendData(uint8_t * pbuf,uint16_t length,uint8_t mux);
 /**
  * @}
  */
