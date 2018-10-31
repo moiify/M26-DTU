@@ -512,6 +512,10 @@ static void gprs_check_process(void) //检测回复
                 DEBUG("[GPRS] Socket:%d Connect OK\r\n",s_GPRS_CB.cur_socket_info.Mux);
                 GprsTask_Send_Event(GPRS_TASK_LOOP_EVENT);
             }
+            else 
+            {
+                GprsTask_Send_Event(GPRS_TASK_ACK_EVENT);
+            }
             break;
         }
         case GPRSState_QICLOSE_Resp:
@@ -1136,16 +1140,15 @@ void GPRS_ACK_Process(void)
     uint8_t muxnum;
     if(g_AT_ReceiveBuf.Count>0)
     {   
+        
+        gprs_check_process();
         if( strstr((char *)g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf,"CLOSED")!=NULL&&strstr((char *)g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf,"OK")==NULL)
         {   
             muxnum=g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf[2]-48;
             s_GPRS_CB.Socket_Info_t[muxnum].LinkState=GPRSLinkState_Lost;
             DEBUG("[GPRS] Socket:%d Closed\r\n",muxnum);
-            g_AT_ReceiveBuf.Count--;
-            g_AT_ReceiveBuf.Out++;
-            g_AT_ReceiveBuf.Out %=sizeof (g_AT_ReceiveBuf.Buf)/sizeof(g_AT_ReceiveBuf.Buf[0]);
         }
-        else if( strstr((char *)g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf,"RECEIVE")!=NULL)
+        if( strstr((char *)g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf,"RECEIVE")!=NULL)
         {   
             if(Server_receiveDataInfo.Count<Server_receiveDataInfo.Size)
             {
@@ -1156,17 +1159,11 @@ void GPRS_ACK_Process(void)
                 Server_receiveDataInfo.In %=Server_receiveDataInfo.Size;
                 UserTask_Send_Event(USER_TASK_LOOP_EVENT);
             }
-            g_AT_ReceiveBuf.Count--;
-            g_AT_ReceiveBuf.Out++;
-            g_AT_ReceiveBuf.Out %=sizeof (g_AT_ReceiveBuf.Buf)/sizeof(g_AT_ReceiveBuf.Buf[0]);
         }
-        else
-        {
-            gprs_check_process();
-            g_AT_ReceiveBuf.Count--;
-            g_AT_ReceiveBuf.Out++;
-            g_AT_ReceiveBuf.Out %=g_AT_ReceiveBuf.Size;
-        }
+        g_AT_ReceiveBuf.Count--;
+        g_AT_ReceiveBuf.Out++;
+        g_AT_ReceiveBuf.Out %=g_AT_ReceiveBuf.Size;
+        
     }
 }
 void Gprs_Add_Sockets(Socket_Info_t scoket)  //添加Sokcet的接口

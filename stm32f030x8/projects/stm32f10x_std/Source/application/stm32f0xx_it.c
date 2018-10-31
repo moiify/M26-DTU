@@ -162,7 +162,8 @@ void ADC1_COMP_IRQHandler()
     //GasADC_IRQn();
 }
 void USART2_IRQHandler(void)
-{
+{  
+   //DEBUG("Receive Data\r\n");
    BSP_USART_IRQHandler(BSP_USART2);
 }
 

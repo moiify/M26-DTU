@@ -122,12 +122,14 @@ typedef struct
  * @defgroup      zsproto_package_process_Exported_Functions 
  * @{  
  */
-void ZSProto_SendDataReq_Process(uint8_t *pBuf,uint16_t length);
-uint8_t ZSProto_CSQPackageMake(uint8_t *pBuf,uint16_t length);
-void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length);
+void     ZSProto_SocketPcakReq_Process(uint8_t *pBuf,uint16_t length);
+void     ZSProto_ConfigGetReq_Process(void);
+uint8_t  ZSProto_CSQPackageMake(uint8_t *pBuf,uint16_t length);
+void     ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length);
 uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq);
-void ZSProto_Make_RssiResp(uint8_t rssi);
+void     ZSProto_Make_RssiResp(uint8_t rssi);
 uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t length);
+void     ZSProto_Make_ConfigGetResp(void);
 /**
  * @}
  */

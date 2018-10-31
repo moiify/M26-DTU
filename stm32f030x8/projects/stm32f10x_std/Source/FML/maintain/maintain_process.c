@@ -181,6 +181,16 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
     /* 需要应答 */
     if (apd->FCF.bitfield.AckReq == 1)
     {
+         switch (apd->Cmd)
+            {
+                case ZSCmd_ConfigGetReq:  //测试用收发数据的命令
+                {   
+                    ZSProto_ConfigGetReq_Process();
+                    DEBUG("[GPRS] ConfigGetReq_Process\r\n");
+                    break;
+                }
+            }
+        
     }
 
     if (apd->FCF.bitfield.FrameType == ZSPROTO_FRAMETYPE_ACK)
@@ -193,8 +203,8 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
             {
                 case ZSProto_SocketPcakReq:  //测试用收发数据的命令
                 {   
-                    ZSProto_SendDataReq_Process(pBuf,length-4);
-                   // DEBUG("[GPRS] SendDataReq_Process\r\n");
+                    ZSProto_SocketPcakReq_Process(pBuf,length-4);
+                    DEBUG("[GPRS] SendDataReq_Process\r\n");
                     break;
                 }
                 case ZSCmd_ConfigSetReq:

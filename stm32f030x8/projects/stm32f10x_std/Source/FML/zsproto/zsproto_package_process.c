@@ -106,11 +106,205 @@
 * @brief         
 * @{  
 */
-void ZSProto_SendDataReq_Process(uint8_t *pBuf,uint16_t length)
+uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
+{
+    uint8_t *p = NULL;
+    
+    ZSProtoAPDU_P2P_t* apd;
+    ConfigSetRespPayload_t *payload;
+    ZSProtoTLV_t *tlv;
+    uint16_t len = 0;
+    uint8_t *fcs;
+    
+    pBuf[ZSPROTO_AHR_SIGN_OFFSET] = ZSPROTO_AHR_SIGN;
+    
+    p = pBuf + ZSPROTO_APD_DATA_OFFSET;
+    apd = (ZSProtoAPDU_P2P_t*)p;
+    
+    apd->FCF.bitfield.AckReq = 0;
+    apd->FCF.bitfield.Sec = 0;
+    apd->FCF.bitfield.Pending = 0;
+    apd->FCF.bitfield.Trans = 0;
+    apd->FCF.bitfield.reserve1 = 0;
+    apd->FCF.bitfield.FrameType = ZSPROTO_FRAMETYPE_ACK;
+    apd->FCF.bitfield.reserve2 = 0;
+    apd->FCF.bitfield.Gateway = 0;
+    apd->FCF.bitfield.ConnType = ZSPROTO_CONNTYPE_P2P;
+    
+    apd->Seq = seq;
+    apd->Cmd = ZSCmd_ConfigGetResp;
+    p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
+    
+    payload = (ConfigSetRespPayload_t*)p;
+    payload->Result = result;
+    payload->TLVCount = 13;
+    p += sizeof(payload->TLVCount) + sizeof(payload->Result);
+    // 1
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MAINSERVER_ENABLE;
+    tlv->Len = 1;
+    tlv->Value.Bit8 =g_SystemInfo.Socket_ListInfo[0].ServerEN ;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 2
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MAINSERVERDOMAIN_ENABLE;
+    tlv->Len = 1;
+    tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[0].ServerConnectway;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 3
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MAINSERVERIP;
+    tlv->Len = 4;
+    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[0].byte_ServerIp;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 4
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MAINSERVERPORT;
+    tlv->Len = 2;
+    tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[0].ServerPort;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 5
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MAINSERVERDOMAINNAME;
+    for (int i=0; i < sizeof(g_SystemInfo.Socket_ListInfo[0].ServerDomain); i++)
+    {
+        if (g_SystemInfo.Socket_ListInfo[0].ServerDomain[i] == 0)
+        {
+            tlv->Len = i;
+            break;
+        }
+        tlv->Value.Array[i] = g_SystemInfo.Socket_ListInfo[0].ServerDomain[i];
+        tlv->Len = i;
+    }
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 6
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_BACKUPSERVER_ENABLE;
+    tlv->Len = 1;
+    tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[1].ServerEN;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 7
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_BACKUPSERVERDOMAIN_ENABLE;
+    tlv->Len = 1;
+    tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[1].ServerConnectway;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 8
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_BACKUPSERVERIP;
+    tlv->Len = 4;
+    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[1].byte_ServerIp;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 9
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_BACKUPSERVERPORT;
+    tlv->Len = 2;
+    tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[1].ServerPort;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    // 10
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_BACKUPSERVERDOMAINNAME;
+    for (int i=0; i < sizeof(g_SystemInfo.Socket_ListInfo[1].ServerDomain); i++)
+    {
+        if (g_SystemInfo.Socket_ListInfo[1].ServerDomain[i] == 0)
+        {
+            tlv->Len = i;
+            break;
+        }
+        tlv->Value.Array[i] =g_SystemInfo.Socket_ListInfo[1].ServerDomain[i];
+        tlv->Len = i;
+    }
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
+    //11
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MOUDLEBOUNDRATE;
+    tlv->Len = 4;
+    tlv->Value.Bit32 = g_SystemInfo.Gprs_Boundrate;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;    
+    //12
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_OPEARTINGMODE;
+    tlv->Len = 1;
+    tlv->Value.Bit8 = g_SystemInfo.Gprs_Operatingmode;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len; 
+    //13
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_HEARTBEATEN;
+    tlv->Len = 1;
+    tlv->Value.Bit8 = g_SystemInfo.Gprs_HeartbeatEN;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;      
+    
+    fcs = p;
+    p++;
+    *p = ZSPROTO_AFR_SIGN;
+    
+    len = p - pBuf + 1;
+    pBuf[ZSPROTO_AHR_LENGTH_OFFSET] = len&0x00FF;
+    pBuf[ZSPROTO_AHR_LENGTH_OFFSET+1] = (len>>8)&0x00FF
+        ;
+    
+    *fcs = 0;
+    for (int i=0; i<len-3;i++)
+    {
+        *fcs += pBuf[i+ZSPROTO_AHR_LENGTH_OFFSET];
+    }
+    return len;
+}
+uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t length)
+{
+    uint8_t *p = NULL;
+    uint8_t *pBuf =g_ZSProtoMakeCache.Buf;
+    ZSProtoAPDU_P2P_t* apd;
+    SocketDataPayload_t *payload;
+    uint16_t len = 0;
+    uint8_t *fcs;
+    
+    pBuf[ZSPROTO_AHR_SIGN_OFFSET] = ZSPROTO_AHR_SIGN;
+    
+    p = pBuf + ZSPROTO_APD_DATA_OFFSET;
+    apd = (ZSProtoAPDU_P2P_t*)p;
+    
+    apd->FCF.bitfield.AckReq = 0;
+    apd->FCF.bitfield.Sec = 0;
+    apd->FCF.bitfield.Pending = 0;
+    apd->FCF.bitfield.Trans = 0;
+    apd->FCF.bitfield.reserve1 = 0;
+    apd->FCF.bitfield.FrameType = ZSPROTO_FRAMETYPE_DATA;
+    apd->FCF.bitfield.reserve2 = 0;
+    apd->FCF.bitfield.Gateway = 0;
+    apd->FCF.bitfield.ConnType = ZSPROTO_CONNTYPE_P2P;
+    
+    apd->Seq = g_ZSProto_Seq++;
+    apd->Cmd = ZSProto_SocketPcakReq;
+    p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
+    
+    payload = (SocketDataPayload_t*)p;
+    payload->mux = muxnum;
+    p += sizeof(payload->mux);     //memcpy(payload->pData,pdata,length)  不对
+    memcpy(p,pdata,length);
+    p +=length;
+    
+    fcs = p;
+    p++;
+    *p = ZSPROTO_AFR_SIGN;
+    
+    len = p - pBuf + 1;
+    pBuf[ZSPROTO_AHR_LENGTH_OFFSET] = len&0x00FF;
+    pBuf[ZSPROTO_AHR_LENGTH_OFFSET+1] = (len>>8)&0x00FF
+        ;
+    
+    *fcs = 0;
+    for (int i=0; i<len-3;i++)
+    {
+        *fcs += pBuf[i+ZSPROTO_AHR_LENGTH_OFFSET];
+    }
+    BSP_USART_WriteBytes(BSP_USART2, g_ZSProtoMakeCache.Buf, len);    
+    return len;
+}
+void ZSProto_SocketPcakReq_Process(uint8_t *pBuf,uint16_t length)
 {   
     GPRS_SendData(&pBuf[5],length-1,pBuf[4]); 
 }
-
 void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length)  //
 {
     uint8_t *p = pBuf;    
@@ -307,151 +501,16 @@ void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length)  //
     
     OS_Timer_Start(g_GprsTask_Id,GPRS_TASK_RESET_EVENT,100);
 }
-
-uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
+void ZSProto_ConfigGetReq_Process()
 {
-    uint8_t *p = NULL;
-    
-    ZSProtoAPDU_P2P_t* apd;
-    ConfigSetRespPayload_t *payload;
-    ZSProtoTLV_t *tlv;
-    uint16_t len = 0;
-    uint8_t *fcs;
-    
-    pBuf[ZSPROTO_AHR_SIGN_OFFSET] = ZSPROTO_AHR_SIGN;
-    
-    p = pBuf + ZSPROTO_APD_DATA_OFFSET;
-    apd = (ZSProtoAPDU_P2P_t*)p;
-    
-    apd->FCF.bitfield.AckReq = 0;
-    apd->FCF.bitfield.Sec = 0;
-    apd->FCF.bitfield.Pending = 0;
-    apd->FCF.bitfield.Trans = 0;
-    apd->FCF.bitfield.reserve1 = 0;
-    apd->FCF.bitfield.FrameType = ZSPROTO_FRAMETYPE_DATA;
-    apd->FCF.bitfield.reserve2 = 0;
-    apd->FCF.bitfield.Gateway = 0;
-    apd->FCF.bitfield.ConnType = ZSPROTO_CONNTYPE_P2P;
-    
-    apd->Seq = seq;
-    apd->Cmd = ZSCmd_ConfigGetResp;
-    p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
-    
-    payload = (ConfigSetRespPayload_t*)p;
-    payload->Result = result;
-    payload->TLVCount = 13;
-    p += sizeof(payload->TLVCount) + sizeof(payload->Result);
-    // 1
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MAINSERVER_ENABLE;
-    tlv->Len = 1;
-    tlv->Value.Bit8 =g_SystemInfo.Socket_ListInfo[0].ServerEN ;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 2
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MAINSERVERDOMAIN_ENABLE;
-    tlv->Len = 1;
-    tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[0].ServerConnectway;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 3
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MAINSERVERPORT;
-    tlv->Len = 2;
-    tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[0].ServerPort;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 4
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MAINSERVERIP;
-    tlv->Len = 4;
-    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[0].byte_ServerIp;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 5
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MAINSERVERDOMAINNAME;
-    for (int i=0; i < sizeof(g_SystemInfo.Socket_ListInfo[0].ServerDomain); i++)
-    {
-        if (g_SystemInfo.Socket_ListInfo[0].ServerDomain[i] == 0)
-        {
-            tlv->Len = i;
-            break;
-        }
-        tlv->Value.Array[i] = g_SystemInfo.Socket_ListInfo[0].ServerDomain[i];
-        tlv->Len = i;
-    }
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 6
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_BACKUPSERVER_ENABLE;
-    tlv->Len = 1;
-    tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[1].ServerEN;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 7
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_BACKUPSERVERDOMAIN_ENABLE;
-    tlv->Len = 1;
-    tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[1].ServerConnectway;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 8
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_BACKUPSERVERPORT;
-    tlv->Len = 2;
-    tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[1].ServerPort;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 9
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_BACKUPSERVERIP;
-    tlv->Len = 4;
-    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[1].byte_ServerIp;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 10
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_BACKUPSERVERDOMAINNAME;
-    for (int i=0; i < sizeof(g_SystemInfo.Socket_ListInfo[1].ServerDomain); i++)
-    {
-        if (g_SystemInfo.Socket_ListInfo[1].ServerDomain[i] == 0)
-        {
-            tlv->Len = i;
-            break;
-        }
-        tlv->Value.Array[i] =g_SystemInfo.Socket_ListInfo[1].ServerDomain[i];
-        tlv->Len = i;
-    }
-    //11
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MOUDLEBOUNDRATE;
-    tlv->Len = 4;
-    tlv->Value.Bit32 = g_SystemInfo.Gprs_Boundrate;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;    
-    //12
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_OPEARTINGMODE;
-    tlv->Len = 1;
-    tlv->Value.Bit8 = g_SystemInfo.Gprs_Operatingmode;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len; 
-    //13
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_HEARTBEATEN;
-    tlv->Len = 1;
-    tlv->Value.Bit8 = g_SystemInfo.Gprs_HeartbeatEN;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;      
-    
-    fcs = p;
-    p++;
-    *p = ZSPROTO_AFR_SIGN;
-    
-    len = p - pBuf + 1;
-    pBuf[ZSPROTO_AHR_LENGTH_OFFSET] = len&0x00FF;
-    pBuf[ZSPROTO_AHR_LENGTH_OFFSET+1] = (len>>8)&0x00FF
-        ;
-    
-    *fcs = 0;
-    for (int i=0; i<len-3;i++)
-    {
-        *fcs += pBuf[i+ZSPROTO_AHR_LENGTH_OFFSET];
-    }
-    return len;
+  ZSProto_Make_ConfigGetResp();  
 }
-
+void ZSProto_Make_ConfigGetResp()
+{   
+    uint8_t result = 1;
+    g_ZSProtoMakeCache.Length = ZSProto_Make_ConfigSetResp(g_ZSProtoMakeCache.Buf,result,g_ZSProto_Seq++);
+    BSP_USART_WriteBytes(BSP_USART2, g_ZSProtoMakeCache.Buf, g_ZSProtoMakeCache.Length);
+}
 void ZSProto_Make_RssiResp(uint8_t rssi)
 {
     uint8_t *p = NULL;
@@ -507,107 +566,7 @@ void ZSProto_Make_RssiResp(uint8_t rssi)
     }
     BSP_USART_WriteBytes(BSP_USART2, g_ZSProtoMakeCache.Buf, len);
 }
-uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t length)
-{
-    uint8_t *p = NULL;
-    uint8_t *pBuf =g_ZSProtoMakeCache.Buf;
-    ZSProtoAPDU_P2P_t* apd;
-    SocketDataPayload_t *payload;
-    uint16_t len = 0;
-    uint8_t *fcs;
-    
-    pBuf[ZSPROTO_AHR_SIGN_OFFSET] = ZSPROTO_AHR_SIGN;
-    
-    p = pBuf + ZSPROTO_APD_DATA_OFFSET;
-    apd = (ZSProtoAPDU_P2P_t*)p;
-    
-    apd->FCF.bitfield.AckReq = 0;
-    apd->FCF.bitfield.Sec = 0;
-    apd->FCF.bitfield.Pending = 0;
-    apd->FCF.bitfield.Trans = 0;
-    apd->FCF.bitfield.reserve1 = 0;
-    apd->FCF.bitfield.FrameType = ZSPROTO_FRAMETYPE_DATA;
-    apd->FCF.bitfield.reserve2 = 0;
-    apd->FCF.bitfield.Gateway = 0;
-    apd->FCF.bitfield.ConnType = ZSPROTO_CONNTYPE_P2P;
-    
-    apd->Seq = g_ZSProto_Seq++;
-    apd->Cmd = ZSProto_SocketPcakReq;
-    p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
-    
-    payload = (SocketDataPayload_t*)p;
-    payload->mux = muxnum;
-    p += sizeof(payload->mux);     //memcpy(payload->pData,pdata,length)  不对
-    memcpy(p,pdata,length);
-    p +=length;
-    
-    fcs = p;
-    p++;
-    *p = ZSPROTO_AFR_SIGN;
-    
-    len = p - pBuf + 1;
-    pBuf[ZSPROTO_AHR_LENGTH_OFFSET] = len&0x00FF;
-    pBuf[ZSPROTO_AHR_LENGTH_OFFSET+1] = (len>>8)&0x00FF
-        ;
-    
-    *fcs = 0;
-    for (int i=0; i<len-3;i++)
-    {
-        *fcs += pBuf[i+ZSPROTO_AHR_LENGTH_OFFSET];
-    }
-    BSP_USART_WriteBytes(BSP_USART2, g_ZSProtoMakeCache.Buf, len);    
-    return len;
-}
-#if 1
-//uint8_t ZSProto_CSQPackageMake(uint8_t *pBuf,uint16_t length)
-//{   
-////    uint8_t sendbuf[50];
-//    ZSProtoAPDU_P2P_t apd;
-//    apd.FCF.bitfield.AckReq=0;
-//    apd.FCF.bitfield.Sec=0;
-//    apd.FCF.bitfield.Pending=0;
-//    apd.FCF.bitfield.Trans=1;
-//    apd.FCF.bitfield.reserve1=0;
-//    apd.FCF.bitfield.FrameType=0;
-//    apd.FCF.bitfield.reserve2=0;
-//    apd.FCF.bitfield.Gateway=0;
-//    apd.FCF.bitfield.ConnType=0;
-////    apd.FCF.Value=0x0000;
-//    apd.Seq=g_ZSProto_Seq;
-//    apd.Cmd=134;
-//    apd.CmdPayload=pBuf;
-//    length=ZSProto_PackageMake(apd,pBuf);
-//    
-//    return length;
-//}
-//
-//uint8_t ZSProto_PackageMake(ZSProtoAPDU_P2P_t apd,uint8_t * pacbuf)
-//{   
-//    uint16_t len;
-//    uint8_t i,fcs;
-//    len=strlen((const char *)pacbuf)+9;
-//    for(i=0;i<len-9;i++)
-//    {
-//      pacbuf[7+i]=pacbuf[i];  
-//    }
-//    fcs=fsc(&pacbuf[1],len-3);
-//    pacbuf[0]='Z';
-//    pacbuf[1]=*((uint8_t*)&len);
-//    pacbuf[2]=*((uint8_t*)&len+1);
-//    pacbuf[3]=*((uint8_t*)&apd.FCF);
-//    pacbuf[4]=*((uint8_t*)&apd.FCF+1);   //0x0008  = 08 00
-//    pacbuf[5]=*((uint8_t*)&apd.Seq);
-//    pacbuf[6]=*((uint8_t*)&apd.Cmd);   
-//    pacbuf[len-2]=fcs; 
-//    pacbuf[len-1]='S';  
-//    return len;
-//        
-//}
-//uint8_t fsc(uint8_t * pbuf,uint8_t length)
-//{
-//    return 0;
-//}
-#endif
+
 /**
 * @}
 */
