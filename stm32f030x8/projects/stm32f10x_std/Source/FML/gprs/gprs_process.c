@@ -635,7 +635,7 @@ static uint16_t getnoackLen()
 }
 void GPRS_Loop_Process(void)  
 {
-    static char send_buf[100];
+    char send_buf[512];
     switch (s_GPRS_CB.state)
     {
         case GPRSState_PowerOff_Req:
@@ -1184,9 +1184,12 @@ void Gprs_Add_Sockets(Socket_Info_t scoket)  //添加Sokcet的接口
 }
 void Gprs_UpdateRssi()   //更新信号强度
 {   
-    if(s_GPRS_CB.Gprs_Init_Status==Gprs_Init_Complete)
+    if(g_SystemInfo.Gprs_Operatingmode==Gprs_Packagemode&&g_SystemInfo.Gprs_HeartbeatEN==1)
     {
-        s_GPRS_CB.rssi_count++;
+        if(s_GPRS_CB.Gprs_Init_Status==Gprs_Init_Complete)
+        {
+            s_GPRS_CB.rssi_count++;
+        }
     }
 }
 void Gprs_Cmd_QIACK()    //查询未发送数据量

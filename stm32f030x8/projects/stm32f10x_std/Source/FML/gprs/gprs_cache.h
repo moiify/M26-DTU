@@ -50,49 +50,49 @@ typedef struct
 {
     uint8_t SocketNum;
     uint16_t Len;
-    uint8_t Buf[150];
+    uint8_t Buf[512];
 }Server_receiveDataInfo_t;
 
 
 typedef struct
 {
-	uint8_t Buf[250];
+	uint8_t Buf[300];
 	uint16_t Len;
 }receive_buf_t;
 
 typedef struct
 {
-	uint8_t Buf[200];
+	uint8_t Buf[512];
 	uint16_t Len;
 	uint8_t Mux;
 }socket_buf_t;
 
 typedef struct
 {
-    Server_receiveDataInfo_t buf[5];
+    Server_receiveDataInfo_t buf[1];
     uint8_t In;	
     uint8_t Out;
     uint8_t Count;
     uint8_t Size;
-}Server_receiveDataInfo_Cache_t;
+}Server_receiveDataInfo_Cache_t;  //服务器消息缓存   1K  
 
 typedef struct 
 { 
-  socket_buf_t Buf[3];
+  socket_buf_t Buf[2];
   uint8_t In;	
   uint8_t Out;
   uint16_t Count;
   uint16_t Size;  
-}Socket_Cache_t;
+}Socket_Cache_t;  //USART1发送 服务器  
 
 typedef struct 
 { 
-  receive_buf_t Buf[3];
+  receive_buf_t Buf[2];
   uint8_t In;	
   uint8_t Out;
   uint16_t Count;
   uint16_t Size;  
-}Receive_Cache_t;
+}Receive_Cache_t; //USART1接收缓存 AT返回
 
 typedef struct 
 { 
@@ -101,7 +101,7 @@ typedef struct
   uint16_t Out;
   uint16_t Count;
   uint16_t Size;  
-}USART_Receive_t;
+}USART_Receive_t; //USART2接收缓存  
 /**
  * @}
  */

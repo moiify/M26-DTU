@@ -152,7 +152,7 @@ char Gprs_ACK_Check(uint8_t *ackparm,uint8_t chack_way)  //检查收到的数据
 void Gprs_GetSocketAndLength(void)            
 {   
     uint8_t *pbuf;
-    uint8_t i=0;
+    uint16_t i=0;
     pbuf=g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf;
     for(i=0;i<strlen((const char*)pbuf);i++)
     {
@@ -174,7 +174,9 @@ void Gprs_GetSocketAndLength(void)
         }
         if(pbuf[i]=='\n')
         {
+//            memcpy(Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Buf,&pbuf[i+1],Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len);
             strcpy((char *)Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Buf,(const char *)&pbuf[i+1]);
+            
         }
     }    
 }

@@ -31,7 +31,7 @@
 #define BSP_USART1      0
 #define BSP_USART2      1
      
-#define BSP_USART2_RXBUF_SIZE 1000
+#define BSP_USART2_RXBUF_SIZE 1024
 /**
  * @}
  */

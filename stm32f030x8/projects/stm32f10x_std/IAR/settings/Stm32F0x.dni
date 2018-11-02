@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=635629676
+Checksum=1411218899
 [JLinkDriver]
 CStepIntDis=_ 0
 TraceBufferSize=0x00010000
@@ -122,12 +122,15 @@ SumSortOrder=0
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Source\FML\gprs\gprs_process.c}.505.13" 0 0 1 "" 0 "" 0
+Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Source\application\stm32f0xx_it.c}.74.3" 0 0 1 "" 0 "" 0
 Count=1
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
 Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [Aliases]
 A0=_ "C:\Users\Administrator\Desktop\GPRS_DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\GPRSÍ¸´«\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
 A1=_ "C:\Users\Administrator\Desktop\GPRSÍ¸´«\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
@@ -148,6 +151,3 @@ ShowTiming=1
 Frequency=10000
 Probe0=I0
 ProbeSetup0=2 1 1 2 0 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""

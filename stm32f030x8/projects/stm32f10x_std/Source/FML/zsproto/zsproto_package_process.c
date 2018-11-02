@@ -252,7 +252,7 @@ uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
 }
 uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t length)
 {
-    uint8_t *p = NULL;
+    uint8_t *p =NULL ;
     uint8_t *pBuf =g_ZSProtoMakeCache.Buf;
     ZSProtoAPDU_P2P_t* apd;
     SocketDataPayload_t *payload;
@@ -260,7 +260,6 @@ uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t 
     uint8_t *fcs;
     
     pBuf[ZSPROTO_AHR_SIGN_OFFSET] = ZSPROTO_AHR_SIGN;
-    
     p = pBuf + ZSPROTO_APD_DATA_OFFSET;
     apd = (ZSProtoAPDU_P2P_t*)p;
     
@@ -281,6 +280,7 @@ uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t 
     payload = (SocketDataPayload_t*)p;
     payload->mux = muxnum;
     p += sizeof(payload->mux);     //memcpy(payload->pData,pdata,length)  ²»¶Ô
+    //p += sizeof(payload->pData);
     memcpy(p,pdata,length);
     p +=length;
     
@@ -290,8 +290,7 @@ uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t 
     
     len = p - pBuf + 1;
     pBuf[ZSPROTO_AHR_LENGTH_OFFSET] = len&0x00FF;
-    pBuf[ZSPROTO_AHR_LENGTH_OFFSET+1] = (len>>8)&0x00FF
-        ;
+    pBuf[ZSPROTO_AHR_LENGTH_OFFSET+1] = (len>>8)&0x00FF;
     
     *fcs = 0;
     for (int i=0; i<len-3;i++)

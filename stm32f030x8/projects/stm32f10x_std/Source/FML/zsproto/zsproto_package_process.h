@@ -102,7 +102,7 @@ typedef struct
 typedef struct
 {   
     uint8_t  mux;
-    uint8_t *pData;
+    uint8_t pData[1024];
 }SocketDataPayload_t;
 #pragma pack()
 /**

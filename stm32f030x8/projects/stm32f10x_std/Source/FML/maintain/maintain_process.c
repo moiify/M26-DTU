@@ -109,7 +109,7 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length);
  */
 void Maintain_Trans_Check(void)
 {
-    static uint8_t buf[100];
+    uint8_t buf[300];
     uint16_t len = 0;
 //    static uint32_t reclen=0;
 //    static uint16_t reccon=0;
@@ -138,13 +138,14 @@ void Maintain_Trans_Check(void)
     }
     else if(g_SystemInfo.Gprs_Operatingmode==Gprs_Transparentmode)
     {   
-        len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, buf, g_Machine_ReceiveBuf.Size);
+        uint8_t recbuf[512];
+        len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, recbuf, g_Machine_ReceiveBuf.Size);
         //DEBUG("[MT] reclen:%d\r\n",len);
         if(len>0)
         {   
-            if(ZSProto_IsPackage(ZSPROTO_FLOWCHANNEL_MAINTAIN,buf,len)==NOT_SETPACKAGE)
+            if(ZSProto_IsPackage(ZSPROTO_FLOWCHANNEL_MAINTAIN,recbuf,len)==NOT_SETPACKAGE)
             {
-                ZSProto_TransparentData(buf,len);
+                ZSProto_TransparentData(recbuf,len);
             }    
         }
     }
@@ -186,7 +187,7 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
                 case ZSCmd_ConfigGetReq:  //测试用收发数据的命令
                 {   
                     ZSProto_ConfigGetReq_Process();
-                    DEBUG("[GPRS] ConfigGetReq_Process\r\n");
+                    //DEBUG("[GPRS] ConfigGetReq_Process\r\n");
                     break;
                 }
             }
