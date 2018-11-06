@@ -154,7 +154,7 @@ void Gprs_GetSocketAndLength(void)
     uint8_t *pbuf;
     uint16_t i=0;
     pbuf=g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf;
-    for(i=0;i<strlen((const char*)pbuf);i++)
+    for(i=0;i<SERVER_RECEIVE_BUFMAX;i++)
     {
         if(pbuf[i]==',')
         {
@@ -162,21 +162,21 @@ void Gprs_GetSocketAndLength(void)
             if(pbuf[i+3]=='\r')
             {
                 Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len=pbuf[i+2]-48;
+                memcpy(Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Buf,&pbuf[i+5],Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len);
+                break;
             }
             else if(pbuf[i+4]=='\r')
             {
-                Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len=(pbuf[i+2]-48)*10+(pbuf[i+3]-48); 
+                Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len=(pbuf[i+2]-48)*10+(pbuf[i+3]-48);
+                memcpy(Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Buf,&pbuf[i+6],Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len);
+                break;
             }
             else if(pbuf[i+5]=='\r')
             {
-                Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len=(pbuf[i+2]-48)*100+(pbuf[i+3]-48)*10+(pbuf[i+4]-48);   
+                Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len=(pbuf[i+2]-48)*100+(pbuf[i+3]-48)*10+(pbuf[i+4]-48);
+                memcpy(Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Buf,&pbuf[i+7],Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len);
+                break;
             }
-        }
-        if(pbuf[i]=='\n')
-        {
-//            memcpy(Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Buf,&pbuf[i+1],Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Len);
-            strcpy((char *)Server_receiveDataInfo.buf[Server_receiveDataInfo.In].Buf,(const char *)&pbuf[i+1]);
-            
         }
     }    
 }

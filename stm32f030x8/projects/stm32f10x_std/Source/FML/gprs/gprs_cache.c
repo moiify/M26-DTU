@@ -77,6 +77,9 @@ uint8_t USART2_Rx_Buf[BSP_USART2_RXBUF_SIZE];
  * @brief         
  * @{  
  */
+uint8_t g_Trans_checkcount=0;
+uint8_t g_Rec_checkcount=0;
+
 Server_receiveDataInfo_Cache_t Server_receiveDataInfo=
 {
     .In=0,

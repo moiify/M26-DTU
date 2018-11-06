@@ -10,7 +10,7 @@
 *
 **************************************************************************************************
 */
-#include "gprs_process.h"
+
 #include "gprs_commond.h"
 #include "gprs_cache.h"
 #include "bsp_gprs.h"
@@ -23,6 +23,7 @@
 #include "clog.h"
 #include "cshell.h"
 #include "zsproto_package_process.h"
+#include "gprs_process.h"
 /**
 * @addtogroup    XXX 
 * @{  
@@ -1158,6 +1159,7 @@ void GPRS_ACK_Process(void)
                 Server_receiveDataInfo.Count++;
                 Server_receiveDataInfo.In %=Server_receiveDataInfo.Size;
                 UserTask_Send_Event(USER_TASK_LOOP_EVENT);
+                g_Rec_checkcount++;
             }
         }
         g_AT_ReceiveBuf.Count--;

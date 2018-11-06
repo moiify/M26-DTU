@@ -104,7 +104,7 @@ typedef enum
     GPRSState_QISEND_Data_Resp,    
     GPRSState_QISACK_Req,
     GPRSState_QISACK_Resp,
-}GPRSState_t;
+}GPRSState_t;  //GPRS执行状态
 
 typedef enum
 {
@@ -112,13 +112,13 @@ typedef enum
     GPRSLinkState_Init,
     GPRSLinkState_Connecting,
     GPRSLinkState_Establish,
-}GPRSLinkState_t;
+}GPRSLinkState_t;//GPRS连接状态
 
 typedef enum
 {
     SocketState_Busy,
     SocketState_Idle,
-}SocketState_t;
+}SocketState_t;//Socket锁，用来更新目前使用的socket信息
 typedef enum
 {   
     GPRS_None_Req,
@@ -145,12 +145,12 @@ typedef enum
  * @defgroup      gprs_process_Exported_Functions 
  * @{  
  */
-void GPRS_Loop_Process(void);
-void GPRS_ACK_Process(void);     
-void Gprs_UpdateRssi(void);
-void Gprs_Cmd_QIACK(void);
-void Gprs_Reset_Moudle(void);
-void Gprs_Add_Sockets(Socket_Info_t scoket);
+void GPRS_Loop_Process(void);  //GPRS任务轮询，用来联网和发送信息，向M26发送AT指令
+void GPRS_ACK_Process(void);   //AT命令解析。
+void Gprs_UpdateRssi(void);    //更新CSQ请求次数
+void Gprs_Cmd_QIACK(void);     //查询未应答的数量
+void Gprs_Reset_Moudle(void);  //用来重启模块
+void Gprs_Add_Sockets(Socket_Info_t scoket); //用户用来添加Socket的接口。传入一个结构体。
 /**
  * @}
  */

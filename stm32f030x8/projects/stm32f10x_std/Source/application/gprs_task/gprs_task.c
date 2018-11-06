@@ -111,7 +111,6 @@ void GprsTask_Init(uint8_t taskId)
     OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_RSSI_EVENT,8000);
     OS_Timer_Start(g_GprsTask_Id, GPRS_TASK_QISACK_EVENT,5000);
 }
-
 osal_event_t GprsTask_Process(uint8_t taskid,osal_event_t events)
 {
 

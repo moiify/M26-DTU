@@ -148,10 +148,12 @@ static uint16_t zsproto_flow_decode(uint8_t channel)
                         if (s_ZSProtoFlowCacheList[channel].recv != NULL)
                         {   
                             s_ZSProtoFlowCacheList[channel].recv(&pBuf[ZSPROTO_AHR_SIGN_OFFSET+offset], len);
+                            
                         }
                         remain_len -= len;
                         remove_count += len;
                         offset += len;
+                        break;
                     }
                     else
                     {

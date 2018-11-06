@@ -28,7 +28,7 @@
  * @defgroup      gprs_cache_Exported_Macros 
  * @{  
  */
-
+#define SERVER_RECEIVE_BUFMAX   300
 /**
  * @}
  */
@@ -56,7 +56,7 @@ typedef struct
 
 typedef struct
 {
-	uint8_t Buf[300];
+	uint8_t Buf[SERVER_RECEIVE_BUFMAX];
 	uint16_t Len;
 }receive_buf_t;
 
@@ -110,10 +110,9 @@ typedef struct
  * @defgroup      gprs_cache_Exported_Variables 
  * @{  
  */
-extern Server_receiveDataInfo_Cache_t Server_receiveDataInfo;  //解析到的服务器端信息  √
-extern Receive_Cache_t g_AT_ReceiveBuf ;  // AT指令返回 USART1   
-extern Socket_Cache_t g_Machine_TransmitBuf; //组包好后的数据发送缓存     √
-extern USART_Receive_t g_Machine_ReceiveBuf;  //单片机接收采控平台串口的缓存  待组包和解析  ×
+extern uint8_t g_Trans_checkcount;
+extern uint8_t g_Rec_checkcount;
+
   /**
  * @}
  */
@@ -122,7 +121,10 @@ extern USART_Receive_t g_Machine_ReceiveBuf;  //单片机接收采控平台串口的缓存  待
  * @defgroup      gprs_cache_Exported_Functions 
  * @{  
  */
-
+extern Server_receiveDataInfo_Cache_t Server_receiveDataInfo;  //解析到的服务器端信息  √
+extern Receive_Cache_t g_AT_ReceiveBuf ;  // AT指令返回 USART1   
+extern Socket_Cache_t g_Machine_TransmitBuf; //组包好后的数据发送缓存     √
+extern USART_Receive_t g_Machine_ReceiveBuf;  //单片机接收采控平台串口的缓存  待组包和解析  ×
 /**
  * @}
  */

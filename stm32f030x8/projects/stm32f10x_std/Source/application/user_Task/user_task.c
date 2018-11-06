@@ -121,9 +121,16 @@ osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
     }
     if (events & USER_TASK_LOOP_EVENT)
     {   
-        Maintain_Trans_Check();
-        Server_Trans_Check();
-//        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,50);
+        if(g_Trans_checkcount>0)
+        {          
+            Maintain_Trans_Check();
+            Server_Trans_Check();
+        }
+        if(g_Rec_checkcount>0)
+        {
+             Server_Trans_Check();
+        }
+        OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,50);
         return events ^ USER_TASK_LOOP_EVENT;
     }
     if (events & USER_TASK_SHELL_EVENT)
