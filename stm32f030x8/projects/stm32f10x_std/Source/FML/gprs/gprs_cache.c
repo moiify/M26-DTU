@@ -68,6 +68,7 @@
  * @{  
  */
 uint8_t USART2_Rx_Buf[BSP_USART2_RXBUF_SIZE];
+uint8_t M26Trans_Buf[M26TRANSBUF_SIZE]; //M26·¢ËÍ»º´æ
 /**
  * @}
  */
@@ -77,8 +78,6 @@ uint8_t USART2_Rx_Buf[BSP_USART2_RXBUF_SIZE];
  * @brief         
  * @{  
  */
-uint8_t g_Trans_checkcount=0;
-uint8_t g_Rec_checkcount=0;
 
 Server_receiveDataInfo_Cache_t Server_receiveDataInfo=
 {
@@ -98,10 +97,11 @@ Receive_Cache_t g_AT_ReceiveBuf =
 
 Socket_Cache_t g_Machine_TransmitBuf=
 {   
+    .pData=M26Trans_Buf,
     .In = 0,
     .Out = 0,
     .Count = 0,
-    .Size = sizeof(g_Machine_TransmitBuf.Buf)/sizeof(g_Machine_TransmitBuf.Buf[0]),
+    .Size = M26TRANSBUF_SIZE ,
 };
 
 USART_Receive_t g_Machine_ReceiveBuf=

@@ -111,44 +111,42 @@ void Maintain_Trans_Check(void)
 {
     uint8_t buf[200];
     uint16_t len = 0,idlelen;
-//    static uint32_t reclen=0;
-//    static uint16_t reccon=0;
+    //    static uint32_t reclen=0;
+    //    static uint16_t reccon=0;
     //DEBUG("[GPRS] g_Machine_TransmitBuf.Count%d\r\n",g_Machine_TransmitBuf.Count);
-    if(g_Machine_TransmitBuf.Count<g_Machine_TransmitBuf.Size)
-    {   
-        g_Trans_checkcount--;
-        if(g_SystemInfo.Gprs_Operatingmode==Gprs_Packagemode)
+    
+    if(g_SystemInfo.Gprs_Operatingmode==Gprs_Packagemode)
+    {
+        len = ZSProto_FlowGetCacheIdleLength(ZSPROTO_FLOWCHANNEL_MAINTAIN);
+        idlelen=len;
+        if (len > 0)
         {
-            len = ZSProto_FlowGetCacheIdleLength(ZSPROTO_FLOWCHANNEL_MAINTAIN);
-            idlelen=len;
-            if (len > 0)
+            if (len > sizeof(buf))
             {
-                if (len > sizeof(buf))
-                {
-                    len = sizeof(buf);
-                }
-                len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, buf, len);
-                
+                len = sizeof(buf);
             }
-            if (idlelen > 0)
-            {
-                ZSProto_FlowAnalysis(ZSPROTO_FLOWCHANNEL_MAINTAIN, buf, len);
-            }  
+            len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, buf, len);
+            
         }
-        else if(g_SystemInfo.Gprs_Operatingmode==Gprs_Transparentmode)
+        if (idlelen > 0)
+        {
+            ZSProto_FlowAnalysis(ZSPROTO_FLOWCHANNEL_MAINTAIN, buf, len);
+        }  
+    }
+    else if(g_SystemInfo.Gprs_Operatingmode==Gprs_Transparentmode)
+    {   
+        uint8_t recbuf[512];
+        len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, recbuf, g_Machine_ReceiveBuf.Size);
+        //DEBUG("[MT] reclen:%d\r\n",len);
+        if(len>0)
         {   
-            uint8_t recbuf[512];
-            len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, recbuf, g_Machine_ReceiveBuf.Size);
-            //DEBUG("[MT] reclen:%d\r\n",len);
-            if(len>0)
-            {   
-                if(ZSProto_IsPackage(ZSPROTO_FLOWCHANNEL_MAINTAIN,recbuf,len)==NOT_SETPACKAGE)
-                {
-                    ZSProto_TransparentData(recbuf,len);
-                }    
-            }
+            if(ZSProto_IsPackage(ZSPROTO_FLOWCHANNEL_MAINTAIN,recbuf,len)==NOT_SETPACKAGE)
+            {
+                ZSProto_TransparentData(recbuf,len);
+            }    
         }
     }
+    
 }
 
 void Maintain_Trans_Process(uint8_t *pBuf,uint16_t length)
@@ -223,7 +221,6 @@ void Server_Trans_Check()
 {
   if(Server_receiveDataInfo.Count>0)
   {  
-      g_Rec_checkcount--;
       ZSProto_Make_SocketDataPackage(Server_receiveDataInfo.buf[Server_receiveDataInfo.Out].SocketNum,Server_receiveDataInfo.buf[Server_receiveDataInfo.Out].Buf,Server_receiveDataInfo.buf[Server_receiveDataInfo.Out].Len);
       Server_receiveDataInfo.Out++;
       Server_receiveDataInfo.Count--;

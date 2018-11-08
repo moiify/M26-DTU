@@ -125,7 +125,6 @@ void BSP_USART_IRQHandler(uint8_t BSP_USARTx)
             USART_ClearITPendingBit( USART2, USART_IT_IDLE);
             //Uart_DMA_Rx_Data();
             UserTask_Send_Event(USER_TASK_LOOP_EVENT);
-            g_Trans_checkcount++;
             USART_ReceiveData(USART2);
         }
     }

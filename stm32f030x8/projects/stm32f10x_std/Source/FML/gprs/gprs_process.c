@@ -155,6 +155,10 @@ typedef struct
     uint8_t qisack_req;
     uint8_t CurQISACKSocketNumber;
     uint16_t noack_len;
+    uint16_t send_len;
+    uint8_t  send_lenhigh8;
+    uint8_t  send_lenlow8;
+    uint16_t send_out;
 }GPRS_CB_t;
 
 typedef struct
@@ -266,10 +270,11 @@ static void gprs_update_state(void)  //取消息队列
 }
 static void gprs_update_request(void)    //空闲时更新事件 ：CSQ QISEND QIACK  阻塞式
 {   
+    
     if(g_Machine_TransmitBuf.Count>0&&s_GPRS_CB.extra_request==GPRS_None_Req)
     {    
-        if(s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Mux].LinkState==GPRSLinkState_Establish)
-        {
+        if(s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out]].LinkState==GPRSLinkState_Establish)
+        {   
             s_GPRS_CB.extra_request=GPRS_SendData_Req;
         }
     }
@@ -548,9 +553,7 @@ static void gprs_check_process(void) //检测回复
                 s_GPRS_CB.retry_count = 0;
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.extra_request=GPRS_None_Req;
-                g_Machine_TransmitBuf.Out++;
-                g_Machine_TransmitBuf.Out %= g_Machine_TransmitBuf.Size;
-                g_Machine_TransmitBuf.Count--;  
+                g_Machine_TransmitBuf.Count -=(s_GPRS_CB.send_len+3);  
                 DEBUG("[GPRS] SEND OK\r\n");
             }
             break;
@@ -1059,20 +1062,30 @@ void GPRS_Loop_Process(void)
             break;
         }
         case GPRSState_QISEND_Req:
-        {
-            sprintf(send_buf,"AT+QISEND=%d,%d\r\n",g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Mux,g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Len);
+        {   
+            //s_GPRS_CB.send_len=(((uint16_t)g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out++])<<8)|g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out+2];
+            s_GPRS_CB.send_out=g_Machine_TransmitBuf.Out;
+            g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out++];
+            g_Machine_TransmitBuf.Out %=g_Machine_TransmitBuf.Size;
+            s_GPRS_CB.send_lenhigh8=g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out++];
+            g_Machine_TransmitBuf.Out %=g_Machine_TransmitBuf.Size;
+            s_GPRS_CB.send_lenlow8=g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out++];
+            g_Machine_TransmitBuf.Out %=g_Machine_TransmitBuf.Size;
+            s_GPRS_CB.send_len=(uint16_t)s_GPRS_CB.send_lenhigh8<<8| s_GPRS_CB.send_lenlow8;
+            sprintf(send_buf,"AT+QISEND=%d,%d\r\n",g_Machine_TransmitBuf.pData[s_GPRS_CB.send_out],s_GPRS_CB.send_len);
             GPRS_WriteBytes((uint8_t *)send_buf,strlen(send_buf));
             s_GPRS_CB.ticks = OS_Clock_GetSystemClock();
             s_GPRS_CB.state = GPRSState_QISEND_Resp;
             s_GPRS_CB.retry_count++;
-            DEBUG("[GPRS] CMD:%s\r\n",send_buf);
+            //DEBUG("[GPRS] CMD:%s\r\n",send_buf);
             break;
         }
         case GPRSState_QISEND_Resp:
         {
             if (OS_Clock_GetSystemClock() - s_GPRS_CB.ticks > GPRS_TIMEOUT_TICKS)
             {   
-                s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Mux].LinkState=GPRSLinkState_Lost;
+                g_Machine_TransmitBuf.Count -=(s_GPRS_CB.send_len+3);  
+                s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.pData[s_GPRS_CB.send_out]].LinkState=GPRSLinkState_Lost;
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.extra_request=GPRS_None_Req;
                 s_GPRS_CB.retry_count=0;
@@ -1081,10 +1094,16 @@ void GPRS_Loop_Process(void)
         }
         case GPRSState_QISEND_Data_Req:
         {
-            //sprintf(send_buf,"%s",g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Buf);//
-            memcpy(send_buf,g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Buf,g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Len+1);
+            //sprintf(send_buf,"%s",g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Buf);
+            //memcpy(send_buf,&g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out+3],s_GPRS_CB.send_len);
+            uint16_t i;
+            for(i=0;i<s_GPRS_CB.send_len;i++)
+            {
+                send_buf[i]=g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out++];
+                g_Machine_TransmitBuf.Out %=g_Machine_TransmitBuf.Size;
+            }
             s_GPRS_CB.state = GPRSState_QISEND_Data_Resp;
-            GPRS_WriteBytes((uint8_t *)send_buf,g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Len);
+            GPRS_WriteBytes((uint8_t *)send_buf,s_GPRS_CB.send_len);
             s_GPRS_CB.ticks = OS_Clock_GetSystemClock();
             s_GPRS_CB.retry_count++;
             DEBUG("[GPRS] CMD:%s\r\n",send_buf);
@@ -1095,7 +1114,8 @@ void GPRS_Loop_Process(void)
             if (OS_Clock_GetSystemClock() - s_GPRS_CB.ticks > 10000)
             {
                 DEBUG("[GPRS] CMD SendData timeout\r\n");
-                s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.Out].Mux].LinkState=GPRSLinkState_Lost;
+                g_Machine_TransmitBuf.Count -=(s_GPRS_CB.send_len+3);  
+                s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out]].LinkState=GPRSLinkState_Lost;
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.extra_request=GPRS_None_Req;
                 s_GPRS_CB.retry_count=0;
@@ -1159,7 +1179,6 @@ void GPRS_ACK_Process(void)
                 Server_receiveDataInfo.Count++;
                 Server_receiveDataInfo.In %=Server_receiveDataInfo.Size;
                 UserTask_Send_Event(USER_TASK_LOOP_EVENT);
-                g_Rec_checkcount++;
             }
         }
         g_AT_ReceiveBuf.Count--;
@@ -1189,8 +1208,11 @@ void Gprs_UpdateRssi()   //更新信号强度
     if(g_SystemInfo.Gprs_Operatingmode==Gprs_Packagemode&&g_SystemInfo.Gprs_HeartbeatEN==1)
     {
         if(s_GPRS_CB.Gprs_Init_Status==Gprs_Init_Complete)
-        {
-            s_GPRS_CB.rssi_count++;
+        {   
+            if(s_GPRS_CB.rssi_count==0)
+            {
+                s_GPRS_CB.rssi_count++;
+            }
         }
     }
 }

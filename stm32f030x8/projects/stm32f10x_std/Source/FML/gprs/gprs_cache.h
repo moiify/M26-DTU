@@ -78,9 +78,9 @@ typedef struct
 
 typedef struct 
 { 
-  socket_buf_t Buf[2];
-  uint8_t In;	
-  uint8_t Out;
+  uint8_t *pData;
+  uint16_t In;	
+  uint16_t Out;
   uint16_t Count;
   uint16_t Size;  
 }Socket_Cache_t;  //USART1·¢ËÍ ·şÎñÆ÷  
@@ -110,9 +110,6 @@ typedef struct
  * @defgroup      gprs_cache_Exported_Variables 
  * @{  
  */
-extern uint8_t g_Trans_checkcount;
-extern uint8_t g_Rec_checkcount;
-
   /**
  * @}
  */

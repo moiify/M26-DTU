@@ -182,17 +182,30 @@ void Gprs_GetSocketAndLength(void)
 }
 void GPRS_SendData(uint8_t * pbuf,uint16_t length,uint8_t mux) // 发送数据接口
 {	
-    if( g_Machine_TransmitBuf.Count< g_Machine_TransmitBuf.Size
+    uint16_t i;
+    if( g_Machine_TransmitBuf.Count+length+3< g_Machine_TransmitBuf.Size
       &&g_SystemInfo.Socket_ListInfo[mux].ServerEN==SERVER_ENABLE)
     {   
-        *(pbuf+length)=0;
-        memcpy(g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Buf,(const char *)pbuf,length+1);
-        g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Len=length;
-        g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Mux=mux;
-        g_Machine_TransmitBuf.In++;
-        g_Machine_TransmitBuf.In %= sizeof (g_Machine_TransmitBuf.Buf)/sizeof(g_Machine_TransmitBuf.Buf[0]);
-        g_Machine_TransmitBuf.Count++;
-        DEBUG("[GPRS] TransmitQueue Count:%d\r\n",g_Machine_TransmitBuf.Count);
+//        *(pbuf+length)=0;
+//        memcpy(g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Buf,(const char *)pbuf,length+1);
+//        g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Len=length;
+//        g_Machine_TransmitBuf.Buf[g_Machine_TransmitBuf.In].Mux=mux;
+//        g_Machine_TransmitBuf.In++;
+//        g_Machine_TransmitBuf.In %= sizeof (g_Machine_TransmitBuf.Buf)/sizeof(g_Machine_TransmitBuf.Buf[0]);
+//        g_Machine_TransmitBuf.Count++;
+//        DEBUG("[GPRS] TransmitQueue Count:%d\r\n",g_Machine_TransmitBuf.Count);
+       g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.In++]=mux;
+       g_Machine_TransmitBuf.In %= g_Machine_TransmitBuf.Size;
+       g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.In++]=length>>8;
+       g_Machine_TransmitBuf.In %= g_Machine_TransmitBuf.Size;
+       g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.In++]=length&0xff;
+       g_Machine_TransmitBuf.In %= g_Machine_TransmitBuf.Size;
+       for(i=0;i<length;i++)
+       {
+          g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.In++]=*pbuf+i;
+          g_Machine_TransmitBuf.In %= g_Machine_TransmitBuf.Size;
+       } 
+       g_Machine_TransmitBuf.Count+=length+3; 
     }
 }
 

@@ -32,6 +32,7 @@
 #define BSP_USART2      1
      
 #define BSP_USART2_RXBUF_SIZE 1024
+#define M26TRANSBUF_SIZE 1024
 /**
  * @}
  */

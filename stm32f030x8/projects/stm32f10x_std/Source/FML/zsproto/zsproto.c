@@ -153,7 +153,6 @@ static uint16_t zsproto_flow_decode(uint8_t channel)
                         remain_len -= len;
                         remove_count += len;
                         offset += len;
-                        break;
                     }
                     else
                     {
