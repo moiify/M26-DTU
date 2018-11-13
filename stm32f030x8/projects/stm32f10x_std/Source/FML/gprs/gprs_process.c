@@ -1084,6 +1084,12 @@ void GPRS_Loop_Process(void)
         {
             if (OS_Clock_GetSystemClock() - s_GPRS_CB.ticks > GPRS_TIMEOUT_TICKS)
             {   
+                uint16_t i;
+                for(i=0;i<s_GPRS_CB.send_len;i++)
+                {
+                    g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out++];
+                    g_Machine_TransmitBuf.Out %=g_Machine_TransmitBuf.Size;
+                }
                 g_Machine_TransmitBuf.Count -=(s_GPRS_CB.send_len+3);  
                 s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.pData[s_GPRS_CB.send_out]].LinkState=GPRSLinkState_Lost;
                 s_GPRS_CB.state = GPRSState_Idle;
@@ -1106,7 +1112,7 @@ void GPRS_Loop_Process(void)
             GPRS_WriteBytes((uint8_t *)send_buf,s_GPRS_CB.send_len);
             s_GPRS_CB.ticks = OS_Clock_GetSystemClock();
             s_GPRS_CB.retry_count++;
-            DEBUG("[GPRS] CMD:%s\r\n",send_buf);
+            //DEBUG("[GPRS] CMD:%s\r\n",send_buf);
             break;
         }
         case GPRSState_QISEND_Data_Resp:
