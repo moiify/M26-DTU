@@ -53,6 +53,9 @@
 typedef struct
 {
    uint32_t Baudrate;
+   uint32_t DataBits;
+   uint32_t StopBits;
+   uint32_t Parity;
 }GPRS_USARTParams_t;
 
 
@@ -73,7 +76,7 @@ extern uint8_t g_USART1_ReceiveCompleteFlag;
  * @defgroup      stm32f0xx_bsp_usart_Exported_Functions 
  * @{  
  */
-void     BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams);
+void     BSP_USART_Open(uint8_t BSP_USARTx);
 //void     BSP_USART_Close(uint8_t BSP_USARTx);
 
 void     BSP_USART_WriteBytes(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t length);

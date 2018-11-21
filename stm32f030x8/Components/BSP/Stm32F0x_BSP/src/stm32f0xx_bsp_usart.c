@@ -2,8 +2,13 @@
 #include "gprs_cache.h"
 #include "user_task.h"
 //static void Uart_DMA_Rx_Data(void);
+
+static GPRS_USARTParams_t s_GPRS_USARTParams;
+
 static uint16_t BSP_USART_ReadBytesDMA(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t count);
-void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
+static void bsp_USART_ParameterRedistribution(uint8_t BSP_USARTx);
+
+void BSP_USART_Open(uint8_t BSP_USARTx)
 {
     
     USART_InitTypeDef usart_initstructure;
@@ -14,14 +19,16 @@ void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
     //        baudrate = GPRSparams->Baudrate;
     //    }
     if (BSP_USARTx == BSP_USART1)
-    {     
+    {   
+        
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
         RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
         RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
         
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_1); 
-        GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);    
+        GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);   
         
+        USART_DeInit(USART1);
         gpio_initstructure.GPIO_Pin=GPIO_Pin_9;
         gpio_initstructure.GPIO_Mode=GPIO_Mode_AF;
         gpio_initstructure.GPIO_Speed=GPIO_Speed_50MHz;
@@ -41,12 +48,12 @@ void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
         nvic_initstructure.NVIC_IRQChannelCmd = ENABLE;
         NVIC_Init(&nvic_initstructure);
         
-        usart_initstructure.USART_BaudRate=115200;        
-        usart_initstructure.USART_WordLength = USART_WordLength_8b,
-        usart_initstructure.USART_StopBits = USART_StopBits_1,
-        usart_initstructure.USART_Parity = USART_Parity_No,
-        usart_initstructure.USART_Mode = USART_Mode_Tx|USART_Mode_Rx,
-        usart_initstructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None,
+        usart_initstructure.USART_BaudRate=115200;
+        usart_initstructure.USART_Parity=USART_Parity_No;
+        usart_initstructure.USART_StopBits=USART_StopBits_1;
+        usart_initstructure.USART_WordLength=USART_WordLength_8b;
+        usart_initstructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None;
+        usart_initstructure.USART_Mode=USART_Mode_Rx|USART_Mode_Tx;
         USART_Init(USART1,&usart_initstructure);
         USART_ITConfig(USART1,USART_IT_RXNE, ENABLE);
         USART_Cmd(USART1, ENABLE);
@@ -59,7 +66,8 @@ void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
         
     }
     if (BSP_USARTx == BSP_USART2)
-    {
+    {   
+        bsp_USART_ParameterRedistribution(BSP_USART2);
         RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
         RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
@@ -75,12 +83,13 @@ void BSP_USART_Open(uint8_t BSP_USARTx, GPRS_USARTParams_t *GPRSparams)
         GPIO_Init(GPIOA, &gpio_initstructure);
         
         USART_DeInit( USART2);
-        usart_initstructure.USART_BaudRate=115200;
+        usart_initstructure.USART_BaudRate=s_GPRS_USARTParams.Baudrate;     
+        usart_initstructure.USART_WordLength = (uint32_t)s_GPRS_USARTParams.DataBits,
+        usart_initstructure.USART_StopBits = (uint32_t)s_GPRS_USARTParams.StopBits,
+        usart_initstructure.USART_Parity = (uint32_t)s_GPRS_USARTParams.Parity,
+        usart_initstructure.USART_Mode = USART_Mode_Tx|USART_Mode_Rx,
         usart_initstructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None;
         usart_initstructure.USART_Mode=USART_Mode_Rx|USART_Mode_Tx;
-        usart_initstructure.USART_Parity=USART_Parity_No;
-        usart_initstructure.USART_StopBits=USART_StopBits_1;
-        usart_initstructure.USART_WordLength=USART_WordLength_8b;
         USART_Init( USART2, &usart_initstructure);   
         
         nvic_initstructure.NVIC_IRQChannel=USART2_IRQn;
@@ -130,7 +139,80 @@ void BSP_USART_IRQHandler(uint8_t BSP_USARTx)
     }
 }
 
-
+static void bsp_USART_ParameterRedistribution(uint8_t BSP_USARTx)
+{
+    if(BSP_USARTx==BSP_USART2)
+    {   
+        s_GPRS_USARTParams.Baudrate=g_SystemInfo.Gprs_SerialPort_BaudRate;
+        switch(g_SystemInfo.Gprs_SerialPort_Parity)
+        {
+            case 0:
+            {
+                s_GPRS_USARTParams.Parity=USART_Parity_No;
+                break;
+            }
+            case 1:
+            {
+                s_GPRS_USARTParams.Parity=USART_Parity_Odd;
+                break;
+            }
+            case 2:
+            {
+                s_GPRS_USARTParams.Parity=USART_Parity_Even;
+                break;
+            }
+            default:
+            {
+            }
+            break;
+        }
+        switch(g_SystemInfo.Gprs_SerialPort_DataBits)
+        {
+            case 0:
+            {
+                s_GPRS_USARTParams.DataBits=USART_WordLength_7b;
+                break;
+            }
+            case 1:
+            {
+                s_GPRS_USARTParams.DataBits=USART_WordLength_8b;
+                break;
+            }
+            case 2:
+            {
+                s_GPRS_USARTParams.DataBits=USART_WordLength_9b;
+                break;
+            }
+            default:
+            {
+                 s_GPRS_USARTParams.DataBits=USART_WordLength_8b;
+            }
+            break;
+        }
+        switch(g_SystemInfo.Gprs_SerialPort_StopBits)
+        {
+            case 0:
+            {
+                s_GPRS_USARTParams.StopBits=USART_StopBits_1;
+                break;
+            }
+            case 1:
+            {
+                s_GPRS_USARTParams.StopBits=USART_StopBits_1_5;
+                break;
+            }
+            case 2:
+            {
+                s_GPRS_USARTParams.StopBits=USART_StopBits_2;
+                break;
+            }
+            default:
+            {
+            }
+            break;
+        }
+    }
+}
 //static void Uart_DMA_Rx_Data(void)
 //{
 //    uint16_t len = 0;

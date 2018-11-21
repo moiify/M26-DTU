@@ -136,7 +136,11 @@ int16_t SystemParam_Init(void)
             g_SystemInfo.Socket_ListInfo[1].ServerConnectway=IP_Connect;
             g_SystemInfo.Gprs_Operatingmode=Gprs_Packagemode;     
             g_SystemInfo.Gprs_Boundrate=115200;
-            g_SystemInfo.Gprs_HeartbeatEN=0;
+			g_SystemInfo.Gprs_SerialPort_BaudRate=115200;
+			g_SystemInfo.Gprs_SerialPort_DataBits=3;
+			g_SystemInfo.Gprs_SerialPort_Parity=0;
+			g_SystemInfo.Gprs_SerialPort_StopBits=0;
+            g_SystemInfo.Gprs_RssiReportEN=1;
             SystemParam_Save();
             return -1;
         }

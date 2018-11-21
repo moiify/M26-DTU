@@ -104,19 +104,20 @@
  * @{  
  */
 void Board_Init()
-{
+{   
+    CLog_Init(CLogAppender_RTT);
     SystemInit();
 }
 
 void BSP_Init(void)
 {   
-    CLog_Init(CLogAppender_RTT);
+
     BSP_LED_Init(); 
 //    GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_SET);   //上电 
 //    GPIO_WriteBit(GPIOA,GPIO_Pin_11,Bit_SET);  //开机
     BSP_Timer_Init(); 
-    BSP_USART_Open(BSP_USART1, NULL);
-    BSP_USART_Open(BSP_USART2, NULL);
+    BSP_USART_Open(BSP_USART1);
+    BSP_USART_Open(BSP_USART2);
 }
 /**
  * @}

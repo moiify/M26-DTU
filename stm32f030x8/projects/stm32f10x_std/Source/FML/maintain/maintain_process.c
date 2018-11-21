@@ -107,6 +107,84 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length);
  * @brief         
  * @{  
  */
+
+
+void Maintain_Trans_Process(uint8_t *pBuf,uint16_t length)
+{
+    uint8_t fcs = 0;
+    uint8_t data;
+
+    /* 数据校验 */
+    for (int i=0; i<length-3;i++)
+    {
+        data = pBuf[i+1];
+        fcs += data;
+    }
+
+    if (fcs != pBuf[length-2])
+    {
+//        DEBUG("[MT] packet fcs error\r\n");
+//        return;
+    }
+    
+//    DEBUG("[MT] packcount:%d\r\n",packcon);
+    maintain_apd_process(&pBuf[ZSPROTO_APD_DATA_OFFSET], length - 5);
+}
+
+static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
+{
+    uint8_t *p = pBuf;
+    ZSProtoAPDU_P2P_t *apd = (ZSProtoAPDU_P2P_t*)p;
+    
+    
+    /* 需要应答 */
+    if (apd->FCF.bitfield.AckReq == 1)
+    {
+        
+    }
+
+    if (apd->FCF.bitfield.FrameType == ZSPROTO_FRAMETYPE_ACK)
+    {
+    }
+	else if (apd->FCF.bitfield.FrameType == ZSPROTO_FRAMETYPE_DATA)
+	{
+		// DEBUG("[MT] zsproto cmd=%d\r\n", apd->Cmd);
+		switch (apd->Cmd)
+		{
+			case ZSProto_SocketPcakSend:   //payload转成GPRS发走
+				{
+					ZSProto_SocketPcakSend_Process(pBuf, length - 4);
+					DEBUG("[GPRS] SendDataReq_Process2\r\n");
+					break;
+				}
+			case ZSCmd_ConfigSetReq:      //配置请求
+				{
+					ZSProto_ConfigSetReq_Process(pBuf, length);
+					DEBUG("[GPRS] ConfigSetReq_Process\r\n");
+					break;
+				}
+			case ZSCmd_ConfigGetReq:  	  //配置获取
+				{
+					ZSProto_ConfigGetReq_Process();
+					DEBUG("[GPRS] ConfigGetReq_Process\r\n");
+					break;
+				}
+			case ZSProto_RssiNotify:	  //信号强度请求
+				{	
+                    ZSProto_RssiNotify_Process();
+					DEBUG("[GPRS] RssiNotify_Process\r\n");
+					break;
+				}
+			case ZSProto_LinkStateNotify: //连接状态请求
+				{	
+                    ZSProto_LinkStateNotify_Process();
+					DEBUG("[GPRS] LinkStateNotify_Process\r\n");
+					break;
+				}
+		}
+	}
+}
+
 void Maintain_Trans_Check(void)
 {
     uint8_t buf[200];
@@ -145,75 +223,6 @@ void Maintain_Trans_Check(void)
                 ZSProto_TransparentData(recbuf,len);
             }    
         }
-    }
-    
-}
-
-void Maintain_Trans_Process(uint8_t *pBuf,uint16_t length)
-{
-    uint8_t fcs = 0;
-    uint8_t data;
-
-    /* 数据校验 */
-    for (int i=0; i<length-3;i++)
-    {
-        data = pBuf[i+1];
-        fcs += data;
-    }
-
-    if (fcs != pBuf[length-2])
-    {
-//        DEBUG("[MT] packet fcs error\r\n");
-//        return;
-    }
-    
-//    DEBUG("[MT] packcount:%d\r\n",packcon);
-    maintain_apd_process(&pBuf[ZSPROTO_APD_DATA_OFFSET], length - 5);
-}
-
-static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
-{
-    uint8_t *p = pBuf;
-    ZSProtoAPDU_P2P_t *apd = (ZSProtoAPDU_P2P_t*)p;
-    
-    
-    /* 需要应答 */
-    if (apd->FCF.bitfield.AckReq == 1)
-    {
-         switch (apd->Cmd)
-            {
-                case ZSCmd_ConfigGetReq:  //测试用收发数据的命令
-                {   
-                    ZSProto_ConfigGetReq_Process();
-                    //DEBUG("[GPRS] ConfigGetReq_Process\r\n");
-                    break;
-                }
-            }
-        
-    }
-
-    if (apd->FCF.bitfield.FrameType == ZSPROTO_FRAMETYPE_ACK)
-    {
-    }
-    else if (apd->FCF.bitfield.FrameType == ZSPROTO_FRAMETYPE_DATA)
-    {
-           // DEBUG("[MT] zsproto cmd=%d\r\n", apd->Cmd);
-            switch (apd->Cmd)
-            {
-                case ZSProto_SocketPcakReq:  //测试用收发数据的命令
-                {   
-                    DEBUG("[GPRS] Process1\r\n");
-                    ZSProto_SocketPcakReq_Process(pBuf,length-4);
-                    DEBUG("[GPRS] SendDataReq_Process2\r\n");
-                    break;
-                }
-                case ZSCmd_ConfigSetReq:
-                {
-                    ZSProto_ConfigSetReq_Process(pBuf,length);
-                    DEBUG("[GPRS] ConfigSetReq_Process\r\n");
-                    break;
-                }
-            }
     }
 }
 

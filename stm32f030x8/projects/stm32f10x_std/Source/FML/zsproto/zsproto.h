@@ -174,11 +174,12 @@ typedef enum
     ZSCmd_ConfigSetReq          = 130,
     ZSCmd_ConfigSetResp         = 131,
     
-    ZSProto_SocketPcakReq       = 132, //网络数据包发送请求
-    ZSProto_SocketPcakResp      = 133, //网络数据包发送应答
+    ZSProto_SocketPcakSend      = 132, //网络数据包发送
+    ZSProto_SocketPcakReceive   = 133, //网络数据包接收
     
     
     ZSProto_RssiNotify          = 134, 
+    ZSProto_LinkStateNotify     = 135,
     
 }ZSCmd_e;
 

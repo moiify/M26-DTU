@@ -84,9 +84,15 @@ typedef struct
 
     uint32_t                     Gprs_Boundrate;
     
-    Gprs_OperatingMode           Gprs_Operatingmode;
+    Gprs_OperatingMode           Gprs_Operatingmode; //0 透传 1包模式
     
-    uint8_t                      Gprs_HeartbeatEN;
+    uint32_t                     Gprs_SerialPort_BaudRate; //  9600  115200   
+    uint8_t                      Gprs_SerialPort_Parity;   // 0 无校验 1 奇 2偶    
+    uint8_t                      Gprs_SerialPort_DataBits; // 0：5位   1:6  2:7 3:8
+    uint8_t                      Gprs_SerialPort_StopBits; // 0:1 位  1:1.5位  2:2
+
+    uint8_t                      Gprs_RssiReportEN;
+    uint8_t                      Gprs_LinkstateReportEN;
     uint16_t                     crc;
 }SystemInfo_t;
 #pragma pack()

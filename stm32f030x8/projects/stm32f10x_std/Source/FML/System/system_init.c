@@ -106,11 +106,11 @@
 
 void System_Load()
 {
-    BSP_Init();
-    
-    /* init param module,read and apply params */
-    
+
     SystemInfo_Init();
+    
+    BSP_Init();
+
 }
 /**
  * @}

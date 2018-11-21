@@ -164,6 +164,8 @@
 					</Folder>
 					<Folder Name="src">
 						<F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_dma.c"/>
+						<F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_flash.c"/>
+						<F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_flash.h"/>
 						<F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_gpio.c"/>
 						<F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_nvic.c"/>
 						<F N="../../../Components/BSP/Stm32F0x_BSP/src/stm32f0xx_bsp_systick.c"/>
@@ -415,16 +417,24 @@
 					<F N="../Source/FML/System/system_param.h"/>
 				</Folder>
 				<Folder Name="zsproto">
+					<Folder Name="zsproto_p2p">
+						<F N="../Source/FML/zsproto/zsproto_p2p/zsproto_p2p.c"/>
+						<F N="../Source/FML/zsproto/zsproto_p2p/zsproto_p2p.h"/>
+					</Folder>
+					<Folder Name="zsproto_tcpip">
+						<F N="../Source/FML/zsproto/zsproto_tcpip/zsproto_tcpip.c"/>
+						<F N="../Source/FML/zsproto/zsproto_tcpip/zsproto_tcpip.h"/>
+					</Folder>
+					<Folder Name="zsproto_uart">
+						<F N="../Source/FML/zsproto/zsproto_uart/zsproto_uart.c"/>
+						<F N="../Source/FML/zsproto/zsproto_uart/zsproto_uart.h"/>
+					</Folder>
 					<F N="../Source/FML/zsproto/zsproto.c"/>
 					<F N="../Source/FML/zsproto/zsproto.h"/>
-					<F N="../Source/FML/zsproto/zsproto_ack_make.c"/>
-					<F N="../Source/FML/zsproto/zsproto_ack_make.h"/>
-					<F N="../Source/FML/zsproto/zsproto_config_make.c"/>
-					<F N="../Source/FML/zsproto/zsproto_config_make.h"/>
-					<F N="../Source/FML/zsproto/zsproto_config_process.c"/>
-					<F N="../Source/FML/zsproto/zsproto_config_process.h"/>
-					<F N="../Source/FML/zsproto/zsproto_uart.c"/>
-					<F N="../Source/FML/zsproto/zsproto_uart.h"/>
+					<F N="../Source/FML/zsproto/zsproto_package_process.c"/>
+					<F N="../Source/FML/zsproto/zsproto_package_process.h"/>
+					<F N="../Source/FML/zsproto/zsproto_penetrate_process.c"/>
+					<F N="../Source/FML/zsproto/zsproto_penetrate_process.h"/>
 				</Folder>
 			</Folder>
 		</Folder>

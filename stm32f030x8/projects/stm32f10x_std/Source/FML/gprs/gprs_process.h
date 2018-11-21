@@ -145,12 +145,14 @@ typedef enum
  * @defgroup      gprs_process_Exported_Functions 
  * @{  
  */
-void GPRS_Loop_Process(void);  //GPRS任务轮询，用来联网和发送信息，向M26发送AT指令
-void GPRS_ACK_Process(void);   //AT命令解析。
-void Gprs_UpdateRssi(void);    //更新CSQ请求次数
-void Gprs_Cmd_QIACK(void);     //查询未应答的数量
-void Gprs_Reset_Moudle(void);  //用来重启模块
-void Gprs_Add_Sockets(Socket_Info_t scoket); //用户用来添加Socket的接口。传入一个结构体。
+void    GPRS_Loop_Process(void);   //GPRS任务轮询，用来联网和发送信息，向M26发送AT指令
+void    GPRS_ACK_Process(void);    //AT命令解析
+void    Gprs_UpdateRssi(void);     //更新CSQ请求次数
+void    Gprs_Cmd_QIACK(void);      //查询未应答的数量
+void    Gprs_Reset_Moudle(void);   //用来重启模块
+void    Gprs_Add_Sockets(Socket_Info_t scoket); //用户用来添加Socket的接口。传入一个结构体。
+uint8_t Gprs_GetLinkState(void);   //获取网络连接状态
+uint8_t Gprs_GetRssiValue(void);   //获取模块信号强度
 /**
  * @}
  */

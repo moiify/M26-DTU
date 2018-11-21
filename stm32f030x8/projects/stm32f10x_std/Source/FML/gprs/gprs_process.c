@@ -21,7 +21,6 @@
 #include "stm32_bsp_conf.h"
 #include "osal.h"
 #include "clog.h"
-#include "cshell.h"
 #include "zsproto_package_process.h"
 #include "gprs_process.h"
 /**
@@ -240,7 +239,9 @@ static void gprs_update_socket(void);
 static void gprs_msg_queue_clear(void);
 static void gprs_socket_deinit(void);
 static void gprs_attribute_deinit(void);
-static uint16_t getnoackLen(void);
+static uint16_t gprs_getnoackLen(void);
+static void gprs_linkstate_report(void);
+
 /**
 * @}
 */
@@ -431,7 +432,7 @@ static void gprs_check_process(void) //检测回复
                 s_GPRS_CB.rssi_count--;
                 s_GPRS_CB.extra_request=GPRS_None_Req; 
                 s_GPRS_CB.state = GPRSState_Idle;
-                ZSProto_Make_RssiResp(s_GPRS_CB.rssi);
+                ZSProto_Make_RssiNotify(s_GPRS_CB.rssi);
                 DEBUG("[GPRS] Rssi:%d\r\n",s_GPRS_CB.rssi);
                 GprsTask_Send_Event(GPRS_TASK_LOOP_EVENT);
             }
@@ -515,6 +516,7 @@ static void gprs_check_process(void) //检测回复
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.socketline_state=SocketState_Idle;
                 s_GPRS_CB.Socket_Info_t[s_GPRS_CB.cur_socket_info.Mux].LinkState=GPRSLinkState_Establish;
+				gprs_linkstate_report();
                 DEBUG("[GPRS] Socket:%d Connect OK\r\n",s_GPRS_CB.cur_socket_info.Mux);
                 GprsTask_Send_Event(GPRS_TASK_LOOP_EVENT);
             }
@@ -531,6 +533,7 @@ static void gprs_check_process(void) //检测回复
                 s_GPRS_CB.retry_count = 0;
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.Socket_Info_t[s_GPRS_CB.cur_socket_info.Mux].LinkState=GPRSLinkState_Lost;
+				gprs_linkstate_report();
                 DEBUG("[GPRS] Socket:%d Close OK\r\n",s_GPRS_CB.cur_socket_info.Mux);
                 GprsTask_Send_Event(GPRS_TASK_LOOP_EVENT);
             }
@@ -564,10 +567,11 @@ static void gprs_check_process(void) //检测回复
             {
                 s_GPRS_CB.retry_count = 0;
                 /*查找无ACK长度*/
-                s_GPRS_CB.noack_len=getnoackLen();
+                s_GPRS_CB.noack_len=gprs_getnoackLen();
                 if(s_GPRS_CB.noack_len>GPRS_CMD_QISACK_NO_ACK_MAX)
                 {
                   s_GPRS_CB.Socket_Info_t[s_GPRS_CB.CurQISACKSocketNumber].LinkState=GPRSLinkState_Lost;
+				  gprs_linkstate_report();
                 }
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.extra_request=GPRS_None_Req;
@@ -608,7 +612,7 @@ static void gprs_attribute_deinit(void) // 模块状态复位
     s_GPRS_CB.Gprs_Init_Status=Gprs_Init_NotComplete; 
     s_GPRS_CB.socketline_state=SocketState_Busy;
 }
-static uint16_t getnoackLen()
+static uint16_t gprs_getnoackLen()
 {
     uint8_t *p;
     uint8_t i,j=0;
@@ -637,6 +641,14 @@ static uint16_t getnoackLen()
     len=atoi((const char *)p);
     return len;
 }
+static void gprs_linkstate_report(void)
+{
+	if (g_SystemInfo.Gprs_LinkstateReportEN==1)
+	{
+		ZSProto_Make_LinkStateNotify(Gprs_GetLinkState());
+	}
+}
+
 void GPRS_Loop_Process(void)  
 {
     char send_buf[512];
@@ -646,6 +658,7 @@ void GPRS_Loop_Process(void)
         {
             gprs_msg_queue_clear();
             gprs_socket_deinit();
+			gprs_linkstate_report();
             gprs_attribute_deinit();
             s_GPRS_CB.state = GPRSState_PowerOff_Resp;
             s_GPRS_CB.ticks = OS_Clock_GetSystemClock();
@@ -1092,6 +1105,7 @@ void GPRS_Loop_Process(void)
                 }
                 g_Machine_TransmitBuf.Count -=(s_GPRS_CB.send_len+3);  
                 s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.pData[s_GPRS_CB.send_out]].LinkState=GPRSLinkState_Lost;
+				gprs_linkstate_report();
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.extra_request=GPRS_None_Req;
                 s_GPRS_CB.retry_count=0;
@@ -1122,6 +1136,7 @@ void GPRS_Loop_Process(void)
                 DEBUG("[GPRS] CMD SendData timeout\r\n");
                 g_Machine_TransmitBuf.Count -=(s_GPRS_CB.send_len+3);  
                 s_GPRS_CB.Socket_Info_t[g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.Out]].LinkState=GPRSLinkState_Lost;
+				gprs_linkstate_report();
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.extra_request=GPRS_None_Req;
                 s_GPRS_CB.retry_count=0;
@@ -1173,6 +1188,7 @@ void GPRS_ACK_Process(void)
         {   
             muxnum=g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf[2]-48;
             s_GPRS_CB.Socket_Info_t[muxnum].LinkState=GPRSLinkState_Lost;
+			gprs_linkstate_report();
             DEBUG("[GPRS] Socket:%d Closed\r\n",muxnum);
         }
         if( strstr((char *)g_AT_ReceiveBuf.Buf[g_AT_ReceiveBuf.Out].Buf,"RECEIVE")!=NULL)
@@ -1211,7 +1227,7 @@ void Gprs_Add_Sockets(Socket_Info_t scoket)  //添加Sokcet的接口
 }
 void Gprs_UpdateRssi()   //更新信号强度
 {   
-    if(g_SystemInfo.Gprs_Operatingmode==Gprs_Packagemode&&g_SystemInfo.Gprs_HeartbeatEN==1)
+    if(g_SystemInfo.Gprs_Operatingmode==Gprs_Packagemode&&g_SystemInfo.Gprs_RssiReportEN==1)
     {
         if(s_GPRS_CB.Gprs_Init_Status==Gprs_Init_Complete)
         {   
@@ -1243,4 +1259,28 @@ void Gprs_Reset_Moudle() //重启模块
 {
    s_GPRS_CB.state= GPRSState_PowerOff_Req;
    s_GPRS_CB.scoket_count=0;
+}
+uint8_t Gprs_GetLinkState() //获取网络连接状态
+{
+	if (s_GPRS_CB.Socket_Info_t[0].LinkState!=GPRSLinkState_Establish&&s_GPRS_CB.Socket_Info_t[1].LinkState!=GPRSLinkState_Establish)
+	{
+		return 0x00;
+	}
+	else if (s_GPRS_CB.Socket_Info_t[0].LinkState==GPRSLinkState_Establish&&s_GPRS_CB.Socket_Info_t[1].LinkState!=GPRSLinkState_Establish)
+	{
+		return 0x10;
+	}
+	else if (s_GPRS_CB.Socket_Info_t[0].LinkState!=GPRSLinkState_Establish&&s_GPRS_CB.Socket_Info_t[1].LinkState==GPRSLinkState_Establish)
+	{
+		return 0x01;
+	}
+	else //if(s_GPRS_CB.Socket_Info_t[0].LinkState==GPRSLinkState_Establish&&s_GPRS_CB.Socket_Info_t[1].LinkState==GPRSLinkState_Establish)
+	{
+		return 0x11;
+	}
+}
+
+uint8_t Gprs_GetRssiValue()//获取信号强度
+{
+   return s_GPRS_CB.rssi;
 }
