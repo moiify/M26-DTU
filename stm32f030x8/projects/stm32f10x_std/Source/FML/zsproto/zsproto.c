@@ -228,29 +228,25 @@ uint16_t ZSProto_FlowGetCacheIdleLength(uint8_t channel)
 uint8_t ZSProto_IsPackage(uint8_t channel,uint8_t * pBuf,uint16_t length)
 {
     uint16_t len = 0;
-    uint8_t cmd;
-    cmd=*(pBuf+6);
-    if(cmd==ZSCmd_ConfigSetReq)
-    {   
-        if (pBuf[ZSPROTO_AHR_SIGN_OFFSET] == ZSPROTO_AHR_SIGN)
+    if (pBuf[ZSPROTO_AHR_SIGN_OFFSET] == ZSPROTO_AHR_SIGN)
+    {
+        DEBUG("[package]->AHR_SIGH->PASS\r\n");
+        len = (*(pBuf + ZSPROTO_AHR_LENGTH_OFFSET)) + *(pBuf + ZSPROTO_AHR_LENGTH_OFFSET+1)*256;
+        if (len <= ZSPROTO_BUFFER_SIZE_MAX)
         {
-            DEBUG("[package]->AHR_SIGH->PASS\r\n");
-            len = (*(pBuf + ZSPROTO_AHR_LENGTH_OFFSET)) + *(pBuf + ZSPROTO_AHR_LENGTH_OFFSET+1)*256;
-            if (len <= ZSPROTO_BUFFER_SIZE_MAX)
+            DEBUG("[package]->LEN_Check->PASS\r\n");
+            if (pBuf[ZSPROTO_AHR_SIGN_OFFSET + len - 1] == ZSPROTO_AFR_SIGN)
             {
-                DEBUG("[package]->LEN_Check->PASS\r\n");
-                if (pBuf[ZSPROTO_AHR_SIGN_OFFSET + len - 1] == ZSPROTO_AFR_SIGN)
+                DEBUG("[package]->AFR_SIGN->PASS\r\n");
+                if (s_ZSProtoFlowCacheList[channel].recv != NULL)
                 {
-                    DEBUG("[package]->AFR_SIGN->PASS\r\n");
-                    if (s_ZSProtoFlowCacheList[channel].recv != NULL)
-                    {
-                        s_ZSProtoFlowCacheList[channel].recv(pBuf,length);
-                        return 2;
-                    }
+                    s_ZSProtoFlowCacheList[channel].recv(pBuf,length);
+                    return 2;
                 }
             }
         }
     }
+    
     return 1;
 }
 

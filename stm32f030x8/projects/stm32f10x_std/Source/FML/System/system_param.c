@@ -124,12 +124,12 @@ int16_t SystemParam_Init(void)
         {
             g_SystemInfo.Socket_ListInfo[0].ServerEN=SERVER_ENABLE;
             sprintf((char *)g_SystemInfo.Socket_ListInfo[0].ServerIp,"116.62.102.100");
-            g_SystemInfo.Socket_ListInfo[0].byte_ServerIp=0x743E6664;
+            g_SystemInfo.Socket_ListInfo[0].byte_ServerIp=0x64663E74;
             g_SystemInfo.Socket_ListInfo[0].ServerPort=14000;
             sprintf((char *)g_SystemInfo.Socket_ListInfo[0].ServerDomain,"www.njzhhb.com");
             g_SystemInfo.Socket_ListInfo[0].ServerConnectway=IP_Connect;
             sprintf((char *)g_SystemInfo.Socket_ListInfo[1].ServerIp,"103.46.128.43");
-            g_SystemInfo.Socket_ListInfo[1].byte_ServerIp=0x672E802B;
+            g_SystemInfo.Socket_ListInfo[1].byte_ServerIp=0x2B802E67;
             g_SystemInfo.Socket_ListInfo[1].ServerEN=SERVER_ENABLE;
             g_SystemInfo.Socket_ListInfo[1].ServerPort=56527;
             sprintf((char *)g_SystemInfo.Socket_ListInfo[1].ServerDomain,"www.njzhhb.com");
@@ -137,10 +137,11 @@ int16_t SystemParam_Init(void)
             g_SystemInfo.Gprs_Operatingmode=Gprs_Packagemode;     
             g_SystemInfo.Gprs_Boundrate=115200;
 			g_SystemInfo.Gprs_SerialPort_BaudRate=115200;
-			g_SystemInfo.Gprs_SerialPort_DataBits=3;
+			g_SystemInfo.Gprs_SerialPort_DataBits=1;
 			g_SystemInfo.Gprs_SerialPort_Parity=0;
 			g_SystemInfo.Gprs_SerialPort_StopBits=0;
-            g_SystemInfo.Gprs_RssiReportEN=1;
+            g_SystemInfo.Gprs_RssiReportEN=0;
+            g_SystemInfo.Gprs_LinkstateReportEN=0;
             SystemParam_Save();
             return -1;
         }

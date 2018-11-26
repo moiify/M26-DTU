@@ -185,7 +185,6 @@ static void bsp_USART_ParameterRedistribution(uint8_t BSP_USARTx)
             }
             default:
             {
-                 s_GPRS_USARTParams.DataBits=USART_WordLength_8b;
             }
             break;
         }

@@ -35,13 +35,13 @@
 #define CONFIG_TAG_SERIALPORTDATABITS			5
 #define CONFIG_TAG_SERIALPORTSTOPBITS			6
 #define CONFIG_TAG_MAINSERVERDOMAIN_ENABLE      7  
-#define CONFIG_TAG_MAINSERVERIP                 8  
-#define CONFIG_TAG_MAINSERVERPORT               9  
+#define CONFIG_TAG_MAINSERVERPORT               8      
+#define CONFIG_TAG_MAINSERVERIP                 9  
 #define CONFIG_TAG_MAINSERVERDOMAINNAME         10  // <=50
 #define CONFIG_TAG_BACKUPSERVER_ENABLE          11  
 #define CONFIG_TAG_BACKUPSERVERDOMAIN_ENABLE    12  
-#define CONFIG_TAG_BACKUPSERVERIP               13  
-#define CONFIG_TAG_BACKUPSERVERPORT             14  
+#define CONFIG_TAG_BACKUPSERVERPORT             13       
+#define CONFIG_TAG_BACKUPSERVERIP               14  
 #define CONFIG_TAG_BACKUPSERVERDOMAINNAME       15  // <=50  
 
 #define CONFIG_TAG_MAINSERVER_ENABLE            88  // ÔÝÊ±Î´ÓÃ
@@ -78,11 +78,6 @@ typedef struct
     }Value;
 }ZSProtoConfigTLV_t;
 
-typedef struct
-{
-    uint8_t     TLVCount;
-    ZSProtoTLV_t *pTLV;
-}ConfigGetRespPayload_t;
 
 typedef struct
 {
@@ -96,6 +91,12 @@ typedef struct
     uint8_t     TLVCount;
     ZSProtoTLV_t *pTLV;
 }ConfigSetRespPayload_t;
+
+typedef struct
+{
+    uint8_t     TLVCount;
+    ZSProtoTLV_t *pTLV;
+}ConfigGetRespPayload_t;
 
 typedef struct
 {

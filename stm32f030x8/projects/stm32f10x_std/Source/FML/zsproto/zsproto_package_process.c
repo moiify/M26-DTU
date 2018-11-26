@@ -159,7 +159,7 @@ uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;      
     //网络状态反馈
     tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = DATA_TAG_RSSIFEEDBACK;
+    tlv->Tag = DATA_TAG_LINKSTATEFEEDBACK;
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Gprs_RssiReportEN;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;  
@@ -167,7 +167,7 @@ uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = CONFIG_TAG_SERIALPORTBAUDRATE;
     tlv->Len = 4;
-    tlv->Value.Bit8 = g_SystemInfo.Gprs_SerialPort_BaudRate;
+    tlv->Value.Bit32 = g_SystemInfo.Gprs_SerialPort_BaudRate;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;  
     //串口通信校验
     tlv = (ZSProtoTLV_t*)p;
@@ -183,7 +183,7 @@ uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len; 
     //串口通信停止位
     tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_SERIALPORTDATABITS;
+    tlv->Tag = CONFIG_TAG_SERIALPORTSTOPBITS;
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Gprs_SerialPort_StopBits;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len; 
@@ -199,17 +199,17 @@ uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[0].ServerConnectway;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 主服务器IP地址
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MAINSERVERIP;
-    tlv->Len = 4;
-    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[0].byte_ServerIp;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 主服务器端口号
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = CONFIG_TAG_MAINSERVERPORT;
     tlv->Len = 2;
     tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[0].ServerPort;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;    
+    // 主服务器IP地址
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MAINSERVERIP;
+    tlv->Len = 4;
+    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[0].byte_ServerIp;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 主服务器域名
     tlv = (ZSProtoTLV_t*)p;
@@ -237,17 +237,17 @@ uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[1].ServerConnectway;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 备用服务器IP地址
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_BACKUPSERVERIP;
-    tlv->Len = 4;
-    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[1].byte_ServerIp;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 备用服务器端口号
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = CONFIG_TAG_BACKUPSERVERPORT;
     tlv->Len = 2;
     tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[1].ServerPort;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;    
+    // 备用服务器IP地址
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_BACKUPSERVERIP;
+    tlv->Len = 4;
+    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[1].byte_ServerIp;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 备用服务器域名
     tlv = (ZSProtoTLV_t*)p;
@@ -419,6 +419,7 @@ void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length)
                 if (tlv->Value.Bit32 > 0)
                 {
                     sprintf((char *)g_SystemInfo.Socket_ListInfo[0].ServerIp,"%d.%d.%d.%d",tlv->Value.Array[0],tlv->Value.Array[1],tlv->Value.Array[2],tlv->Value.Array[3]);
+                    //g_SystemInfo.Socket_ListInfo[0].byte_ServerIp=((uint32_t)0|(uint32_t)tlv->Value.Array[0]<<24|(uint32_t)tlv->Value.Array[1]<<16|(uint32_t)tlv->Value.Array[2]<<8|(uint32_t)tlv->Value.Array[3]);
                     g_SystemInfo.Socket_ListInfo[0].byte_ServerIp=tlv->Value.Bit32;
                     DEBUG("[MT] MainServerIP:%s\r\n",g_SystemInfo.Socket_ListInfo[0].ServerIp);
                 }
@@ -455,7 +456,7 @@ void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length)
                 }
                 break;
             }
-            case CONFIG_TAG_BACKUPSERVERDOMAIN_ENABLE: // 15
+            case CONFIG_TAG_BACKUPSERVERDOMAIN_ENABLE: 
             {
                 if (tlv->Value.Bit8 == 0)
                 {
@@ -479,10 +480,11 @@ void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length)
                 break;
             }
             case CONFIG_TAG_BACKUPSERVERIP:
-            {
-                if (tlv->Value.Bit32 > 0)
-                {
+            {   
+                if (tlv->Value.Bit32> 0)
+                {   
                     sprintf((char *)g_SystemInfo.Socket_ListInfo[1].ServerIp,"%d.%d.%d.%d",tlv->Value.Array[0],tlv->Value.Array[1],tlv->Value.Array[2],tlv->Value.Array[3]);
+                   // g_SystemInfo.Socket_ListInfo[1].byte_ServerIp=((uint32_t)0|(uint32_t)tlv->Value.Array[0]<<24|(uint32_t)tlv->Value.Array[1]<<16|(uint32_t)tlv->Value.Array[2]<<8|(uint32_t)tlv->Value.Array[3]);
                     g_SystemInfo.Socket_ListInfo[1].byte_ServerIp=tlv->Value.Bit32;
                     DEBUG("[MT] SpareServerIP:%s\r\n",g_SystemInfo.Socket_ListInfo[1].ServerIp);
                 }
@@ -646,7 +648,7 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     uint8_t *p = NULL;
     
     ZSProtoAPDU_P2P_t* apd;
-    ConfigSetRespPayload_t *payload;
+    ConfigGetRespPayload_t *payload;
     ZSProtoTLV_t *tlv;
     uint16_t len = 0;
     uint8_t *fcs;
@@ -670,10 +672,9 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     apd->Cmd = ZSCmd_ConfigGetResp;
     p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
     
-    payload = (ConfigSetRespPayload_t*)p;
-    payload->Result = result;
+    payload = (ConfigGetRespPayload_t*)p;
     payload->TLVCount = 16;
-    p += sizeof(payload->TLVCount) + sizeof(payload->Result); 
+    p += sizeof(payload->TLVCount); 
     //工作模式
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = CONFIG_TAG_OPEARTINGMODE;
@@ -688,7 +689,7 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;      
     //网络状态反馈
     tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = DATA_TAG_RSSIFEEDBACK;
+    tlv->Tag = DATA_TAG_LINKSTATEFEEDBACK;
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Gprs_RssiReportEN;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;  
@@ -696,7 +697,7 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = CONFIG_TAG_SERIALPORTBAUDRATE;
     tlv->Len = 4;
-    tlv->Value.Bit8 = g_SystemInfo.Gprs_SerialPort_BaudRate;
+    tlv->Value.Bit32 = g_SystemInfo.Gprs_SerialPort_BaudRate;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;  
     //串口通信校验
     tlv = (ZSProtoTLV_t*)p;
@@ -712,7 +713,7 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len; 
     //串口通信停止位
     tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_SERIALPORTDATABITS;
+    tlv->Tag = CONFIG_TAG_SERIALPORTSTOPBITS;
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Gprs_SerialPort_StopBits;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len; 
@@ -728,17 +729,17 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[0].ServerConnectway;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 主服务器IP地址
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_MAINSERVERIP;
-    tlv->Len = 4;
-    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[0].byte_ServerIp;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 主服务器端口号
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = CONFIG_TAG_MAINSERVERPORT;
     tlv->Len = 2;
     tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[0].ServerPort;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;    
+    // 主服务器IP地址
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_MAINSERVERIP;
+    tlv->Len = 4;
+    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[0].byte_ServerIp;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 主服务器域名
     tlv = (ZSProtoTLV_t*)p;
@@ -766,17 +767,17 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv->Len = 1;
     tlv->Value.Bit8 = g_SystemInfo.Socket_ListInfo[1].ServerConnectway;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
-    // 备用服务器IP地址
-    tlv = (ZSProtoTLV_t*)p;
-    tlv->Tag = CONFIG_TAG_BACKUPSERVERIP;
-    tlv->Len = 4;
-    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[1].byte_ServerIp;
-    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 备用服务器端口号
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = CONFIG_TAG_BACKUPSERVERPORT;
     tlv->Len = 2;
     tlv->Value.Bit16 = g_SystemInfo.Socket_ListInfo[1].ServerPort;
+    p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;    
+    // 备用服务器IP地址
+    tlv = (ZSProtoTLV_t*)p;
+    tlv->Tag = CONFIG_TAG_BACKUPSERVERIP;
+    tlv->Len = 4;
+    tlv->Value.Bit32 = g_SystemInfo.Socket_ListInfo[1].byte_ServerIp;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;
     // 备用服务器域名
     tlv = (ZSProtoTLV_t*)p;
