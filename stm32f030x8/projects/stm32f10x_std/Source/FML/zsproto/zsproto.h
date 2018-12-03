@@ -169,17 +169,21 @@ typedef enum
     ZSCmd_StdRegisterReq        = 74,	// 注册请求，到服务器用
     ZSCmd_StdRegisterResp       = 75,	// 注册应答
     
-    ZSCmd_ConfigGetReq          = 128,
-    ZSCmd_ConfigGetResp         = 129,
-    ZSCmd_ConfigSetReq          = 130,
-    ZSCmd_ConfigSetResp         = 131,
+    ZSCmd_ConfigGetReq          = 210,
+    ZSCmd_ConfigGetResp         = 211,
+    ZSCmd_ConfigSetReq          = 212,
+    ZSCmd_ConfigSetResp         = 213,
     
-    ZSProto_SocketPcakSend      = 132, //网络数据包发送
-    ZSProto_SocketPcakReceive   = 133, //网络数据包接收
+    ZSCmd_SocketPackageFromChip      = 214, //数据包发送
+    
+    ZSCmd_SocketPackageFromServer    = 215, //数据包接收
     
     
-    ZSProto_RssiNotify          = 134, 
-    ZSProto_LinkStateNotify     = 135,
+    ZSCmd_RssinotifyReq              = 216,
+    ZSCmd_RssinotifyResp             = 217,
+                                      
+    ZSCmd_LinkStateNotifyReq         = 218,
+    ZSCmd_LinkStateNotifyResp        = 219,
     
 }ZSCmd_e;
 

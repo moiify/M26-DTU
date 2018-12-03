@@ -194,7 +194,7 @@ void GPRS_SendData(uint8_t * pbuf,uint16_t length,uint8_t mux) // 发送数据接口
        g_Machine_TransmitBuf.In %= g_Machine_TransmitBuf.Size;
        for(i=0;i<length;i++)
        {
-          g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.In++]=*pbuf+i;
+          g_Machine_TransmitBuf.pData[g_Machine_TransmitBuf.In++]=*(pbuf+i);
           g_Machine_TransmitBuf.In %= g_Machine_TransmitBuf.Size;
        } 
        g_Machine_TransmitBuf.Count+=length+3; 

@@ -89,19 +89,22 @@ void BSP_USART_Open(uint8_t BSP_USARTx)
         usart_initstructure.USART_Parity = (uint32_t)s_GPRS_USARTParams.Parity,
         usart_initstructure.USART_Mode = USART_Mode_Tx|USART_Mode_Rx,
         usart_initstructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None;
-        usart_initstructure.USART_Mode=USART_Mode_Rx|USART_Mode_Tx;
         USART_Init( USART2, &usart_initstructure);   
+        
+        USART_ITConfig( USART2, USART_IT_RXNE, ENABLE);
+        USART_ITConfig( USART2, USART_IT_IDLE, ENABLE);
+        USART_ClearITPendingBit( USART2, USART_IT_IDLE);
+        USART_ClearITPendingBit( USART2, USART_IT_RXNE);
         
         nvic_initstructure.NVIC_IRQChannel=USART2_IRQn;
         nvic_initstructure.NVIC_IRQChannelCmd=ENABLE;
-        nvic_initstructure.NVIC_IRQChannelPriority=3;
+        nvic_initstructure.NVIC_IRQChannelPriority=1;
         NVIC_Init(&nvic_initstructure);   
-        USART_ClearITPendingBit( USART2, USART_IT_IDLE);
-        USART_ITConfig( USART2, USART_IT_IDLE, ENABLE);
         
         BSP_DMA_USART_StructInit(BSP_USART2);
-        USART_DMACmd(USART2,USART_DMAReq_Rx|USART_DMAReq_Tx,ENABLE); 
         
+        USART_DMACmd(USART2,USART_DMAReq_Rx|USART_DMAReq_Tx,ENABLE); 
+        DMA_Cmd(DMA1_Channel5, ENABLE);
         USART_Cmd( USART2, ENABLE);
         
     }
@@ -261,10 +264,9 @@ static uint16_t BSP_USART_ReadBytesDMA(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t
 {
     uint16_t read_count = 0;
     uint8_t* p = pBuf;
-
+    g_Machine_ReceiveBuf.In = g_Machine_ReceiveBuf.Size - DMA_GetCurrDataCounter(DMA1_Channel5);
     while (count--)
     {
-        g_Machine_ReceiveBuf.In = g_Machine_ReceiveBuf.Size - DMA_GetCurrDataCounter(DMA1_Channel5);
         if (g_Machine_ReceiveBuf.In == g_Machine_ReceiveBuf.Out)
         {
             return read_count;

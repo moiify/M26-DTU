@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=-178106001
+Checksum=353271733
 [JLinkDriver]
 CStepIntDis=_ 0
 TraceBufferSize=0x00010000
@@ -50,9 +50,11 @@ ShowSource=1
 [struct_types]
 Fmt0=GPRS_USARTParams_t-DataBits	3	0
 Fmt1=Socket_Info_t-byte_ServerIp	4	0
-Fmt2=ZSProtoAPDU_P2P_t-Cmd	4	0
+Fmt2=USART_TypeDef-ISR	4	0
+Fmt3=ZSProtoAPDU_P2P_t-Cmd	4	0
 [array_types]
 Fmt0=uint8_t[1000]	3	0
+Fmt1=uint8_t[1024]	4	0
 [watch_formats]
 Fmt0={W}1:checkresult	4	0
 Fmt1={W}1:cmd	4	0
@@ -121,24 +123,10 @@ ShowTimeLog=1
 SumEnabled=0
 ShowTimeSum=1
 SumSortOrder=0
-[Disassemble mode]
-mode=0
-[Breakpoints2]
-Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Source\application\stm32f0xx_it.c}.74.3" 0 0 1 "" 0 "" 0
-Count=1
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
 Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
-[Aliases]
-A0=_ "C:\Users\Administrator\Desktop\GPRS_DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
-A1=_ "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
-A2=_ "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\Application\main.c" ""
-Count=3
-SuppressDialog=1
 [DriverProfiling]
 Enabled=0
 Mode=3
@@ -153,3 +141,16 @@ ShowTiming=1
 Frequency=10000
 Probe0=I0
 ProbeSetup0=2 1 1 2 0 0
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Count=0
+[Aliases]
+A0=_ "C:\Users\Administrator\Desktop\GPRS_DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
+A1=_ "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s" "C:\Users\Administrator\Desktop\M26-DTU\Components\CMSIS\Device\ST\STM32F0xx\Source\Templates\iar\startup_stm32f030.s"
+A2=_ "C:\Users\Administrator\Desktop\GPRS透传\M26-DTU\stm32f030x8\projects\stm32f10x_std\Source\Application\main.c" ""
+Count=3
+SuppressDialog=1
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""

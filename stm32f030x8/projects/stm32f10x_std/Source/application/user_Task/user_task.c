@@ -109,7 +109,7 @@ uint8_t g_UserTask_Id = 0;
 void UserTask_Init(uint8_t taskId)
 {
     g_UserTask_Id = taskId;
-    OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,20);
+  //  OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,20);
     ZSProto_FlowSetCallback(ZSPROTO_FLOWCHANNEL_MAINTAIN, Maintain_Trans_Process);
 }
 
@@ -123,7 +123,7 @@ osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
     {   
         Maintain_Trans_Check();
         Server_Trans_Check();
- //       OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,50);
+       // OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,200);
         return events ^ USER_TASK_LOOP_EVENT;
     }
     if (events & USER_TASK_SHELL_EVENT)

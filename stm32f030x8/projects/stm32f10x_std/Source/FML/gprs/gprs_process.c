@@ -433,7 +433,7 @@ static void gprs_check_process(void) //检测回复
                 s_GPRS_CB.extra_request=GPRS_None_Req; 
                 s_GPRS_CB.state = GPRSState_Idle;
                 ZSProto_Make_RssiNotify(s_GPRS_CB.rssi);
-                DEBUG("[GPRS] Rssi:%d\r\n",s_GPRS_CB.rssi);
+                DEBUG("[GPRS] RssiNotify:%d\r\n",s_GPRS_CB.rssi);
                 GprsTask_Send_Event(GPRS_TASK_LOOP_EVENT);
             }
           break;
@@ -642,10 +642,13 @@ static uint16_t gprs_getnoackLen()
     return len;
 }
 static void gprs_linkstate_report(void)
-{
+{   
+    uint8_t linkstate;
 	if (g_SystemInfo.Gprs_LinkstateReportEN==1)
-	{
-		ZSProto_Make_LinkStateNotify(Gprs_GetLinkState());
+	{   
+        linkstate=Gprs_GetLinkState();
+		ZSProto_Make_LinkStateNotify(linkstate);
+        DEBUG("[GPRS] LinkStateNotify:0x%X \r\n ",linkstate);
 	}
 }
 
@@ -1071,7 +1074,7 @@ void GPRS_Loop_Process(void)
                 {
                     s_GPRS_CB.state = GPRSState_QICLOSE_Req;
                 }
-            }
+            } 
             break;
         }
         case GPRSState_QISEND_Req:
@@ -1109,6 +1112,7 @@ void GPRS_Loop_Process(void)
                 s_GPRS_CB.state = GPRSState_Idle;
                 s_GPRS_CB.extra_request=GPRS_None_Req;
                 s_GPRS_CB.retry_count=0;
+                DEBUG("[GPRS] QISEND Time Out! \r\n");
             }
             break;
         }
@@ -1261,10 +1265,11 @@ void Gprs_Reset_Moudle() //重启模块
    s_GPRS_CB.scoket_count=0;
 }
 uint8_t Gprs_GetLinkState() //获取网络连接状态
-{
+{   
+    
 	if (s_GPRS_CB.Socket_Info_t[0].LinkState!=GPRSLinkState_Establish&&s_GPRS_CB.Socket_Info_t[1].LinkState!=GPRSLinkState_Establish)
 	{
-		return 0x00;
+		return 0x00;   
 	}
 	else if (s_GPRS_CB.Socket_Info_t[0].LinkState==GPRSLinkState_Establish&&s_GPRS_CB.Socket_Info_t[1].LinkState!=GPRSLinkState_Establish)
 	{

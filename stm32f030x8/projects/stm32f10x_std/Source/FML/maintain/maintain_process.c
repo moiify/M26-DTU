@@ -151,7 +151,7 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
 		// DEBUG("[MT] zsproto cmd=%d\r\n", apd->Cmd);
 		switch (apd->Cmd)
 		{
-			case ZSProto_SocketPcakSend:   //payload转成GPRS发走
+			case ZSCmd_SocketPackageFromChip:   //payload转成GPRS发走
 				{
 					ZSProto_SocketPcakSend_Process(pBuf, length - 4);
 					DEBUG("[GPRS] SendDataReq_Process2\r\n");
@@ -169,13 +169,13 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
 					DEBUG("[GPRS] ConfigGetReq_Process\r\n");
 					break;
 				}
-			case ZSProto_RssiNotify:	  //信号强度请求
+			case ZSCmd_RssinotifyReq:	  //信号强度请求
 				{	
                     ZSProto_RssiNotify_Process();
 					DEBUG("[GPRS] RssiNotify_Process\r\n");
 					break;
 				}
-			case ZSProto_LinkStateNotify: //连接状态请求
+			case ZSCmd_LinkStateNotifyReq: //连接状态请求
 				{	
                     ZSProto_LinkStateNotify_Process();
 					DEBUG("[GPRS] LinkStateNotify_Process\r\n");
@@ -187,7 +187,7 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
 
 void Maintain_Trans_Check(void)
 {
-    uint8_t buf[200];
+    uint8_t spbuf[305]={0};
     uint16_t len = 0,idlelen;
     //    static uint32_t reclen=0;
     //    static uint16_t reccon=0;
@@ -199,30 +199,31 @@ void Maintain_Trans_Check(void)
         idlelen=len;
         if (len > 0)
         {
-            if (len > sizeof(buf))
+            if (len > sizeof(spbuf))
             {
-                len = sizeof(buf);
+                len = sizeof(spbuf);
             }
-            len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, buf, len);
+            len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, spbuf, len);
             
         }
         if (idlelen > 0)
         {
-            ZSProto_FlowAnalysis(ZSPROTO_FLOWCHANNEL_MAINTAIN, buf, len);
+            ZSProto_FlowAnalysis(ZSPROTO_FLOWCHANNEL_MAINTAIN, spbuf, len);
+            DEBUG("[ZSProto] Package FlowAnalysis\r\n");
         }  
     }
     else if(g_SystemInfo.Gprs_Operatingmode==Gprs_Transparentmode)
     {   
-        uint8_t recbuf[512];
-        len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, recbuf, g_Machine_ReceiveBuf.Size);
+        len = BSP_USART_ReadBytes(COM_USART_MAINTAIN, spbuf,sizeof(spbuf));
         //DEBUG("[MT] reclen:%d\r\n",len);
-        if(len>0)
-        {   
-            if(ZSProto_IsPackage(ZSPROTO_FLOWCHANNEL_MAINTAIN,recbuf,len)==NOT_SETPACKAGE)
+//        if(len>0)
+//        {   
+            if(ZSProto_IsPackage(ZSPROTO_FLOWCHANNEL_MAINTAIN,spbuf,len)==NOT_SETPACKAGE)
             {
-                ZSProto_TransparentData(recbuf,len);
+                ZSProto_TransparentData(spbuf,len);
+                DEBUG("[ZSProto] Transparent FlowAnalysis\r\n");
             }    
-        }
+//        }
     }
 }
 

@@ -161,7 +161,7 @@ uint16_t ZSProto_Make_ConfigSetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = DATA_TAG_LINKSTATEFEEDBACK;
     tlv->Len = 1;
-    tlv->Value.Bit8 = g_SystemInfo.Gprs_RssiReportEN;
+    tlv->Value.Bit8 = g_SystemInfo.Gprs_LinkstateReportEN;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;  
     //串口通信波特率
     tlv = (ZSProtoTLV_t*)p;
@@ -317,7 +317,7 @@ uint16_t ZSProto_Make_SocketDataPackage(uint8_t muxnum,uint8_t * pdata,uint16_t 
     apd->FCF.bitfield.ConnType = ZSPROTO_CONNTYPE_P2P;
     
     apd->Seq = g_ZSProto_Seq++;
-    apd->Cmd = ZSProto_SocketPcakReceive;
+    apd->Cmd = ZSCmd_SocketPackageFromServer;
     p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
     
     payload = (SocketDataPayload_t*)p;
@@ -466,7 +466,7 @@ void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length)
                 else
                 {
                     g_SystemInfo.Socket_ListInfo[1].ServerConnectway = Domain_Connect;
-                    DEBUG("[MT] SpareServer IP Connect\r\n");
+                    DEBUG("[MT] SpareServer Domain Connect\r\n");
                 }
                 break;
             }
@@ -520,7 +520,6 @@ void ZSProto_ConfigSetReq_Process(uint8_t *pBuf,uint16_t length)
             {
                 if (tlv->Value.Bit8 == 0)
                 {
-                    
                     g_SystemInfo.Gprs_Operatingmode= Gprs_Transparentmode;
                     DEBUG("[MT] Transparentmode\r\n");
                 }
@@ -691,7 +690,7 @@ uint16_t ZSProto_Make_ConfigGetResp(uint8_t *pBuf,uint8_t result,uint8_t seq)
     tlv = (ZSProtoTLV_t*)p;
     tlv->Tag = DATA_TAG_LINKSTATEFEEDBACK;
     tlv->Len = 1;
-    tlv->Value.Bit8 = g_SystemInfo.Gprs_RssiReportEN;
+    tlv->Value.Bit8 = g_SystemInfo.Gprs_LinkstateReportEN;
     p += sizeof(tlv->Tag) + sizeof(tlv->Len) + tlv->Len;  
     //串口通信波特率
     tlv = (ZSProtoTLV_t*)p;
@@ -845,7 +844,7 @@ void ZSProto_Make_RssiNotify(uint8_t rssi)
     apd->FCF.bitfield.ConnType = ZSPROTO_CONNTYPE_P2P;
     
     apd->Seq = g_ZSProto_Seq++;
-    apd->Cmd = ZSProto_RssiNotify;
+    apd->Cmd = ZSCmd_RssinotifyResp;
     p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
     
     payload = (RssiRespPayload_t*)p;
@@ -909,7 +908,7 @@ void ZSProto_Make_LinkStateNotify(uint8_t linkstate)
     apd->FCF.bitfield.ConnType = ZSPROTO_CONNTYPE_P2P;
     
     apd->Seq = g_ZSProto_Seq++;
-    apd->Cmd = ZSProto_LinkStateNotify;
+    apd->Cmd = ZSCmd_LinkStateNotifyResp;
     p += sizeof(ZSProtoAPDU_P2P_t) - sizeof(apd->CmdPayload);
     
     payload = (LinkstateRespPayload_t*)p;
@@ -937,6 +936,7 @@ void ZSProto_Make_LinkStateNotify(uint8_t linkstate)
         *fcs += pBuf[i+ZSPROTO_AHR_LENGTH_OFFSET];
     }
     BSP_USART_WriteBytes(BSP_USART2, g_ZSProtoMakeCache.Buf, len);
+
 }
 
 void ZSProto_RssiNotify_Process()

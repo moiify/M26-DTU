@@ -146,14 +146,13 @@ int16_t SystemParam_Init(void)
             return -1;
         }
     }
-    INFO("[system]->[param]->init ok\r\n");
+    INFO("[System] Init ok\r\n");
 
     return 0;
 }
 
 int16_t SystemParam_Read(void)
 {
-    uint8_t i = 0;
     BSP_FLASH_ReadBytes(FLASH_PARAM_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
     if (CRC16_Modbus((uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo)) == 0)
     {
@@ -169,15 +168,12 @@ int16_t SystemParam_Read(void)
          }
         else
         {
-            for (i=0;i<8;i++)
-            {
-			}
             INFO("[system]->[param]->read error then init \r\n");
             return -1;
         }
     }
 
-    INFO("[system]->[param]->read ok\r\n");
+    INFO("[System] Read ok\r\n");
     return 0;
 }
 
@@ -189,7 +185,7 @@ void SystemParam_Save(void)
     BSP_FLASH_EraseSector(FLASH_PARAM_BACK_START_ADDR);
     BSP_FLASH_WriteBytes(FLASH_PARAM_BACK_START_ADDR,(uint8_t*)&g_SystemInfo,sizeof(g_SystemInfo));
 
-    INFO("[system]->[param]->save\r\n");
+    INFO("[System] Save Param \r\n");
 }
 
 void SystemParam_Reset(void)

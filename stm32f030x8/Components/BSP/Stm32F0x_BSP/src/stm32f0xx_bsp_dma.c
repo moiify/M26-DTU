@@ -116,7 +116,6 @@ void  BSP_DMA_USART_StructInit(uint8_t BSP_USARTx)
     uint8_t s_address[1];
     
     DMA_InitTypeDef dma_initstructure;
-    NVIC_InitTypeDef NVIC_InitStruct;
     
     if(BSP_USARTx==BSP_USART1)
     {
@@ -156,11 +155,7 @@ void  BSP_DMA_USART_StructInit(uint8_t BSP_USARTx)
         dma_initstructure.DMA_Priority = DMA_Priority_Low;
         dma_initstructure.DMA_Mode = DMA_Mode_Normal;
         dma_initstructure.DMA_M2M = DMA_M2M_Disable;
-        
-        NVIC_InitStruct.NVIC_IRQChannel=DMA1_Channel4_5_IRQn;
-        NVIC_InitStruct.NVIC_IRQChannelCmd=ENABLE;
-        NVIC_InitStruct.NVIC_IRQChannelPriority=2;
-        NVIC_Init(&NVIC_InitStruct);
+       
         
        // DMA_ITConfig( DMA1_Channel4, DMA_IT_TC ,DISABLE); 
         DMA_Init(DMA1_Channel4,&dma_initstructure);    
@@ -180,7 +175,7 @@ void  BSP_DMA_USART_StructInit(uint8_t BSP_USARTx)
 
         DMA_Init(DMA1_Channel5,&dma_initstructure);    
         DMA_RemapConfig(DMA1, DMA1_CH5_USART2_RX);
-        DMA_Cmd(DMA1_Channel5, ENABLE);
+
     }
 }
 
