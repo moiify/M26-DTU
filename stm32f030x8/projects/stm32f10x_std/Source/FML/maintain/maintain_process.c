@@ -154,16 +154,16 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
 			case ZSCmd_SocketPackageFromChip:   //payload转成GPRS发走
 				{
 					ZSProto_SocketPcakSend_Process(pBuf, length - 4);
-					DEBUG("[GPRS] SendDataReq_Process2\r\n");
+					DEBUG("[GPRS] SendDataReq_Process\r\n");
 					break;
 				}
-			case ZSCmd_ConfigSetReq:      //配置请求
+			case ZSCmd_ConfigSetReq:      //设置配置请求
 				{
 					ZSProto_ConfigSetReq_Process(pBuf, length);
 					DEBUG("[GPRS] ConfigSetReq_Process\r\n");
 					break;
 				}
-			case ZSCmd_ConfigGetReq:  	  //配置获取
+			case ZSCmd_ConfigGetReq:  	  //配置获取请求
 				{
 					ZSProto_ConfigGetReq_Process();
 					DEBUG("[GPRS] ConfigGetReq_Process\r\n");
@@ -187,7 +187,7 @@ static void maintain_apd_process(uint8_t *pBuf,uint16_t length)
 
 void Maintain_Trans_Check(void)
 {
-    uint8_t spbuf[305]={0};
+    uint8_t spbuf[500]={0};
     uint16_t len = 0,idlelen;
     //    static uint32_t reclen=0;
     //    static uint16_t reccon=0;
@@ -207,9 +207,9 @@ void Maintain_Trans_Check(void)
             
         }
         if (idlelen > 0)
-        {
-            ZSProto_FlowAnalysis(ZSPROTO_FLOWCHANNEL_MAINTAIN, spbuf, len);
+        {   
             DEBUG("[ZSProto] Package FlowAnalysis\r\n");
+            ZSProto_FlowAnalysis(ZSPROTO_FLOWCHANNEL_MAINTAIN, spbuf, len);
         }  
     }
     else if(g_SystemInfo.Gprs_Operatingmode==Gprs_Transparentmode)

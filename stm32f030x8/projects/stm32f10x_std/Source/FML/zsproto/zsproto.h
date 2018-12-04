@@ -41,7 +41,7 @@
 #define ZSPROTO_AHR_SIGN                'Z' // 0x5A, zsproto header
 #define ZSPROTO_AFR_SIGN                'S' // 0x53, zsproto footer
 
-#define ZSPROTO_BUFFER_SIZE_MAX         255
+#define ZSPROTO_BUFFER_SIZE_MAX         500
 
 #define ZSPROTO_AHR_SIGN_OFFSET         0   
 #define ZSPROTO_AHR_LENGTH_OFFSET       1    
@@ -222,7 +222,7 @@ extern ZSProtoPacket_t g_ZSProtoMakeCache;
  * @defgroup      zsproto_Exported_Functions 
  * @{  
  */
-void ZSProto_FlowAnalysis(uint8_t channel,uint8_t *pBuf,uint8_t length);
+void ZSProto_FlowAnalysis(uint8_t channel,uint8_t *pBuf,uint16_t length);
 void ZSProto_FlowSetCallback(uint8_t channel,void (*recv)(uint8_t *pBuf,uint16_t length));
 uint16_t ZSProto_FlowGetCacheIdleLength(uint8_t channel);
 uint8_t ZSProto_IsPackage(uint8_t channel,uint8_t * pBuf,uint16_t length);

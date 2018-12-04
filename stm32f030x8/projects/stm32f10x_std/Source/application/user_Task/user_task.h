@@ -58,7 +58,7 @@
  * @defgroup      USER_task_Exported_Variables 
  * @{  
  */
-
+extern uint8_t g_UserTask_Id;
 /**
  * @}
  */

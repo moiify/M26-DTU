@@ -6,6 +6,7 @@
 static GPRS_USARTParams_t s_GPRS_USARTParams;
 
 static uint16_t BSP_USART_ReadBytesDMA(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t count);
+static uint16_t BSP_USART_ReadBytesISR(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t count);
 static void bsp_USART_ParameterRedistribution(uint8_t BSP_USARTx);
 
 void BSP_USART_Open(uint8_t BSP_USARTx)
@@ -93,8 +94,6 @@ void BSP_USART_Open(uint8_t BSP_USARTx)
         
         USART_ITConfig( USART2, USART_IT_RXNE, ENABLE);
         USART_ITConfig( USART2, USART_IT_IDLE, ENABLE);
-        USART_ClearITPendingBit( USART2, USART_IT_IDLE);
-        USART_ClearITPendingBit( USART2, USART_IT_RXNE);
         
         nvic_initstructure.NVIC_IRQChannel=USART2_IRQn;
         nvic_initstructure.NVIC_IRQChannelCmd=ENABLE;
@@ -132,12 +131,19 @@ void BSP_USART_IRQHandler(uint8_t BSP_USARTx)
 {   
     if(BSP_USARTx==BSP_USART2)
     {
+
+//        if(USART_GetITStatus(USART2,USART_IT_RXNE) != RESET)
+//        {
+//           g_Machine_ReceiveBuf.pData[g_Machine_ReceiveBuf.In++]=USART_ReceiveData(USART2);
+//           g_Machine_ReceiveBuf.In %=g_Machine_ReceiveBuf.Size;
+//        }
         if (USART_GetITStatus(USART2,USART_IT_IDLE) != RESET)
         {
             USART_ClearITPendingBit( USART2, USART_IT_IDLE);
             //Uart_DMA_Rx_Data();
             UserTask_Send_Event(USER_TASK_LOOP_EVENT);
-            USART_ReceiveData(USART2);
+            OS_Timer_Start(g_UserTask_Id, USER_TASK_LOOP_EVENT,200);
+            //USART_ReceiveData(USART2);
         }
     }
 }
@@ -253,20 +259,40 @@ uint16_t BSP_USART_ReadBytes(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t count)
 	if (BSP_USARTx==BSP_USART2) 
 	{
 		return BSP_USART_ReadBytesDMA(BSP_USARTx, pBuf, count);
+        //return BSP_USART_ReadBytesISR(BSP_USARTx, pBuf, count);
 	}
     else 
     {
         return 0;
     }
 }
+
+static uint16_t BSP_USART_ReadBytesISR(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t count)
+{
+    uint16_t read_count = 0;
+    uint8_t* p = pBuf;
+    
+    while (count--)
+    {	
+        if (g_Machine_ReceiveBuf.In == g_Machine_ReceiveBuf.Out)
+        {
+            return read_count;
+        }
+        *p++ = g_Machine_ReceiveBuf.pData[g_Machine_ReceiveBuf.Out++];
+        g_Machine_ReceiveBuf.Out %= g_Machine_ReceiveBuf.Size;
+        read_count++;
+    }
+    return read_count;
+}
 //
 static uint16_t BSP_USART_ReadBytesDMA(uint8_t BSP_USARTx,uint8_t* pBuf,uint16_t count)
 {
     uint16_t read_count = 0;
     uint8_t* p = pBuf;
-    g_Machine_ReceiveBuf.In = g_Machine_ReceiveBuf.Size - DMA_GetCurrDataCounter(DMA1_Channel5);
+    
     while (count--)
-    {
+    {	
+		g_Machine_ReceiveBuf.In = g_Machine_ReceiveBuf.Size - DMA_GetCurrDataCounter(DMA1_Channel5);
         if (g_Machine_ReceiveBuf.In == g_Machine_ReceiveBuf.Out)
         {
             return read_count;

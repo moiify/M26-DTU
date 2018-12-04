@@ -144,7 +144,7 @@ static uint16_t zsproto_flow_decode(uint8_t channel)
                 if (remain_len >= len)
                 {
                     if (pBuf[ZSPROTO_AHR_SIGN_OFFSET + offset + len - 1] == ZSPROTO_AFR_SIGN)
-                    {
+                    {   
                         if (s_ZSProtoFlowCacheList[channel].recv != NULL)
                         {   
                             s_ZSProtoFlowCacheList[channel].recv(&pBuf[ZSPROTO_AHR_SIGN_OFFSET+offset], len);
@@ -192,7 +192,7 @@ static uint16_t zsproto_flow_decode(uint8_t channel)
     return remove_count;
 }
 
-void ZSProto_FlowAnalysis(uint8_t channel,uint8_t *pBuf,uint8_t length)
+void ZSProto_FlowAnalysis(uint8_t channel,uint8_t *pBuf,uint16_t length)
 {
     uint16_t empty_count = 0,read_count = 0;
 

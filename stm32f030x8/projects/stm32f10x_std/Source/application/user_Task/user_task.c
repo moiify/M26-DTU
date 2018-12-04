@@ -133,7 +133,6 @@ osal_event_t UserTask_Process(uint8_t taskid,osal_event_t events)
 
     if (events & USER_TASK_OPEN_CMD_EVENT)
     {   
-        OS_Timer_Start(taskid,USER_TASK_CLOSE_CMD_EVENT,1000);
         return events ^ USER_TASK_OPEN_CMD_EVENT;
     }
 
